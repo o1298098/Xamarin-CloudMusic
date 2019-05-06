@@ -36,6 +36,7 @@ namespace CloudMusic
             catch (System.Exception ex) { }
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
+            Xamarin.Essentials.ExperimentalFeatures.Enable(Xamarin.Essentials.ExperimentalFeatures.ShareFileRequest);
 #if DEBUG
             if (!HotReloader.Current.IsRunning)
                 HotReloader.Current.Start(this);
@@ -43,7 +44,11 @@ namespace CloudMusic
             Context = new Context();
             //MainPage = new NavigationPage(new MasterDetailPage1());
             //MainPage = new MyTabbedPage();
-
+            DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
+            var cookielist = DependencyService.Get<ICookieStore>().CurrentCookies.Where(cc => cc.Name != "none").ToList();
+            if (cookielist.Count > 0)
+                foreach (var q in cookielist)
+                    ApiHelper.HttpClient.CloudMusicCookie.Add(q);
             await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
         }
 
@@ -72,13 +77,7 @@ namespace CloudMusic
             //FCMPushNotification.Init();
             System.Threading.Tasks.Task.Run(async () => {
                 MicrosoftAppCenterHandler.Init();
-                //Actions.ApiHelper.CloudMusicApiHelper.Login("13690290528", "o1298098");
-                DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
-                var cookielist = DependencyService.Get<ICookieStore>().CurrentCookies.Where(cc=>cc.Name!="none").ToList();
-                if(cookielist.Count>0)
-                    foreach(var q in cookielist)
-                        ApiHelper.HttpClient.CloudMusicCookie.Add(q);
-                await AutoUpdate.GetUpdate();
+                //await AutoUpdate.GetUpdate();
                 FFImageLoading.Config.Configuration.Default.ClearMemoryCacheOnOutOfMemory = true;
                 FFImageLoading.Config.Configuration.Default.BitmapOptimizations= true;
                 //FFImageLoading.Config.Configuration.Default.DiskCacheDuration = System.TimeSpan.FromDays(5);

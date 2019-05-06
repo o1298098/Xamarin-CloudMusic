@@ -39,7 +39,7 @@ namespace CloudMusic.Droid
             InitDownloadManager();
             Android.Glide.Forms.Init();
             PanCardView.Droid.CardsViewRenderer.Preserve();
-            //XF.Material.Droid.Material.Init(this, savedInstanceState);
+            XF.Material.Droid.Material.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             Services.CrossPrint.Init(this);

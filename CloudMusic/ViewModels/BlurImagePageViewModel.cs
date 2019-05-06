@@ -40,13 +40,13 @@ namespace CloudMusic.ViewModels
         Track nowsongInfo;
         ObservableCollection<SongLyricsModel> _songLyricsModels;
         float _opacity;
-        bool init,_isAutoAnimationRunning, _isUserInteractionRunning, _isShowLrc, _isShowDisc, _isMoreMenu;
+        bool init, _isAutoAnimationRunning, _isUserInteractionRunning, _isShowLrc, _isShowDisc, _isMoreMenu;
         string[] urls =
         {
             "http://hbimg.b0.upaiyun.com/a8cc159f81e65d0a1e89603901c9e564793f803418540-WrQ7fN",
             "https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/36/df/34/36df34e4-000e-4414-2511-ec4d207fb149/5052917024599.jpg/1200x630bb.jpg",
             "http://a0.att.hudong.com/28/25/20200000013920144721251845631_s.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcQgLZenU2F4n8zcheXDgzR-93J0nZx3MFvTpj03cCZLrGino",            
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcQgLZenU2F4n8zcheXDgzR-93J0nZx3MFvTpj03cCZLrGino",
             "https://wx2.sinaimg.cn/mw690/007cj4a0gy1fwu1bvforvj30mt0mkgng.jpg",
             "http://www.people.com.cn/mediafile/pic/20190114/99/4777642898675812815.jpg",
             "http://img1.oss.ifensi.com/2018/0518/20180518034617796.png",
@@ -79,12 +79,12 @@ namespace CloudMusic.ViewModels
             CrossMediaManager.Current.MediaItemFailed += Current_MediaItemFailed;
             CrossMediaManager.Current.VolumeManager.VolumeChanged += VolumeManager_VolumeChanged;
             NowDuration = TimeSpan.FromMilliseconds(200);
-            BackClickedCommand = new Command(async()=>await BackClickedAsync());
+            BackClickedCommand = new Command(async () => await BackClickedAsync());
             NextClickedCommand = new Command(async () => await NextClickedAsync());
             PlayClickedCommand = new Command(PlayClickedAsync);
             ChangeViewCommand = new Command(ChangeView);
             MoreBtnClickCommand = new Command(() => IsMoreMenu = !IsMoreMenu);
-            ShareBtnClickedCommand = new Command(async ()=> {  await NavigationService.NavigateAsync("SearchMusicPage"); });
+            ShareBtnClickedCommand = new Command(async () => { await NavigationService.NavigateAsync("SearchMusicPage"); });
             MusicCommentClickedCommand = new DelegateCommand(async () =>
             {
                 var param = new NavigationParameters();
@@ -103,12 +103,14 @@ namespace CloudMusic.ViewModels
             });
             TreeBtnClickedCommand = new DelegateCommand(async () => { await NavigationService.NavigateAsync("ScrollVideoPage"); });
             DownLoadBtnClickedCommand = new Command(SongDownLoad);
-            TestCommand = new DelegateCommand(async ()=> {
-                var param= new NavigationParameters();
-                param.Add("pic",NowSongInfo.al.picUrl);
-               await NavigationService.NavigateAsync("EmptyPage",param);
+            ShareTappedCommand = new Command(async () => await ShareTapped());
+            TestCommand = new DelegateCommand(async () =>
+            {
+                var param = new NavigationParameters();
+                param.Add("pic", NowSongInfo.al.picUrl);
+                await NavigationService.NavigateAsync("EmptyPage", param);
             });
-            
+
         }
 
         #region Mod
@@ -120,11 +122,38 @@ namespace CloudMusic.ViewModels
                 MusicPlayList = parameters["PlayListModel"] as MusicPlayListDetail;
                 await ChangeMusicAsync(0);
             }
-            else if(!init)
+            else if (!init)
             {
                 await Task.Run(async () => await GetPlayListAsync());
             }
             init = true;
+        }
+        async Task ShareTapped()
+        {
+            //await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareTextRequest
+            //{
+            //    Uri = string.Format("https://music.163.com/song/media/outer/url?id={0}.mp3",NowSongInfo.id),
+            //    Title = "共享歌曲"
+            //});
+            string downloadurl = string.Format("https://music.163.com/song/media/outer/url?id={0}.mp3", NowSongInfo.id);
+            var fn = NowSongInfo.name + "." + musicInfo.data[0].encodeType;
+            var file = System.IO.Path.Combine(Xamarin.Essentials.FileSystem.CacheDirectory, fn);
+            using (await XF.Material.Forms.UI.Dialogs.MaterialDialog.Instance.LoadingDialogAsync(message: "生成音乐文件中......", new XF.Material.Forms.UI.Dialogs.Configurations.MaterialLoadingDialogConfiguration { TintColor = Color.FromHex("#94BBFF") }))
+            {
+                await Task.Run(async () =>
+                {
+                    System.Net.WebClient webClient = new System.Net.WebClient();
+                    byte[] data = await webClient.DownloadDataTaskAsync(downloadurl);
+                    System.IO.File.WriteAllBytes(file, data);
+                    await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareFileRequest
+                    {
+                        Title = Title,
+                        File = new Xamarin.Essentials.ShareFile(file)
+                    });
+                });
+
+            };
+
         }
         void SongDownLoad()
         {
@@ -165,7 +194,7 @@ namespace CloudMusic.ViewModels
 
         private async void Current_MediaItemFinished(object sender, MediaManager.Media.MediaItemEventArgs e)
         {
-           await NextClickedAsync();
+            await NextClickedAsync();
         }
 
         private void VolumeManager_VolumeChanged(object sender, MediaManager.Volume.VolumeChangedEventArgs e)
@@ -179,20 +208,20 @@ namespace CloudMusic.ViewModels
             NowDuration = new TimeSpan(0);
             MusicDuration = TimeSpan.FromMilliseconds(MusicPlayList.playlist.tracks[s].dt);
             NowSongInfo = MusicPlayList.playlist.tracks[s];
-           await Task.Run(async () =>
-            {
-                string result = ApiHelper.HttpClient.HttpGet(musicurl + NowSongInfo.id);
-                if (result != "err")
-                {
-                    var music = JsonConvert.DeserializeObject<MusicInfo>(result);
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        SongName = NowSongInfo.name;
-                        ArtName = NowSongInfo.arstr;
-                        musicInfo = music;
-                    });
-                    try
-                    {
+            await Task.Run(async () =>
+             {
+                 string result = ApiHelper.HttpClient.HttpGet(musicurl + NowSongInfo.id);
+                 if (result != "err")
+                 {
+                     var music = JsonConvert.DeserializeObject<MusicInfo>(result);
+                     Device.BeginInvokeOnMainThread(() =>
+                     {
+                         SongName = NowSongInfo.name;
+                         ArtName = NowSongInfo.arstr;
+                         musicInfo = music;
+                     });
+                     try
+                     {
                         //var item = new MediaManager.Media.MediaItem(music.data[0].url)
                         //{
                         //    AlbumArtUri = NowSongInfo.al.picUrl,
@@ -201,31 +230,31 @@ namespace CloudMusic.ViewModels
                         //    Album= NowSongInfo.al.name,
                         //    DisplaySubtitle= NowSongInfo.name,
                         //};
-                        if(!string.IsNullOrWhiteSpace(music.data[0].url))
-                            await CrossMediaManager.Current.Play(music.data[0].url);
-                        else
-                            Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
+                        if (!string.IsNullOrWhiteSpace(music.data[0].url))
+                             await CrossMediaManager.Current.Play(music.data[0].url);
+                         else
+                             Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
 
-                    }
-                    catch { }
-                    result = ApiHelper.HttpClient.HttpGet(musicCommenturl + MusicPlayList.playlist.tracks[s].id);
-                    if (result != "err")
-                    {
-                        var musicComments = JsonConvert.DeserializeObject<MusicComment>(result);
-                        int cCount = musicComments.total;
-                        if (cCount < 1000)
-                            CommentCount = cCount.ToString();
-                        else if (cCount > 1000 & cCount < 10000)
-                            CommentCount = "999+";
-                        else if (cCount > 10000 & cCount < 100000)
-                            CommentCount = "1w+";
-                        else if (cCount > 100000)
-                            CommentCount = "10w+";
-                    }
-                    if (IsShowLrc)
-                        GetLyrics();
-                }
-            });
+                     }
+                     catch { }
+                     result = ApiHelper.HttpClient.HttpGet(musicCommenturl + MusicPlayList.playlist.tracks[s].id);
+                     if (result != "err")
+                     {
+                         var musicComments = JsonConvert.DeserializeObject<MusicComment>(result);
+                         int cCount = musicComments.total;
+                         if (cCount < 1000)
+                             CommentCount = cCount.ToString();
+                         else if (cCount > 1000 & cCount < 10000)
+                             CommentCount = "999+";
+                         else if (cCount > 10000 & cCount < 100000)
+                             CommentCount = "1w+";
+                         else if (cCount > 100000)
+                             CommentCount = "10w+";
+                     }
+                     if (IsShowLrc)
+                         GetLyrics();
+                 }
+             });
             //var s = await DependencyService.Get<IPalette>().GetColorAsync(im);
             //Device.BeginInvokeOnMainThread(() => Theme = s);
         }
@@ -312,7 +341,7 @@ namespace CloudMusic.ViewModels
             if (IsShowLrc)
             {
                 var g = SongLyricsModels?.Where(q => q.Time <= e.Position.TotalMilliseconds).LastOrDefault();
-                if (now != g&&g!=null)
+                if (now != g && g != null)
                 {
                     g.Color = Xamarin.Forms.Color.White;
                     now.Color = Xamarin.Forms.Color.FromHex("#c1c1c1");
@@ -320,8 +349,8 @@ namespace CloudMusic.ViewModels
                     OnLrcChange?.Invoke(g);
                 }
             }
-            if (NowDuration >= MusicDuration&&init)
-               await NextClickedAsync();
+            if (NowDuration >= MusicDuration && init)
+                await NextClickedAsync();
 
         }
         async void PlayClickedAsync()
@@ -390,7 +419,7 @@ namespace CloudMusic.ViewModels
             else if (s.Direction == PanCardView.Enums.ItemSwipeDirection.Right)
                 newindex--;
             if (newindex >= 0)
-               await ChangeMusicAsync(newindex);
+                await ChangeMusicAsync(newindex);
         }
         #endregion
         #region Bindingable
@@ -530,6 +559,7 @@ namespace CloudMusic.ViewModels
         public ICommand DownLoadBtnClickedCommand { get; private set; }
         public ICommand TreeBtnClickedCommand { get; private set; }
         public ICommand TestCommand { get; private set; }
+        public ICommand ShareTappedCommand { get; private set; }
         #endregion
     }
     public delegate void ColorChangedHandler();

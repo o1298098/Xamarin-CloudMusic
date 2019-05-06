@@ -39,7 +39,8 @@ namespace CloudMusic.ViewModels
             CrossMediaManager.Current.PositionChanged += Current_PositionChanged;
             SliderDragCompletedCommand = new Command(async () => { await CrossMediaManager.Current.SeekTo(TimeSpan.FromMilliseconds(NowDurationNum)); });
             DiscSwipeCommand = new Command(DiscSwipe);
-            LikeSongClickCommand = new Command(LikeSongClicked); MoreBtnClickCommand = new Command(() => IsMoreMenu = !IsMoreMenu); 
+            LikeSongClickCommand = new Command(LikeSongClicked);
+            MoreBtnClickCommand = new Command(() => IsMoreMenu = !IsMoreMenu); 
             NextClickedCommand = new Command(NextClicked);
             PlayClickedCommand = new Command(PlayClicked);
         }

@@ -44,7 +44,7 @@
                     <Label  Text="{Binding NowSongInfo.name}" FontSize="18" TextColor="White" VerticalOptions="Center" LineBreakMode="TailTruncation"></Label>
                     <Label  Text="{Binding NowSongInfo.arstr}" FontSize="14" TextColor="#e1e1e1" VerticalOptions="Center"></Label>
                 </StackLayout>
-                <ImageButton Grid.Row="0" Grid.Column="0" Source="PlayShare.png" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" Command="{Binding TestCommand}"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="0" Source="PlayShare.png" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" Command="{Binding ShareTappedCommand}"></ImageButton>
             </StackLayout>
             <Image Grid.Row="1" Source="ic_disc_blackground.png" WidthRequest="273" HeightRequest="273" HorizontalOptions="Center" Margin="0,90,0,0" VerticalOptions="Start" IsVisible="{Binding IsShowDisc}"/>
             <cards:CoverFlowView 
@@ -80,7 +80,7 @@
             <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding IsShowDisc}">
                 <ImageButton WidthRequest="25" HeightRequest="25" Source="PlayHeart.png" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,30,0" Scale="0.8"></ImageButton>
                 <ImageButton WidthRequest="25" HeightRequest="25" Source="PlayDownLoad.png" BackgroundColor="Transparent" VerticalOptions="Center"  Margin="0,0,35,0" Command="{Binding DownLoadBtnClickedCommand}"></ImageButton>
-                <ImageButton WidthRequest="25" HeightRequest="25" Source="PlayTree.png" BackgroundColor="Transparent"  VerticalOptions="Center"  Margin="0,0,35,0" Command="{Binding TreeBtnClickedCommand}"></ImageButton>
+                <ImageButton WidthRequest="25" HeightRequest="25" Source="PlayTree.png" BackgroundColor="Transparent"  VerticalOptions="Center"  Margin="0,0,35,0" Command="{Binding TestCommand}"></ImageButton>
                 <borad:SfBadgeView   BadgeText="{Binding CommentCount}"  VerticalOptions="Center" WidthRequest="50" Margin="0,0,20,0" >
                     <borad:SfBadgeView.BadgeSettings>
                         <borad:BadgeSetting Offset="-15,0" FontSize="8" TextPadding="0" BackgroundColor="Transparent" BadgeType="None"/>
