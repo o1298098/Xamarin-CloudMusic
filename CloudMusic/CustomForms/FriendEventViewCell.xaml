@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.FriendEventViewCell">
+  <ViewCell.View>
+        <Grid Padding="20" ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="18"></RowDefinition>
+                <RowDefinition Height="12"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" HeightRequest="30" WidthRequest="30" DownsampleToViewSize="True" VerticalOptions="Start" x:Name="usericon" LoadingPlaceholder="CacheBG.jpg">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+             <Label Grid.Row="0" Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding user.nickname}" TextColor="Accent"></Span>
+                            <Span Text="{Binding Conent.conentstr,StringFormat=' {0}'}" TextColor="#333333"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding rcmdInfo.userReason}" FontSize="12"></Label>
+            <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Conent.msg}"></Label>
+            <FlexLayout Grid.Row="3" Grid.Column="1" IsVisible="{Binding Conent.isSong}" Wrap="Wrap" AlignItems="Start" AlignContent="Start" JustifyContent="SpaceAround" x:Name="Imagelayout" HorizontalOptions="FillAndExpand">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <ffimageloading:CachedImage Source="{Binding squareUrl}"  Aspect="AspectFill"  WidthRequest="90" HeightRequest="90" Margin="0,2,0,0" DownsampleToViewSize="True" FadeAnimationEnabled="False" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:RoundedTransformation></fftransformations:RoundedTransformation>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

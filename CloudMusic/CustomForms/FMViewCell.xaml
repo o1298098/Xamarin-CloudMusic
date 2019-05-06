@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.FMViewCell">
+  <ViewCell.View>
+        <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ffimageloading:CachedImage x:Name="image" WidthRequest="60" HeightRequest="60" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" DownsampleToViewSize = "true">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:RoundedTransformation  Radius="40"></fftransformations:RoundedTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="16"></Label>
+                <Label Text="{Binding dj.nickname}" FontSize="12"></Label>
+            </StackLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

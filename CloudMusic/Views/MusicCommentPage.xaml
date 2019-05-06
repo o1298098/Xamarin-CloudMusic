@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="CloudMusic.Views.MusicCommentPage"
+             xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ffloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftran="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:CloudMusic.Actions">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="0" HeightRequest="60">
+                <ImageButton BackgroundColor="Transparent" Source="Back_b.png" WidthRequest="28" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
+                <Label  Text="{Binding CommentCount,StringFormat='评论({0})'}" FontSize="22" TextColor="#515151"  Margin="20,10,0,0" VerticalOptions="Center"></Label>
+            </StackLayout>        
+            <ListView  ItemsSource="{Binding musicComment.comments}" CachingStrategy="RecycleElement" HasUnevenRows="True" BackgroundColor="White" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                </ListView.Behaviors>
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="{Binding CommentCount,StringFormat='最新评论({0})'}" FontAttributes="Bold" Margin="20,10,0,0"></Label>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.Footer>
+                    <Grid HeightRequest="30">
+                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                        </StackLayout>
+                    </Grid>
+                </ListView.Footer>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customforms:SongCommentViewCell></customforms:SongCommentViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>       
+    </ContentPage.Content>
+</ContentPage>

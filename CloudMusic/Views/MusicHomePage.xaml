@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customforms:CustomTabbedPage
+    xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:views="clr-namespace:CloudMusic.Views"
+    NavigationPage.HasNavigationBar="False"
+    prism:ViewModelLocator.AutowireViewModel="True"  
+    BarBackgroundColor="White"
+           x:Class="CloudMusic.Views.MusicHomePage" >
+  <views:BlankPage Icon="Ic_menu_b.png" Title="搜索"></views:BlankPage>
+        <views:UserInfoPage Title="我的"></views:UserInfoPage>
+        <views:MusicDiscoverPage Title="发现"></views:MusicDiscoverPage>
+        <views:FriendEventPage Title="朋友"></views:FriendEventPage>
+        <views:ScrollVideoPage Title="视频"></views:ScrollVideoPage>
+  <views:BlankPage Icon="ic_search_b.png" Title="菜单"></views:BlankPage>
+</customforms:CustomTabbedPage>

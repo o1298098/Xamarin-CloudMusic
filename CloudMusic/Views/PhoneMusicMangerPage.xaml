@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.PhoneMusicMangerPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HeightRequest="80">
+                <ImageButton BackgroundColor="Transparent" Source="Back_b.png" WidthRequest="28" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
+                <Label  Text="本地音乐" FontSize="20" TextColor="#515151"  Margin="10,20,0,0" VerticalOptions="Center"></Label>
+            </StackLayout>
+            <tabView:SfTabView TabHeight="30">
+                <tabView:SfTabView.Behaviors>
+                    <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding TabViewSelectionChangedCommand}"></local:EventToCommandBehavior>
+                </tabView:SfTabView.Behaviors>
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings/>
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SfTabItem Title="单曲" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <StackLayout Spacing="0" Padding="20,0">
+                            <StackLayout Orientation="Horizontal"  HeightRequest="50" Spacing="0">
+                                <Image Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                                <Label  VerticalOptions="Center"  Margin="5,0,0,0" HorizontalOptions="FillAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="播放全部" TextColor="#333333" FontSize="16"></Span>
+                                            <Span Text="{Binding songList.Count,StringFormat='({0})'}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Image Source="Ic_menu_b.png" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" HorizontalOptions="End"></Image>
+                                <Label Text="多选" TextColor="#333333" VerticalOptions="Center" Margin="5,0,0,0"></Label>
+                            </StackLayout>
+                            <ListView ItemsSource="{Binding songList}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Spacing="0" Margin="0,10,0,10" Orientation="Horizontal">
+                                                <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                                                    <Label Text="{Binding Name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                                    <Label Text="{Binding Artist}" FontSize="12"></Label>
+                                                </StackLayout>
+                                                <ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Margin="0,0,10,0"></ImageButton>
+                                                <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </StackLayout>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>               
+
+            </tabView:SfTabView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

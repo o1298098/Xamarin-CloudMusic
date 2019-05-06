@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffstatic="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.RecommendSongsPage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Black" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>            
+            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" BackgroundColor="White" x:Name="listview" ItemsSource="{Binding recommendSongs.recommend}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <customforms:CustomListview.Header>
+                    <Grid BackgroundColor="Black" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="3" HeightRequest="190" Source="{Binding recommendSongs.recommend[0].album.picUrl}" DownsampleToViewSize="True" HorizontalOptions="FillAndExpand" Aspect="AspectFill"  LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="True" VerticalOptions="Start">
+                            <ffimageloading:CachedImage.CacheKeyFactory>
+                                <local:CustomCacheKeyFactory/>
+                            </ffimageloading:CachedImage.CacheKeyFactory>
+                        </ffimageloading:CachedImage>
+                     <AbsoluteLayout Grid.Row="1" x:Name="infolayout">
+                        <Label TextColor="White" FontAttributes="Bold" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.05,0.3,70,30"  FontFamily="ariblk.ttf#ariblk">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='\{0:dd}'}" FontSize="28"></Span>
+                                    <Span Text=" /" FontSize="18"></Span>
+                                    <Span Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='\{0:MM}'}" FontSize="18" ></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="根据你的音乐口味,为你推荐好音乐，好朋友" TextColor="#d1d1d1" FontSize="10"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,0.75,230,20"></Label>
+                        <FlexLayout BindableLayout.ItemsSource="{Binding simiUsers.userprofiles}"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.4,80,30" HeightRequest="30" Margin="13,10,0,0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                        <ffimageloading:CachedImage HeightRequest="30" WidthRequest="30" Source="{Binding avatarUrl}" DownsampleToViewSize="True" Margin="-13,10,0,0" Aspect="AspectFit" LoadingPlaceholder="CacheBG.jpg">
+                                            <ffimageloading:CachedImage.CacheKeyFactory>
+                                                <local:CustomCacheKeyFactory/>
+                                            </ffimageloading:CachedImage.CacheKeyFactory>
+                                            <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:CircleTransformation BorderSize="5" BorderHexColor="#ffffff"></fftransformations:CircleTransformation>
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                        <ffimageloading:CachedImage Source="Ic_more_l.png"  AbsoluteLayout.LayoutBounds="0.98,0.67,20,20" AbsoluteLayout.LayoutFlags="PositionProportional">
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:ColorSpaceTransformation RGBAWMatrix="{x:Static ffstatic:FFColorMatrix.InvertColorMatrix}"></fftransformations:ColorSpaceTransformation>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                    </AbsoluteLayout>
+                        <!--<StackLayout BackgroundColor="{Binding MainColor}" Grid.Row="0" Grid.RowSpan="3" Opacity="0" x:Name="lwheaderBG"></StackLayout>-->
+                    <StackLayout Grid.Row="3" BackgroundColor="White"></StackLayout>
+                    <Frame Padding="0" Grid.Row="2" Grid.RowSpan="2" CornerRadius="18" HasShadow="False">
+                        <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                            <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                            <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
+                            </Label>
+                            <Image Source="Ic_menu_b.png" WidthRequest="20"></Image>
+                            <Label Text="多选" VerticalOptions="Center"  TextColor="#333333" Margin="0,0,10,0"></Label>
+                        </StackLayout>
+                    </Frame>
+                    </Grid>
+                </customforms:CustomListview.Header>
+                <customforms:CustomListview.ItemTemplate>
+                    <DataTemplate>
+                        <customforms:RecommendSongsViewCell/>
+                    </DataTemplate>
+                </customforms:CustomListview.ItemTemplate>
+            </customforms:CustomListview>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" HeightRequest="100"  Source="{Binding recommendSongs.recommend[0].album.picUrl}" DownsampleToViewSize="True" HorizontalOptions="FillAndExpand" Aspect="AspectFill"  LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="True"  x:Name="BackBG" VerticalOptions="Start" IsVisible="False">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="4" HeightRequest="180"  Source="{Binding recommendSongs.recommend[0].album.picUrl}" DownsampleToViewSize="True" HorizontalOptions="FillAndExpand" Aspect="AspectFill"  LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="True" Opacity="0" x:Name="lwheaderBG" VerticalOptions="Start">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
+                </ffimageloading:CachedImage.Transformations> 
+            </ffimageloading:CachedImage>
+            <StackLayout Orientation="Horizontal" HeightRequest="100" Grid.RowSpan="2" Grid.Row="0" x:Name="bar" VerticalOptions="Start">
+                <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" HeightRequest="30"  Margin="20,35,0,0" Command="{Binding GoBackCommand}" VerticalOptions="Start"></ImageButton>
+                <Label  x:Name="Title" Text="每日歌单" WidthRequest="80" TextColor="White" Margin="10,35,0,0" FontSize="20" FontAttributes="Bold" IsVisible="False"></Label>
+                <ImageButton Source="PlayShare.png" WidthRequest="25"  HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0,35,20,0" BackgroundColor="Transparent" VerticalOptions="Start"></ImageButton>
+            </StackLayout>
+            <StackLayout Grid.Row="2" BackgroundColor="White" x:Name="playlayoutbg" IsVisible="False"></StackLayout>
+            <Frame Padding="0" Grid.Row="1" Grid.RowSpan="2" CornerRadius="18" HasShadow="False"  x:Name="playlayout" IsVisible="False">
+                <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                    <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                    <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
+                    </Label>
+                    <Image Source="Ic_menu_b.png" WidthRequest="20"></Image>
+                    <Label Text="多选" VerticalOptions="Center"  TextColor="#333333" Margin="0,0,10,0"></Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+  
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          x:Class="CloudMusic.CustomForms.AlbumViewCell">
+  <ViewCell.View>
+        <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <customforms:CircleImage Grid.Column="0" Source="Ic_Black.jpg" WidthRequest="50" HeightRequest="50" Margin="25,0,0,0"></customforms:CircleImage>
+            <!--<Frame  Grid.Column="0" BackgroundColor="Transparent" Padding="0" WidthRequest="45" HeightRequest="45" HasShadow="False" BorderColor="#666666" HorizontalOptions="Center" VerticalOptions="Center" Margin="12,0,0,0"></Frame>-->
+            <ffimageloading:CachedImage x:Name="image" WidthRequest="50" HeightRequest="50" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="False" FadeAnimationForCachedImages="False" CacheType="All" LoadingDelay="200" DownsampleToViewSize = "true">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:RoundedTransformation  Radius="40"></fftransformations:RoundedTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="15"></Label>
+                    <Label  FontSize="12">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding artists[0].name}"/>
+                                <Span Text="{Binding publishDateTime,StringFormat=' {0:yyyy.MM.dd}'}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+            </StackLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "623926863891",
+    "firebase_url": "https://nodal-cogency-232202.firebaseio.com",
+    "project_id": "nodal-cogency-232202",
+    "storage_bucket": "nodal-cogency-232202.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623926863891:android:54bd26dd10d77231",
+        "android_client_info": {
+          "package_name": "CloudMusic.CloudMusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623926863891-tm5l2a8m14jlth60ov7071i05o8hb8rg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaOCh8dQpvRB1ZUtt5kpAVw41Z1PTB02U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

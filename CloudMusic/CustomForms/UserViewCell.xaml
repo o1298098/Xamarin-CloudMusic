@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.UserViewCell">
+  <ViewCell.View>
+        <StackLayout Orientation="Horizontal" HeightRequest="80" Spacing="10">
+            <ffimageloading:CachedImage WidthRequest="50" HeightRequest="50" x:Name="image" LoadingPlaceholder="CacheBG.jpg" FadeAnimationForCachedImages="False" FadeAnimationEnabled="False" DownsampleToViewSize = "true" LoadingDelay="200">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label Text="{Binding nickname}" TextColor="#333333" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" LineBreakMode="TailTruncation"></Label>
+            <Button VerticalOptions="Center" Padding="0" WidthRequest="70" HeightRequest="30" BorderColor="#FE3A3B" BorderWidth="2" CornerRadius="18" Text="+  关注" TextColor="#FE3A3B" BackgroundColor="Transparent"></Button>
+        </StackLayout>
+
+    </ViewCell.View>
+</ViewCell>

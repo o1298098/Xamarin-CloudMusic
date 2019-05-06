@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="CloudMusic.Views.MusicAPPLoginPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Spacing="30" Padding="20">
+            <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                <ImageButton BackgroundColor="Transparent" Source="Back_b.png" WidthRequest="28" Command="{Binding GoBackCommand}"></ImageButton>
+                <Label  Text="手机号登录" FontSize="20" TextColor="#333333" VerticalOptions="Center" FontAttributes="Bold"></Label>
+            </StackLayout>
+            <Entry Placeholder="请输入手机号" Text="{Binding username}" Margin="0,30,0,0"></Entry>
+            <Entry Placeholder="密码" IsPassword="True" Text="{Binding password}"></Entry>
+            <Button Text="登录" HeightRequest="45" CornerRadius="25" BackgroundColor="#FE3A3B" TextColor="White" FontSize="16" Command="{Binding LoginClickCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

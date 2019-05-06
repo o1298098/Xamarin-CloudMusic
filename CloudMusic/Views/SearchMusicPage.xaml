@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"             
+             xmlns:ffstatic="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading"
+             xmlns:sync="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:xforms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"             
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.SearchMusicPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" HeightRequest="80">
+                <ffimageloading:CachedImage BackgroundColor="Transparent" Source="Back_b.png" WidthRequest="28" HeightRequest="28" Margin="20,20,0,0"  VerticalOptions="Center">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}"></TapGestureRecognizer>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:ColorSpaceTransformation RGBAWMatrix="{x:Static ffstatic:FFColorMatrix.SepiaColorMatrix }" ></fftransformations:ColorSpaceTransformation>
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage>
+                <sync:SfAutoComplete  x:Name="autoComplete" SuggestionMode="ContainsWithCaseSensitive" ShowBorder="True" Text="{Binding KeyWords}" DataSource="{Binding MobileSearchSuggest.result.allMatch}" Keyboard="Text"  HorizontalOptions="FillAndExpand" DropDownItemHeight="50" HighlightedTextColor="red" TextHighlightMode="MultipleOccurrence"   HeightRequest="40" VerticalOptions="Center" Margin="0,20,20,0" PopupDelay="50" DropDownHeaderViewHeight="40" Watermark="输入你想找的" >
+                    <sync:SfAutoComplete.Behaviors>
+                        <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding AutoCompleteSelectionChangedCommand}"></local:EventToCommandBehavior>
+                        <local:EventToCommandBehavior EventName="Completed" Command="{Binding AutoCompletedCommand}"></local:EventToCommandBehavior>
+                    </sync:SfAutoComplete.Behaviors>
+                    <sync:SfAutoComplete.DropDownHeaderView>
+                        <StackLayout>
+                            <StackLayout BackgroundColor="White" Padding="10,5" Orientation="Horizontal">
+                                <Label Text="{Binding KeyWords,StringFormat='搜索\'{0}\''}" FontSize="15" TextColor="Accent"/>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="#f5f5f5" VerticalOptions="Center"></BoxView>
+                        </StackLayout>
+                    </sync:SfAutoComplete.DropDownHeaderView>
+                    <sync:SfAutoComplete.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <StackLayout BackgroundColor="White" Padding="5" Orientation="Horizontal">
+                                    <Image Source="Ic_search.png" WidthRequest="20"></Image>
+                                    <Label Text="{Binding keyword}" FontSize="15"/>
+                                </StackLayout>
+                                <BoxView HeightRequest="1" BackgroundColor="#f5f5f5" VerticalOptions="Center"></BoxView>
+                            </StackLayout>                           
+                        </DataTemplate>
+                    </sync:SfAutoComplete.ItemTemplate>
+                </sync:SfAutoComplete>
+            </StackLayout>
+            <tabView:SfTabView TabHeight="30">
+                <tabView:SfTabView.Behaviors>
+                    <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding TabViewSelectionChangedCommand}"></local:EventToCommandBehavior>
+                </tabView:SfTabView.Behaviors>
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings/>
+                </tabView:SfTabView.SelectionIndicatorSettings>                
+                <tabView:SfTabItem Title="单曲" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <StackLayout Spacing="0" Padding="20,0">
+                            <StackLayout Orientation="Horizontal"  HeightRequest="50" Spacing="0">
+                                <Image Source="Ic_play_b.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"></Image>
+                                <Label Text="播放全部" TextColor="#333333" VerticalOptions="Center" FontSize="16" Margin="15,0,0,0" HorizontalOptions="FillAndExpand"></Label>
+                                <Image Source="Ic_menu_b.png" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" HorizontalOptions="End"></Image>
+                                <Label Text="多选" TextColor="#333333" VerticalOptions="Center" Margin="5,0,0,0"></Label>
+                            </StackLayout>
+                            <ListView ItemsSource="{Binding SearchResult.result.songs}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Spacing="0" Margin="0,10,0,10" Orientation="Horizontal">
+                                                <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                                                    <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                                    <Label Text="{Binding artists[0].name}" FontSize="12"></Label>
+                                                </StackLayout>
+                                                <ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="{Binding hasMv}" Margin="0,0,10,0"></ImageButton>
+                                                <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                                            </StackLayout>
+                                        </ViewCell>                                        
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </StackLayout>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="MV" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="20,10">
+                            <ListView ItemsSource="{Binding SearchResult.result.mvs}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ListViewItemTappedCommand}"></local:EventToCommandBehavior>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:MVViewCell></customforms:MVViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="歌单" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="15,5">
+                            <ListView ItemsSource="{Binding SearchResult.result.playlists}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemTapped" Command="{Binding PlayListItemTappedCommand}"></local:EventToCommandBehavior>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:PlayListViewCell/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="歌手" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="20,10,20,0">
+                            <ListView ItemsSource="{Binding SearchResult.result.artists}" HasUnevenRows="True" CachingStrategy="RecycleElementAndDataTemplate" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:SingerViewCell/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>             
+                <tabView:SfTabItem Title="专辑" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="15,5">
+                            <ListView ItemsSource="{Binding SearchResult.result.albums}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:AlbumViewCell/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="主播电台" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="15,5">
+                            <ListView ItemsSource="{Binding SearchResult.result.djRadios}" HasUnevenRows="True" CachingStrategy="RecycleElement" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:FMViewCell/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="综合" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <ScrollView Padding="20,10,20,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300"></RowDefinition>
+                                    <RowDefinition Height="450"></RowDefinition>
+                                    <RowDefinition Height="500"></RowDefinition>
+                                    <RowDefinition Height="300"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Row="0">
+                                    <Label Text="单曲>" FontSize="16" FontAttributes="Bold" TextColor="#333333"></Label>
+                                    <xforms:SfListView  ItemsSource="{Binding SearchAllResult.result.song.songs}" AutoFitMode="Height" IsScrollBarVisible="False" ItemSize="60" SelectionBackgroundColor="Transparent">
+                                        <xforms:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout Spacing="10" Margin="0,10,0,10" Orientation="Horizontal" >
+                                                        <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                                                            <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                                            <Label Text="{Binding ar[0].name}" FontSize="12"></Label>
+                                                        </StackLayout>
+                                                        <ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="{Binding hasMv}"></ImageButton>
+                                                        <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </xforms:SfListView.ItemTemplate>
+                                    </xforms:SfListView>
+                                </StackLayout>
+                                <StackLayout Grid.Row="1">
+                                    <Label Text="歌单>" FontSize="16" FontAttributes="Bold" TextColor="#333333" Margin="0,20,0,0"></Label>
+                                    <xforms:SfListView AutoFitMode="Height" ItemsSource="{Binding SearchAllResult.result.playList.playLists}" IsScrollBarVisible="False" ItemSize="80" SelectionBackgroundColor="Transparent">
+                                        <xforms:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <ffimageloading:CachedImage x:Name="image" WidthRequest="60" HeightRequest="60" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" Source="{Binding coverImgUrl}">
+                                                            <ffimageloading:CachedImage.Transformations>
+                                                                <fftransformations:RoundedTransformation  Radius="40"></fftransformations:RoundedTransformation>
+                                                            </ffimageloading:CachedImage.Transformations>
+                                                        </ffimageloading:CachedImage>
+                                                        <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                                            <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="16"></Label>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding trackCount,StringFormat='\{0}首'}" FontSize="12"></Label>
+                                                                <Label Text="{Binding creator.nickname,StringFormat='by {0},'}" FontSize="12"></Label>
+                                                                <Label Text="{Binding playCountstr,StringFormat='播放{0}次'}" FontSize="12"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </xforms:SfListView.ItemTemplate>
+                                    </xforms:SfListView>
+                                </StackLayout>
+                                <StackLayout Grid.Row="2">
+                                    <Label Text="视频>" FontSize="16" FontAttributes="Bold" TextColor="#333333" Margin="0,20,0,0"></Label>
+                                    <xforms:SfListView AutoFitMode="Height" ItemsSource="{Binding SearchAllResult.result.video.videos}" IsScrollBarVisible="False" ItemSize="100">
+                                        <xforms:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid Margin="0,5,0,5" ColumnSpacing="10">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="80"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="130"></ColumnDefinition>
+                                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Frame Padding="0" CornerRadius="5" HasShadow="False" Grid.Row="0" Grid.Column="0" >
+                                                            <ffimageloading:CachedImage  x:Name="image"  Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  FadeAnimationEnabled="False" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" Source="{Binding coverUrl}">
+                                                            </ffimageloading:CachedImage>
+                                                        </Frame>
+                                                        <StackLayout Orientation="Horizontal"  HorizontalOptions="End" VerticalOptions="Start" Padding="5" Spacing="0">
+                                                            <Image  Grid.Row="0" Grid.Column="0"  Source="ic_play_arrow_white_36dp" HeightRequest="15" WidthRequest="15"></Image>
+                                                            <Label Text="{Binding playTimestr}"  TextColor="White"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                                            <Label Text="{Binding title}" TextColor="#333333" ></Label>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding durationtime,StringFormat='\{0:mm\\:ss}'}" FontSize="10"></Label>
+                                                                <Label Text="{Binding creator[0].userName}" FontSize="10"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </xforms:SfListView.ItemTemplate>
+                                    </xforms:SfListView>
+                                </StackLayout>
+                                <StackLayout Grid.Row="3">
+                                    <Label Text="歌手>" FontSize="16" FontAttributes="Bold" TextColor="#333333" Margin="0,20,0,0"></Label>
+                                    <xforms:SfListView AutoFitMode="Height" ItemsSource="{Binding SearchAllResult.result.artist.artists}" IsScrollBarVisible="False" ItemSize="70">
+                                        <xforms:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <customforms:SingerViewCell/>
+                                            </DataTemplate>
+                                        </xforms:SfListView.ItemTemplate>
+                                    </xforms:SfListView>
+                                </StackLayout>
+                                <StackLayout Grid.Row="4">
+                                    <Label Text="专辑>" FontSize="16" FontAttributes="Bold" TextColor="#333333" Margin="0,20,0,0"></Label>
+                                    <xforms:SfListView ItemsSource="{Binding SearchAllResult.result.album.albums}" AutoFitMode="Height" IsScrollBarVisible="False" ItemSize="70">
+                                        <xforms:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <customforms:CircleImage Grid.Column="0" Source="Ic_Black.jpg" WidthRequest="50" HeightRequest="50" Margin="25,0,0,0"></customforms:CircleImage>
+                                                        <!--<Frame  Grid.Column="0" BackgroundColor="Transparent" Padding="0" WidthRequest="45" HeightRequest="45" HasShadow="False" BorderColor="#666666" HorizontalOptions="Center" VerticalOptions="Center" Margin="12,0,0,0"></Frame>-->
+                                                        <ffimageloading:CachedImage x:Name="image" WidthRequest="50" HeightRequest="50" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="False" CacheType="All" LoadingDelay="200" Source="{Binding picUrl}">
+                                                            <ffimageloading:CachedImage.Transformations>
+                                                                <fftransformations:RoundedTransformation  Radius="40"></fftransformations:RoundedTransformation>
+                                                            </ffimageloading:CachedImage.Transformations>
+                                                        </ffimageloading:CachedImage>
+                                                        <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                                            <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="15"></Label>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding artists[0].name}" FontSize="12"></Label>
+                                                                <Label Text="{Binding publishDateTime,StringFormat='\{0:yyyy.MM.dd}'}" FontSize="12"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </xforms:SfListView.ItemTemplate>
+                                    </xforms:SfListView>
+                                </StackLayout>
+                            </Grid>
+                        </ScrollView>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="用户" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid  Padding="20,10,20,0">
+                            <ListView ItemsSource="{Binding SearchResult.result.userprofiles}" HasUnevenRows="True" CachingStrategy="RecycleElementAndDataTemplate" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                                <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customforms:UserViewCell/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </ListView.Footer>
+                            </ListView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+
+            </tabView:SfTabView>          
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.RecommendSongsViewCell">
+  <ViewCell.View>
+        <StackLayout Spacing="0" Margin="20,10" Orientation="Horizontal">
+            <ffimageloading:CachedImage HeightRequest="40" WidthRequest="40" x:Name="image" Source="{Binding album.picUrl}" DownsampleToViewSize="True" Aspect="AspectFit" LoadingPlaceholder="CacheBG.jpg">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:RoundedTransformation CropHeightRatio="40" CropWidthRatio="40" Radius="50"></fftransformations:RoundedTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <StackLayout HorizontalOptions="FillAndExpand" Spacing="0" Margin="10,0,0,0">
+                <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                <Label Text="{Binding artists[0].name}" FontSize="12"></Label>
+            </StackLayout>
+            <ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="{Binding hasMv}" Margin="0,0,10,0"></ImageButton>
+            <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

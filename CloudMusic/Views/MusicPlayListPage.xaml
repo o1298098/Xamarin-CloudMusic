@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:CloudMusic.CustomForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.MusicPlayListPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="230"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" BitmapOptimizations="True" x:Name="background" DownsampleToViewSize="True" DownsampleWidth="10" DownsampleHeight="10">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
+                    <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>          
+            <controls:CustomListview x:Name="listview" ItemsSource="{Binding MusicPlayList.playlist.tracks}" HasUnevenRows="True" SeparatorVisibility="None" Grid.Row="0" Grid.RowSpan="4" VerticalScrollBarVisibility="Never">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <ListView.Header>
+                    <StackLayout>
+                        <StackLayout HeightRequest="60"></StackLayout>
+                        <AbsoluteLayout HeightRequest="230" Opacity="1" x:Name="headerlayout">
+                            <ffimageloading:CachedImage Source="{Binding BgPic}"  WidthRequest="150" HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Start" DownsampleToViewSize="True" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".1,.1,150,150">
+                                <ffimageloading:CachedImage.CacheKeyFactory>
+                                    <local:CustomCacheKeyFactory/>
+                                </ffimageloading:CachedImage.CacheKeyFactory>
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:RoundedTransformation Radius="15" CropHeightRatio="150" CropWidthRatio="150"></fftransformations:RoundedTransformation>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                            <Label Text="{Binding MusicPlayList.playlist.name}" TextColor="White" FontSize="18" FontAttributes="Bold" LineBreakMode="TailTruncation" MaxLines="2" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".92,.05,150,45"></Label>
+                            <ffimageloading:CachedImage Source="{Binding MusicPlayList.playlist.creator.avatarUrl}" WidthRequest="30" HeightRequest="30" DownsampleToViewSize="True"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".58,.35,30,30">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                            <Label Text="{Binding MusicPlayList.playlist.creator.nickname}" TextColor="White" VerticalOptions="Center" FontSize="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".85,.35,90,20"></Label>
+                            <Label Text="{Binding MusicPlayList.playlist.description}" TextColor="White" Margin="0,10,0,0" MaxLines="2" LineBreakMode="TailTruncation" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".92,.55,150,45"></Label>
+                            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".05,.08,150,20">
+                                <StackLayout HorizontalOptions="FillAndExpand"></StackLayout>
+                                <Image  Source="ic_play_arrow_white_36dp" HeightRequest="15" WidthRequest="15"></Image>
+                                <Label Text="{Binding MusicPlayList.playlist.playCountstr}"  TextColor="White"></Label>
+                            </StackLayout>
+                            <ImageButton BackgroundColor="Transparent" Source="PlayTalk.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".12,.85,25,25"></ImageButton>
+                            <Label Text="{Binding MusicPlayList.playlist.commentCount}" TextColor="White" AbsoluteLayout.LayoutFlags="PositionProportional"  AbsoluteLayout.LayoutBounds=".15,.99,80,25"></Label>
+                            <ImageButton BackgroundColor="Transparent" Source="PlayShare.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".38,.85,25,25"></ImageButton>
+                            <Label Text="{Binding MusicPlayList.playlist.shareCount,TargetNullValue='0'}" TextColor="White" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".47,.99,80,25"></Label>
+                            <ImageButton BackgroundColor="Transparent" Source="PlayDownLoad.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center"  Command="{Binding DownLoadClickedCommand}"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".65,.85,25,25"></ImageButton>
+                            <Label Text="下载" TextColor="White" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".67,.99,60,25"></Label>
+                            <ImageButton BackgroundColor="Transparent" Source="Ic_Check_out.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".9,.85,25,25"></ImageButton>
+                            <Label Text="多选" TextColor="White" HorizontalOptions="Center"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.99,60,25"></Label>
+                        </AbsoluteLayout>   
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="10"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="1" Grid.RowSpan="2"  BackgroundColor="White"></StackLayout>
+                            <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="20" BackgroundColor="White" HasShadow="False"></Frame>
+                            <StackLayout Grid.RowSpan="3" Orientation="Horizontal" Padding="20,0,10,0">
+                                <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                                <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="播放全部" TextColor="#333333"></Span>
+                                            <Span Text="{Binding MusicPlayList.playlist.trackCount,StringFormat='(共{0}首)'}" TextColor="#a1a1a1"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" ></Button>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="White" Padding="20,5">
+                                <StackLayout Spacing="0" Margin="0,10,0,10" Orientation="Horizontal">
+                                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                                        <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                            <Label FontSize="12">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding ar[0].name}"></Span>
+                                                        <Span Text="{Binding al.name,StringFormat=' - {0}'}" FontSize="12"/>
+                                            </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>                             
+                                    </StackLayout>
+                                    <ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="{Binding hasmv}" Margin="0,0,10,0"></ImageButton>
+                                    <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Grid IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator  IsRunning="True"></ActivityIndicator>
+                    </Grid>
+                </ListView.Footer>
+            </controls:CustomListview>
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" DownsampleToViewSize="True" IsVisible="False" x:Name="playlayoutbg">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
+                    <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage> 
+            <StackLayout Orientation="Horizontal" Grid.Row="0" >
+                <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
+                <Label Text="歌单" TextColor="White" Margin="20,20,0,0" VerticalOptions="Center" FontSize="20" HorizontalOptions="FillAndExpand"></Label>
+                <ImageButton Grid.Row="0" Grid.Column="0" Source="Ic_search_w.png" WidthRequest="25" HorizontalOptions="End" Margin="0,20,20,0" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="0" Source="Menu_w.png" WidthRequest="25" HorizontalOptions="End" Margin="0,20,20,0" BackgroundColor="Transparent"></ImageButton>
+            </StackLayout>
+            <Grid Grid.Row="1" x:Name="playbtnlayout" HeightRequest="50" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="1" Grid.RowSpan="2"  BackgroundColor="White"></StackLayout>
+                <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="20" BackgroundColor="White" HasShadow="False"></Frame>
+                <StackLayout Grid.RowSpan="3" Orientation="Horizontal" Padding="20,0,10,0">
+                    <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                    <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="播放全部" TextColor="#333333"></Span>
+                                <Span Text="{Binding MusicPlayList.playlist.trackCount,StringFormat='(共{0}首)'}" TextColor="#a1a1a1"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" ></Button>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:borad="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:action="clr-namespace:CloudMusic.Actions"
+             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+             xmlns:processors="clr-namespace:PanCardView.Processors;assembly=PanCardView"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.PersonalFMPage">
+    <Grid VerticalOptions="FillAndExpand" x:Name="Mainlayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="320"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="130"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ffimageloading:CachedImage InputTransparent="false" x:Name="FontImage" 
+                     Aspect="AspectFill"  Source="{Binding ImageUrl}"  Grid.Row="0" Grid.RowSpan="4"  WidthRequest="20" HeightRequest="20"  DownsampleToViewSize="True" FadeAnimationEnabled="True" FadeAnimationDuration="400">
+            <ffimageloading:CachedImage.Transformations>
+                <fftransformations:CropTransformation CropHeightRatio="20" CropWidthRatio="20"></fftransformations:CropTransformation>
+                <fftransformations:BlurredTransformation Radius="25"></fftransformations:BlurredTransformation>
+            </ffimageloading:CachedImage.Transformations>
+        </ffimageloading:CachedImage>
+        <StackLayout InputTransparent="false"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Fill" BackgroundColor="Black" Opacity="0.3"  Grid.Row="0" Grid.RowSpan="4" />
+        <StackLayout Grid.Row="1">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ChangeViewCommand}"></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
+            <Label  Text="私人FM" FontSize="18" TextColor="White" Margin="0,35,0,0" LineBreakMode="TailTruncation"></Label>
+            <ImageButton Grid.Row="0" Grid.Column="0" Source="Menu_w" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" Command="{Binding MoreBtnClickCommand}"></ImageButton>
+        </StackLayout>
+        <cards:CardsView
+                VerticalOptions="Start"
+                x:Name="coverFlowView"
+                Grid.Row="1" Margin="0,20,0,0" 
+                IsCyclical="false"
+                IsAutoInteractionRunning="{Binding IsAutoAnimationRunning}"
+                IsUserInteractionRunning="{Binding IsUserInteractionRunning}"
+                IsPanSwipeEnabled="True"
+                SelectedIndex="{Binding CurrentIndex}"
+                ItemsSource="{Binding personalFm.data,Mode=OneWay}"
+                ItemSwipedCommand="{Binding DiscSwipeCommand}"
+                IsVisible="{Binding IsShowDisc}"
+                IsViewCacheEnabled="True"
+                IsAutoNavigatingAimationEnabled="True"    
+                IsUserInteractionInCourse="True"
+                BackViewsDepth="2"
+                IsOnlyForwardDirection="True"
+                >
+            <!--<x:Arguments>
+                <processors:BaseCardFrontViewProcessor></processors:BaseCardFrontViewProcessor>
+                <action:CutsomCardFrontViewProcessor></action:CutsomCardFrontViewProcessor>
+            </x:Arguments>-->
+            <cards:CardsView.ItemTemplate>
+                <DataTemplate>
+                    <ffimageloading:CachedImage Source="{Binding album.picUrl}" WidthRequest="300" HeightRequest="300" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="CacheBG" DownsampleToViewSize="True" >
+                        <ffimageloading:CachedImage.CacheKeyFactory>
+                            <action:CustomCacheKeyFactory/>
+                        </ffimageloading:CachedImage.CacheKeyFactory>
+                        <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:RoundedTransformation CropHeightRatio="300" CropWidthRatio="300" Radius="10"></fftransformations:RoundedTransformation>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                </DataTemplate>
+            </cards:CardsView.ItemTemplate>
+        </cards:CardsView>
+        <StackLayout Grid.Row="2" Margin="0,20,0,0" HorizontalOptions="FillAndExpand">
+            <Label Text="{Binding NowSongInfo.name}" TextColor="White" HorizontalOptions="Center" FontSize="20" MaxLines="2"></Label>
+            <Label Text="{Binding NowSongInfo.artists[0].name}" HorizontalOptions="Center" TextColor="#c1c1c1"></Label>
+        </StackLayout >
+        <Grid  Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="110"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0"  Orientation="Horizontal" Spacing="0">
+                <Label Text="{Binding NowDuration, StringFormat='\{0:mm\\:ss}'}" WidthRequest="30" HeightRequest="20" VerticalOptions="Center" FontSize="10" TextColor="White" Margin="10,0,0,0"></Label>
+                <Slider x:Name="Sliderx" Minimum="0" Maximum="{Binding MusicDuration.TotalMilliseconds}" Value="{Binding NowDurationNum}" HorizontalOptions="FillAndExpand" ThumbColor="White" DragCompletedCommand="{Binding SliderDragCompletedCommand}" ></Slider>
+                <Label Text="{Binding MusicDuration, StringFormat='\{0:mm\\:ss}'}" WidthRequest="30" HeightRequest="20" VerticalOptions="Center" FontSize="10" TextColor="White" Margin="0,0,10,0"></Label>
+            </StackLayout>
+            <StackLayout  Grid.Row="1"  Orientation="Horizontal" HorizontalOptions="Center">
+                <ImageButton WidthRequest="55" HeightRequest="55" Source="PlayRamdan.png" BackgroundColor="Transparent" VerticalOptions="Center" Scale="0.5"></ImageButton>
+                <ImageButton WidthRequest="55" HeightRequest="55" Source="{Binding likeIcon}" BackgroundColor="Transparent" VerticalOptions="Center" Scale="0.4" Command="{Binding LikeSongClickCommand}"></ImageButton>
+                <ImageButton WidthRequest="80" HeightRequest="80" Source="ic_pause.png" BackgroundColor="Transparent" x:Name="PlayBtn" VerticalOptions="Center" Command="{Binding PlayClickedCommand}"></ImageButton>
+                <ImageButton WidthRequest="55" HeightRequest="55" Source="PlayNext.png" BackgroundColor="Transparent" x:Name="PlayNextBtn" VerticalOptions="Center" Scale="0.4" Command="{Binding NextClickedCommand}"></ImageButton>
+                <borad:SfBadgeView   BadgeText="{Binding CommentCount}"  VerticalOptions="Center" WidthRequest="55">
+                    <borad:SfBadgeView.BadgeSettings>
+                        <borad:BadgeSetting Offset="-15,0" FontSize="8" TextPadding="0" BackgroundColor="Transparent" BadgeType="None"/>
+                    </borad:SfBadgeView.BadgeSettings>
+                    <borad:SfBadgeView.Content>
+                        <ImageButton WidthRequest="25" HeightRequest="25" Source="PlayTalk.png" BackgroundColor="Transparent" VerticalOptions="Center" Command="{Binding MusicCommentClickedCommand}"></ImageButton>
+                    </borad:SfBadgeView.Content>
+                </borad:SfBadgeView>
+            </StackLayout>
+        </Grid>
+        <sfPopup:SfPopupLayout Grid.Column="0" Grid.RowSpan="4" IsOpen="{Binding IsMoreMenu}" Padding="0" HorizontalOptions="FillAndExpand" x:Name="popmenu" HeightRequest="460">
+            <sfPopup:SfPopupLayout.PopupView>
+                <sfPopup:PopupView  AnimationMode="SlideOnBottom"  VerticalOptions="End"  AnimationDuration="300" HeaderHeight="0" FooterHeight="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                    <sfPopup:PopupView.PopupStyle>
+                        <sfPopup:PopupStyle CornerRadius="0" BorderColor="Transparent" BorderThickness="0"></sfPopup:PopupStyle>
+                    </sfPopup:PopupView.PopupStyle>
+                    <sfPopup:PopupView.ContentTemplate>
+                        <DataTemplate>
+                            <ScrollView HeightRequest="460">
+                                <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Row="1" Grid.RowSpan="2" BackgroundColor="White" Spacing="0" />
+                                    <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="15" HasShadow="False" Padding="15">
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <ffimageloading:CachedImage Source="{Binding NowSongInfo.album.picUrl}" WidthRequest="40" HeightRequest="40" DownsampleToViewSize="True"></ffimageloading:CachedImage>
+                                            <StackLayout Spacing="0" Padding="10,5">
+                                                <Label Text="{Binding NowSongInfo.name}" FontSize="15" FontAttributes="Bold"></Label>
+                                                <Label Text="{Binding NowSongInfo.artists[0].name}" FontSize="12"></Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                    <StackLayout Grid.Row="2" Spacing="0">
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_likefile.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="收藏到歌单" Margin="15,0,0,0" VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_singer.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="{Binding NowSongInfo.artists[0].name,StringFormat='歌手：{0}'}" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_Musical.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="{Binding NowSongInfo.album.name,StringFormat='专辑：{0}'}" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_linke.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="来源：在线音乐" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_quart.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="音质：在线文件(999kbit/s)" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0" IsVisible="{Binding NowSongInfo.hasmv}">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding  MVBtnClickedCommand}"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <Image Source="Ic_video.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="查看视频" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0" IsVisible="{Binding NowSongInfo.hasmv}"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_Samesony.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="相似推荐" Margin="15,0,0,0" VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                            <Image Source="Ic_time.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <Label Text="定时模式" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ScrollView>
+                        </DataTemplate>
+                    </sfPopup:PopupView.ContentTemplate>
+                </sfPopup:PopupView>
+            </sfPopup:SfPopupLayout.PopupView>
+        </sfPopup:SfPopupLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"      
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:crossvideo="clr-namespace:FormsVideoLibrary"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.ScrollVideoPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <tabView:SfTabView TabHeight="30">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings/>
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SfTabItem Title="推荐" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <customforms:CustomListview ItemsSource="{Binding VideoInfo.datas}" HasUnevenRows="True"  SeparatorVisibility="None" VerticalScrollBarVisibility="Never" BackgroundColor="#f1f1f1" x:Name="listview" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsLoading}">
+                                <x:Arguments>
+                                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                                </x:Arguments>
+                            <customforms:CustomListview.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                                </customforms:CustomListview.Behaviors>
+                            <customforms:CustomListview.ItemTemplate>
+                                    <DataTemplate>
+                                    <customforms:AbsoluteLayoutVideoViewCell/>
+                                </DataTemplate>
+                                </customforms:CustomListview.ItemTemplate>
+                            <customforms:CustomListview.Footer>
+                                    <Grid HeightRequest="30">
+                                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                                        </StackLayout>
+                                    </Grid>
+                                </customforms:CustomListview.Footer>
+                            </customforms:CustomListview>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="LOOK直播" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid></Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem Title="广场" TitleFontSize="16">
+                    <tabView:SfTabItem.Content>
+                        <Grid></Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+            </tabView:SfTabView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

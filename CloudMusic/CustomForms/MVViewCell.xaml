@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.MVViewCell">
+  <ViewCell.View>
+        <StackLayout>
+            <Grid Margin="0,5,0,5" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ffimageloading:CachedImage  x:Name="image"  WidthRequest="130" HeightRequest="80"   Aspect="AspectFill" HorizontalOptions="FillAndExpand" BitmapOptimizations="True"  DownsampleToViewSize = "True" VerticalOptions="FillAndExpand" FadeAnimationForCachedImages="True" CacheType="All" FadeAnimationEnabled="False" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:RoundedTransformation CropWidthRatio="130" CropHeightRatio="80"></fftransformations:RoundedTransformation>
+                    </ffimageloading:CachedImage.Transformations>
+                    <ffimageloading:CachedImage.CacheKeyFactory>
+                            <local:CustomCacheKeyFactory/>
+                        </ffimageloading:CachedImage.CacheKeyFactory>
+                    </ffimageloading:CachedImage>
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="End" VerticalOptions="Start" Padding="5" Spacing="0">
+                    <Image  Grid.Row="0" Grid.Column="0"  Source="ic_play_arrow_white_36dp" HeightRequest="15" WidthRequest="15"></Image>
+                    <Label Text="{Binding PlayCountstr}"  TextColor="White"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                    <Label Text="{Binding name}" TextColor="#333333" ></Label>
+                        <Label  FontSize="10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding durationtime,StringFormat='\{0:mm\\:ss}'}"></Span>
+                                    <Span Text="{Binding artistName,StringFormat=' {0}'}"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"             
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             x:Class="CloudMusic.Views.MusicDiscoverPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <cards:CoverFlowView 
+                HeightRequest="150" 
+                WidthRequest="360"
+                PositionShiftValue="0"
+                IsCyclical="True"
+                IsPanSwipeEnabled="True"
+                IsUserInteractionEnabled="True"
+                ItemsSource="{Binding mainBanner.banners}"
+                IsViewCacheEnabled="True"
+                IsAutoNavigatingAimationEnabled="True"
+                SlideShowDuration="4000"
+                >
+                <cards:CoverFlowView.ItemTemplate>
+                    <DataTemplate>
+                        <ffimageloading:CachedImage Source="{Binding imageUrl}" WidthRequest="330" HeightRequest="130" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="vinyl.png" DownsampleToViewSize="True">
+                                <ffimageloading:CachedImage.CacheKeyFactory>
+                                    <local:CustomCacheKeyFactory/>
+                                </ffimageloading:CachedImage.CacheKeyFactory>
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:RoundedTransformation CropHeightRatio="130" CropWidthRatio="330" Radius="15"></fftransformations:RoundedTransformation>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                    </DataTemplate>
+                </cards:CoverFlowView.ItemTemplate>
+                <controls:IndicatorsControl ToFadeDuration="1500"/>
+            </cards:CoverFlowView>
+            <Grid Padding="15,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'RecommendSongsPage' , SourcePage={x:Reference RecommendSongsPage},Animated=True}"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                    <Image Source="ic_calendar.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                </Frame>
+                <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='\{0:dd}'}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#FE3A3B" FontSize="12" Margin="0,5,0,0"></Label>
+                <Label Text="每日推荐" Grid.Row="1" Grid.Column="0" TextColor="#333333" FontSize="10" HorizontalOptions="Center"></Label>
+                <Frame Grid.Row="0" Grid.Column="1" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                    <Image Source="ic_mainmusic.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"/>
+                </Frame>
+                <Label Text="歌单" Grid.Row="1" Grid.Column="1" TextColor="#333333" FontSize="10" HorizontalOptions="Center" ></Label>
+                <Frame Grid.Row="0" Grid.Column="2" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                    <Image Source="ic_3bar.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"/>
+                </Frame>
+                <Label Text="排行榜" Grid.Row="1" Grid.Column="2" TextColor="#333333" FontSize="10" HorizontalOptions="Center" ></Label>
+                <Frame Grid.Row="0" Grid.Column="3" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                    <Image Source="ic_mainradio.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"/>
+                </Frame>
+                <Label Text="电台" Grid.Row="1" Grid.Column="3" TextColor="#333333" FontSize="10" HorizontalOptions="Center" ></Label>
+                <Frame Grid.Row="0" Grid.Column="4" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                    <Image Source="ic_mainrman.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"/>
+                </Frame>
+                <Label Text="直播" Grid.Row="1" Grid.Column="4" TextColor="#333333" FontSize="10" HorizontalOptions="Center" ></Label>               
+            </Grid>
+            <BoxView HeightRequest="1" BackgroundColor="#efefef"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="15,15,15,0">
+                <Label Text="推荐歌单" FontAttributes="Bold" FontSize="18" TextColor="#333333" HorizontalOptions="FillAndExpand"></Label>
+                <Button Text="歌单广场" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="20" BackgroundColor="Transparent"></Button>
+            </StackLayout>
+            <FlexLayout BindableLayout.ItemsSource="{Binding personalized.result}" HeightRequest="300" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" x:Name="PlayListlayout">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
+                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                    <ffimageloading:CachedImage.CacheKeyFactory>
+                                        <local:CustomCacheKeyFactory/>
+                                    </ffimageloading:CachedImage.CacheKeyFactory>
+                                    <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
+                                </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                            <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,30" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                            <StackLayout Orientation="Horizontal" Spacing="0" AbsoluteLayout.LayoutBounds="0,0,95,15" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                <StackLayout HorizontalOptions="FillAndExpand"></StackLayout>
+                                <Image  Grid.Row="0" Grid.Column="0"  Source="ic_play_arrow_white_36dp" HeightRequest="12" WidthRequest="12"></Image>
+                                <Label Text="{Binding playCountstr}"  TextColor="White" FontSize="12"></Label>
+                            </StackLayout>
+                        </AbsoluteLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            <StackLayout Orientation="Horizontal" Padding="15,15,15,0">
+                    <Label Text="新碟" FontAttributes="{Binding albumAttributes}" FontSize="{Binding albumFontSize}" TextColor="{Binding albumTextColor}"  WidthRequest="40" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeButtonClickedCommand}" CommandParameter="album"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="新歌" FontSize="{Binding songFontSize}" FontAttributes="{Binding songAttributes}" HorizontalOptions="FillAndExpand" TextColor="{Binding songTextColor}"  WidthRequest="40" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeButtonClickedCommand}"  CommandParameter="song"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Button Text="{Binding MoreButtonName}" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="20" BackgroundColor="Transparent"></Button>
+             </StackLayout>
+                <FlexLayout BindableLayout.ItemsSource="{Binding newAlbums.albums}" HeightRequest="150" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" IsVisible="{Binding isShowAlbums}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
+                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                    <ffimageloading:CachedImage.CacheKeyFactory>
+                                        <local:CustomCacheKeyFactory/>
+                                    </ffimageloading:CachedImage.CacheKeyFactory>
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.75,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding artist.name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+
+                            </AbsoluteLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+                <FlexLayout BindableLayout.ItemsSource="{Binding topNewSongs.result}" HeightRequest="150" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" IsVisible="{Binding isShowSongs}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
+                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding song.album.picUrl}" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True">
+                                    <ffimageloading:CachedImage.CacheKeyFactory>
+                                        <local:CustomCacheKeyFactory/>
+                                    </ffimageloading:CachedImage.CacheKeyFactory>
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.75,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding song.artists[0].name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                            </AbsoluteLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

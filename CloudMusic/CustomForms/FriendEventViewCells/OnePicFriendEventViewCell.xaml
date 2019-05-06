@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          x:Class="CloudMusic.CustomForms.OnePicFriendEventViewCell">
+  <ViewCell.View>
+        <Grid Padding="20" ColumnSpacing="10" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"></RowDefinition>
+                <RowDefinition Height="14"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2"  Grid.Column="0" HeightRequest="30" WidthRequest="30" DownsampleToViewSize="True"  x:Name="usericon" LoadingDelay="200" LoadingPlaceholder="CacheBG.jpg">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label Grid.Row="0" Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding user.nickname}" TextColor="Accent"></Span>
+                        <Span Text="{Binding Conent.conentstr,StringFormat=' {0}'}" TextColor="#333333"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding rcmdInfo.userReason}" FontSize="12"></Label>
+            <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Conent.msg}"></Label>
+            <ffimageloading:CachedImage Grid.Row="3" Grid.Column="1" Source="{Binding squareUrl}"  Aspect="AspectFill"  WidthRequest="140" HeightRequest="200" LoadingDelay="200" DownsampleToViewSize="True" FadeAnimationEnabled="False" LoadingPlaceholder="CacheBG.jpg" x:Name="image" HorizontalOptions="Start">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:RoundedTransformation CropWidthRatio="140" CropHeightRatio="200"></fftransformations:RoundedTransformation>
+                            </ffimageloading:CachedImage.Transformations>
+               </ffimageloading:CachedImage>
+            <Frame Grid.Row="4" Grid.Column="1"  BackgroundColor="#F3F7FF" Padding="8" HasShadow="False" CornerRadius="10">
+                <AbsoluteLayout>
+                    <ffimageloading:CachedImage Grid.Row="3" Grid.Column="1"  Aspect="AspectFill"  WidthRequest="50" HeightRequest="50"  Margin="0,2,0,0" DownsampleToViewSize="True" FadeAnimationEnabled="False" LoadingPlaceholder="CacheBG.jpg" x:Name="songimage" HorizontalOptions="Center"  AbsoluteLayout.LayoutBounds="0,0,50,50" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <ffimageloading:CachedImage.CacheKeyFactory>
+                            <local:CustomCacheKeyFactory/>
+                        </ffimageloading:CachedImage.CacheKeyFactory>
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:RoundedTransformation CropWidthRatio="50" CropHeightRatio="50" Radius="70"></fftransformations:RoundedTransformation>
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <Label Text="{Binding Conent.song.name}" TextColor="#333333" AbsoluteLayout.LayoutBounds=".85,.35,200,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                    <Label Text="{Binding Conent.song.artists[0].name}" FontSize="10" AbsoluteLayout.LayoutBounds=".85,.7,200,12" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                    <Image Source="ic_play.png" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutBounds=".04,.5,30,30" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                </AbsoluteLayout>
+            </Frame>
+            <AbsoluteLayout Grid.Row="5" Grid.Column="1" HeightRequest="60">
+                <Image Source="ic_playcircle.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds="0,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.shareCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".12,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="PlayTalk_b.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds=".3,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.commentCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".52,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="PlayLike_b.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds=".6,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.likedCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".92,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds="1,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+            </AbsoluteLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          xmlns:crossvideo="clr-namespace:FormsVideoLibrary"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          x:Class="CloudMusic.CustomForms.AbsoluteLayoutVideoViewCell"
+          x:Name="videocell">
+    <ViewCell.View>
+        <AbsoluteLayout HeightRequest="350" BackgroundColor="White" Margin="0,5,0,5">
+            <Frame Padding="0" HeightRequest="200" WidthRequest="320" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutBounds=".5,.1, 320, 200"  AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Grid>
+                    <crossvideo:VideoPlayer HeightRequest="200" WidthRequest="320"  x:Name="videoplayer" BackgroundColor="Black"></crossvideo:VideoPlayer>
+                    <ffimageloading:CachedImage  WidthRequest="320" HeightRequest="200"  Aspect="AspectFill" BitmapOptimizations="True"  DownsampleToViewSize = "True" LoadingPlaceholder="CacheBG.jpg" Grid.Row="0" x:Name="videocover" IsOpaque="True">
+                        <ffimageloading:CachedImage.CacheKeyFactory>
+                            <local:CustomCacheKeyFactory/>
+                        </ffimageloading:CachedImage.CacheKeyFactory>
+                    </ffimageloading:CachedImage>
+                </Grid>
+            </Frame>
+            <Image Source="ic_play.png" HeightRequest="80" WidthRequest="80"  x:Name="playbtn" AbsoluteLayout.LayoutBounds=".5,.3, 80, 80"  AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+            <StackLayout  Orientation="Horizontal" HeightRequest="20" Padding="10" WidthRequest="320" x:Name="videoinfo" Spacing="5"  AbsoluteLayout.LayoutBounds=".5,.55, 310, 40"  AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image Source="ic_play_arrow_white_36dp.png"   WidthRequest="20" HeightRequest="20"></Image>
+                <Label Text="{Binding data.playTimeStr}" FontSize="12" TextColor="White" HorizontalOptions="FillAndExpand"></Label>
+                <Label Text="{Binding data.durationmsStr,StringFormat='\{0:mm\\:ss}'}" FontSize="12"  TextColor="White" ></Label>
+            </StackLayout>
+            <Label Text="{Binding data.title}" FontSize="16" TextColor="#333333" Grid.Row="1" WidthRequest="250" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Center" AbsoluteLayout.LayoutBounds=".4,.75, 280, 40"  AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+            <ffimageloading:CachedImage   LoadingPlaceholder="CacheBG.jpg" x:Name="Bgicon" BitmapOptimizations="True"  DownsampleToViewSize = "True" AbsoluteLayout.LayoutBounds=".93,.74, 40, 40"  AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <BoxView  BackgroundColor="#f5f5f5" AbsoluteLayout.LayoutBounds=".0,.82, 360, 1" AbsoluteLayout.LayoutFlags="PositionProportional"></BoxView>
+            <ffimageloading:CachedImage   LoadingPlaceholder="CacheBG.jpg" x:Name="UserIcon"  BitmapOptimizations="True"   DownsampleToViewSize = "True" AbsoluteLayout.LayoutBounds=".1,.96, 40,40" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ffimageloading:CachedImage.CacheKeyFactory>
+                    <local:CustomCacheKeyFactory/>
+                </ffimageloading:CachedImage.CacheKeyFactory>
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label Text="{Binding data.creator.nickname}" TextColor="#333333" FontSize="16" AbsoluteLayout.LayoutBounds=".42,.96, 150,30" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+            <ImageButton Source="PlayLike_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds=".8,.93, 20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></ImageButton>
+            <Label Text="{Binding data.praisedCountstr}" TextColor="#333333" BackgroundColor="White" Margin="0" HeightRequest="10" FontSize="8" AbsoluteLayout.LayoutBounds=".88,.88, 30,10" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+            <ImageButton Source="PlayTalk_b.png" WidthRequest="20" HeightRequest="20"  BackgroundColor="Transparent" x:Name="Talkbtn" AbsoluteLayout.LayoutBounds=".92,.94, 20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></ImageButton>
+            <Label Text="{Binding data.commentCountstr}" FontSize="8" TextColor="#333333" BackgroundColor="White" AbsoluteLayout.LayoutBounds=".99,.88, 30,10" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+        </AbsoluteLayout>
+    </ViewCell.View>
+</ViewCell>

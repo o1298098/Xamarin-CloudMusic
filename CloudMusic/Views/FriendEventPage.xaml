@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             NavigationPage.HasNavigationBar="False"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="CloudMusic.Views.FriendEventPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <customforms:FriendeventDataTemplateSelector x:Key="myDataTemplateSelector"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" x:Name="listview" ItemTemplate="{StaticResource myDataTemplateSelector}" ItemsSource="{Binding friendEvents.friendevent,Mode=OneWay}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
+                </ListView.Behaviors>
+                <ListView.Footer>
+                    <Grid>
+                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                        </StackLayout>
+                    </Grid>                       
+                </ListView.Footer>
+            </customforms:CustomListview>
+        </StackLayout>       
+    </ContentPage.Content>
+  
+</ContentPage>

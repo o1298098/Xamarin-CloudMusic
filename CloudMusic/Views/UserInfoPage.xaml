@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"             
+             xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Class="CloudMusic.Views.UserInfoPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Spacing="0">
+            <ScrollView Orientation="Horizontal" HorizontalOptions="Start" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                <StackLayout Orientation="Horizontal" Padding="20,15" Spacing="35" >
+                    <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'PersonalFMPage' , SourcePage={x:Reference PersonalFMPage}}"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_fm_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="私人FM" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'MusicAPPLoginPage' , SourcePage={x:Reference MusicAPPLoginPage}}"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_ball_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="最新电音" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_addmoon_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="Sati空间" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_barheart_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="私藏推荐" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_kidchannel_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="亲子频道" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_piano_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="古典专区" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_runman_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="跑步FM" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_ice_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="小冰电台" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_jazz_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="爵士电台" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="False" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="#FE3A3B" CornerRadius="22.5">
+                            <Image Source="ic_car_w.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"></Image>
+                        </Frame>
+                        <Label Text="驾驶模式" FontSize="12" TextColor="#a1a1a1"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <BoxView HeightRequest="1" BackgroundColor="#efefef"></BoxView>
+            <Grid Padding="20,0,0,0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="52"></RowDefinition>
+                    <RowDefinition Height="52"></RowDefinition>
+                    <RowDefinition Height="52"></RowDefinition>
+                    <RowDefinition Height="52"></RowDefinition>
+                    <RowDefinition Height="52"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="ic_musicb_b.png" Grid.Row="0" Grid.Column="0" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PhoneMusicClickedCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="本地音乐"   FontSize="14" TextColor="#333333" ></Span>
+                                <Span Text="{Binding localMusicCount,StringFormat=' ({0})'}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                </Label>
+                <BoxView HeightRequest="1" Grid.Row="0" Grid.Column="1" BackgroundColor="#efefef" VerticalOptions="EndAndExpand"></BoxView>
+                <Image Source="ic_playwbar_b.png" Grid.Row="1" Grid.Column="0" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                <Label Text="最近播放"  Grid.Row="1" Grid.Column="1" FontSize="14" TextColor="#333333" VerticalOptions="Center"></Label>
+                <BoxView HeightRequest="1" Grid.Row="1" Grid.Column="1" BackgroundColor="#efefef" VerticalOptions="EndAndExpand"></BoxView>
+                <Image Source="ic_downloadcircle_b.png" Grid.Row="2" Grid.Column="0" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                <StackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Spacing="5">
+                    <Label Text="下载管理"   FontSize="14" TextColor="#333333" ></Label>
+                    <Label Text="已暂停" FontSize="10"></Label>
+                </StackLayout>               
+                <BoxView HeightRequest="1" Grid.Row="2" Grid.Column="1" BackgroundColor="#efefef" VerticalOptions="EndAndExpand"></BoxView>
+                <Image Source="ic_circlemuscib_b" Grid.Row="3" Grid.Column="0" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                <Label Grid.Row="3" Grid.Column="1"  VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="我的电台" FontSize="14" TextColor="#333333"></Span>
+                                <Span Text="{Binding subscriptionCount.djRadioCount,StringFormat='({0})'}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                </Label>
+                <BoxView HeightRequest="1" Grid.Row="3" Grid.Column="1" BackgroundColor="#efefef" VerticalOptions="EndAndExpand"></BoxView>
+                <Image Source="ic_userwstar_b" Grid.Row="4" Grid.Column="0" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                <Label Text="我的收藏"  Grid.Row="4" Grid.Column="1" FontSize="14" TextColor="#333333" VerticalOptions="Center"></Label>
+            </Grid>
+            <BoxView HeightRequest="8" BackgroundColor="#efefef"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="20,10" Spacing="10">
+                <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Rotation="90"></Image>
+                <Label HorizontalOptions="FillAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="创建的歌单" TextColor="#333333" FontSize="16" FontAttributes="Bold"></Span>
+                                <Span Text="{Binding userPlayLists.Count,StringFormat=' ({0})'}"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image Source="ic_add_b" WidthRequest="20" HeightRequest="20"></Image>
+                <Image Source="ic_more_b" WidthRequest="20" HeightRequest="20"></Image>
+            </StackLayout>
+                <StackLayout BindableLayout.ItemsSource="{Binding userPlayLists}" x:Name="userplaylists">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage x:Name="image" WidthRequest="50" HeightRequest="50" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" Source="{Binding coverImgUrl}">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:RoundedTransformation CropWidthRatio="50" CropHeightRatio="50"  Radius="40"></fftransformations:RoundedTransformation>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                    <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="16"></Label>
+                                    <Label FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding trackCount,StringFormat='\{0}首'}" ></Span>
+                                                <Span Text="{Binding creator.nickname,StringFormat=' by {0},'}"></Span>
+                                                <Span Text="{Binding playCountstr,StringFormat='播放{0}次'}"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>                       
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="20,10" Spacing="10">
+                    <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Rotation="90"></Image>
+                    <Label HorizontalOptions="FillAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="收藏的歌单" TextColor="#333333" FontSize="16" FontAttributes="Bold"></Span>
+                                <Span Text="{Binding subscribedPlayLists.Count,StringFormat=' ({0})'}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Image Source="ic_more_b" WidthRequest="20" HeightRequest="20"></Image>
+                </StackLayout>
+                <StackLayout BindableLayout.ItemsSource="{Binding subscribedPlayLists}" x:Name="subplaylists">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Grid.ColumnSpan="10" Margin="0,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage x:Name="image" WidthRequest="50" HeightRequest="50" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" Source="{Binding coverImgUrl}">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:RoundedTransformation CropWidthRatio="50" CropHeightRatio="50"  Radius="40"></fftransformations:RoundedTransformation>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                    <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation" FontSize="16"></Label>
+                                    <Label FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding trackCount,StringFormat='\{0}首'}" ></Span>
+                                                <Span Text="{Binding creator.nickname,StringFormat=' by {0},'}"></Span>
+                                                <Span Text="{Binding playCountstr,StringFormat='播放{0}次'}"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+  
+</ContentPage>

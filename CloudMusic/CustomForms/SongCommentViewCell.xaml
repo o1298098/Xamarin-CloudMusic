@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"          
+          x:Class="CloudMusic.CustomForms.SongCommentViewCell">
+  <ViewCell.View>
+        <Grid ColumnSpacing="0" RowSpacing="0" Margin="0,15,0,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ffimageloading:CachedImage x:Name="image" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"  WidthRequest="40" HeightRequest="40" HorizontalOptions="Center" FadeAnimationForCachedImages="False" CacheType="All" FadeAnimationEnabled="True" LoadingPlaceholder="CacheBG.jpg" LoadingDelay="200" DownsampleToViewSize="True" BitmapOptimizations="True" >
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding user.nickname}" FontSize="15"></Label>
+            <Label  Grid.Row="1" Grid.Column="1" Text="{Binding Customdate ,StringFormat='\{0:yyyy年MM月dd日}'}" FontSize="10"></Label>
+            <StackLayout Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" Margin="0,0,10,0">
+                <Label Text="{Binding likestr}" VerticalOptions="Center" FontSize="10"></Label>
+                <ImageButton Source="icon_likegood.png" WidthRequest="15" HeightRequest="15" VerticalOptions="Center" BackgroundColor="Transparent"></ImageButton>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1" Padding="0,5,20,0">
+                <Label Text="{Binding content}" TextColor="#333333" LineHeight="1.2" FontSize="15"/>
+            </StackLayout>
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding beReplied.Length,StringFormat='\{0}条回复>'}" HeightRequest="30" HorizontalOptions="Start" Margin="0,5,0,0" FontSize="12" TextColor="#94BBFF" IsVisible="{Binding hasbeReplied}"></Label>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

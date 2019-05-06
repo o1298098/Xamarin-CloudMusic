@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.CloudMusic" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="28" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-feature android:name="android.hardware.location" android:required="false" />
+	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
+	<uses-feature android:name="android.hardware.location.network" android:required="false" />
+	<application android:label="CloudMusic.Android" android:largeHeap="true" android:usesCleartextTraffic="true">
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="CloudMusic.CloudMusic" android:grantUriPermissions="true" android:exported="false">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+		</provider>
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="${applicationId}" />
+			</intent-filter>
+		</receiver>
+		<meta-data android:name="com.alibaba.app.appkey" android:value="25766013" />
+		<meta-data android:name="com.alibaba.app.appsecret" android:value="75518147f6575d8fe7c02e420b545f11" />
+		<meta-data android:name="com.taobao.android.hotfix.IDSECRET" android:value="25766013-1" />
+		<meta-data android:name="com.taobao.android.hotfix.APPSECRET" android:value="75518147f6575d8fe7c02e420b545f11" />
+		<meta-data android:name="com.taobao.android.hotfix.RSASECRET" android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCC9pONpJ8bImTju2nPpehIPQgJFAumtbtgWbFdNqH5Hmf1xcvoc78KMQ/wbCnKOgcCnDho5Gkp414AGiSzBRQ8lGAUvyh9u9mRIBRx+O228Gt5OJckZq+xZZH74Vq6LZOySAIDvSdn8ga+lSoXLMocZUnOesI20WwVxWhw5hxFoMLs1PGjRojCOpiNKgkHYAp1CIToamwBtzn8FpUOS23fsiqgEHi3DfNVZx9QHLcFDeb9oowGOns/P1cwUsb4bt4/GajOw7M1CSgNg2VAJigEl1BoqyI3EjCzLp1Ph2LZNfnERX3V4XaNV78PJMyvREeAayqr9YMlxyC3B2KmYtk3AgMBAAECggEAGEqcO92ZFXNfu0375mQjnaKUZvqs3pM+2jRIzb1gddDJ/7BcjhVKDh3jkvi9F6GDw1wuqmYTi4181hADVqFOi54J5E9At3GsfVqx8CH4FcKqbKWugzX4yLLKTSoTpgzmJF9u4DqpoIIn9hm84OeR5Yp0EjR66agWoEMpiCdmfxN6WmVV5ECCt5KlsQNiX1r13jrS7MqY0vOaj3fIHBvYs5jRKiFM9L50MACBdpyGVdAzkC4DdsRIMJg21vs7jn9k526bDlhGUtgAXF947HYVzjKlRojRId6eX08vH1DLUXZVnPWcjNdlulEIEFjMOdbHYDvxi7J54QffcwGkSv+gAQKBgQDJKcXQwuYC/DYRXNe2EjBY3juO3yXG/0V5UnVq4jCzCZOUMh4bDdmiKQ9FCSIxcjA80x4EPBMlIYYvyyxpWo1nnDmj7qTBo8BKsYGMCUH5kPHuQgKucQP8uIu3rYRru6c+ArRle1kZ3qJnhzENjKa6UaviceR/lk3Wyy8SBuX9NwKBgQCmqeDgJehAhyWw+mLukoPn+13Tl0MCkMxG36lCsBtNbDM1vwQozO8NuxzFUg5hzrSyKSL9dDxq/R1TN0fWzJIfpJH2SEDgp3l8pWHaT5gRC/BzZR5kjd+yzR1plN9G7QBj6RdBPeSMfmG6OrABy976oP0TVTDSoN/L7KoVOLgEAQKBgB48vDJMCXzrYkkr1nTUuRWymes42ZnW5x98aI/fXgibaOZ+vg29ADiiyVvMKqqaCmwqI7npOct8BYqLlKplZRns3rEofvVoYtAXbGybO6KCygrRO0vzSvEi4EWEvIHhHBtzFqCmcNc1ot3C8Xmi6bDZ8+c+zWTsN9kQg4vHI6zzAoGAaAdDWUXwCU8SRLyVQgrsEMIC187jwdc12stCsGCSOipecJ7RbtI0KOLxW20TkxNeEJLCx2dlSvbA9i9cRQQd9WhYv1xsOo3us9HbGVRzO7izFqQ4a1VvGwES6dNF5tSKWNKmdE+4t8UvJPn64LQrc09HiGi1d9N4vaX0qBhmLAECgYB8iDaPc2HITDyp5H0Nf+5ZeP1LiV2lfAadXR6fSCLD5SNUHiwtcV+7HqPkIdPsAaO9zbTMV0nklcVzjggGLQ5YRd1o1vOvW4AiwxqwP6j+39sfhodrAab/tdd76XTUVfINR09zMkoBrj0DhcNZ4TqDnXLpqSHKs5QYKWDS/4EowQ==" />
+	</application>
+</manifest>

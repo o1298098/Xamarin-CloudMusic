@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          xmlns:crossvideo="clr-namespace:FormsVideoLibrary"
+          xmlns:local="clr-namespace:CloudMusic.Actions"
+          x:Class="CloudMusic.CustomForms.VideoFriendEventViewCell">
+  <ViewCell.View>
+        <Grid Padding="20" ColumnSpacing="10" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"></RowDefinition>
+                <RowDefinition Height="14"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2"  Grid.Column="0" HeightRequest="30" WidthRequest="30" BitmapOptimizations="True"  DownsampleToViewSize="True" x:Name="usericon" LoadingDelay="200" LoadingPlaceholder="CacheBG.jpg">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label Grid.Row="0" Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding user.nickname}" TextColor="Accent"></Span>
+                        <Span Text="{Binding Conent.conentstr,StringFormat=' {0}'}" TextColor="#333333"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding rcmdInfo.userReason}" FontSize="12"></Label>
+            <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Conent.msg}"></Label>
+            <Frame Padding="0" Grid.Row="3" Grid.Column="1"  HeightRequest="165" WidthRequest="280" CornerRadius="15" HasShadow="False">
+                <AbsoluteLayout HeightRequest="165">
+                    <crossvideo:VideoPlayer  HeightRequest="165" WidthRequest="280"  x:Name="videoplayer" BackgroundColor="Black"  AbsoluteLayout.LayoutBounds="0,0, 280,165"  AbsoluteLayout.LayoutFlags="PositionProportional"></crossvideo:VideoPlayer>
+                    <ffimageloading:CachedImage  WidthRequest="280" HeightRequest="165"  HorizontalOptions="FillAndExpand" BitmapOptimizations="True"  LoadingDelay="250" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="False" FadeAnimationForCachedImages="False" x:Name="videocover" DownsampleToViewSize="True" IsOpaque="True"  AbsoluteLayout.LayoutBounds="0,0, 280, 165"  AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <ffimageloading:CachedImage.CacheKeyFactory>
+                            <local:CustomCacheKeyFactory/>
+                        </ffimageloading:CachedImage.CacheKeyFactory>
+                    </ffimageloading:CachedImage>
+                    <Image  Source="ic_play.png" HeightRequest="80" WidthRequest="80"  AbsoluteLayout.LayoutBounds=".5,.5, 80, 80"  AbsoluteLayout.LayoutFlags="PositionProportional" x:Name="playbtn" IsOpaque="True"></Image>
+                    <StackLayout Grid.Row="0" Orientation="Horizontal" Padding="10" x:Name="videoinfo" Spacing="5"  AbsoluteLayout.LayoutBounds="0,1, 275, 40"  AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Image Source="ic_play_arrow_white_36dp.png"   WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                        <Label Text="{Binding Conent.video.playTimeStr}" FontSize="12" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+                        <Label Text="{Binding Conent.video.durationmsStr,StringFormat='\{0:mm\\:ss}'}" FontSize="12"  TextColor="White" VerticalOptions="Center"></Label>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </Frame> 
+            <AbsoluteLayout Grid.Row="4" Grid.Column="1" HeightRequest="60">
+                <Image Source="ic_playcircle.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds="0,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.shareCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".12,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="PlayTalk_b.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds=".3,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.commentCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".52,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="PlayLike_b.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds=".6,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+                <Label Text="{Binding info.likedCount}" FontSize="12" AbsoluteLayout.LayoutBounds=".92,.5,80,14" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds="1,.5,20,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+            </AbsoluteLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

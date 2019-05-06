@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:FormsVideoLibrary"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffstatic="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+             xmlns:local1="clr-namespace:CloudMusic.Actions"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.MusicVideoPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <local:VideoPlayer x:Name="videoView" HorizontalOptions="FillAndExpand"  VerticalOptions="Start" AreTransportControlsEnabled="True" AutoPlay="True" BackgroundColor="Black" HeightRequest="200" Source="{Binding UriSource}">
+            </local:VideoPlayer>
+            <customforms:CustomListview x:Name="listview" ItemsSource="{Binding MvComment.comments}" HasUnevenRows="True" BackgroundColor="White" SeparatorVisibility="None"  VerticalScrollBarVisibility="Never">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <customforms:CustomListview.Behaviors>
+                    <local1:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local1:EventToCommandBehavior>
+                </customforms:CustomListview.Behaviors>
+                <customforms:CustomListview.Header>
+                    <StackLayout>
+                        <StackLayout>
+                            <StackLayout Padding="20" Spacing="15">
+                                <Label Text="{Binding MvInfo.data.name}"  FontSize="20" FontAttributes="Bold" TextColor="#333333"></Label>
+                                <Label Text="{Binding MvInfo.data.PlayCountstr,StringFormat='\{0}次观看'}" FontSize="12"></Label>
+                                <Label Text="{Binding MvInfo.data.publishTime,StringFormat='\{0} 发布'}" ></Label>
+                            </StackLayout>
+                            <Grid ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Grid.Column="0" Grid.Row="0" Source="PlayLike_b.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" BackgroundColor="Transparent" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding MvInfo.data.likeCount}" HorizontalOptions="Center" FontSize="10"></Label>
+                                <ImageButton Grid.Column="1" Grid.Row="0" Source="LIkefile_b.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" BackgroundColor="Transparent"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding MvInfo.data.subCount}" HorizontalOptions="Center" FontSize="10"></Label>
+                                <ImageButton Grid.Column="2" Grid.Row="0" Source="PlayTalk_b" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" BackgroundColor="Transparent"/>
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding MvInfo.data.commentCount}" HorizontalOptions="Center" FontSize="10"></Label>
+                                <ImageButton Grid.Column="3" Grid.Row="0" Source="playshare_b.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" BackgroundColor="Transparent"/>
+                                <Label Grid.Column="3" Grid.Row="1" Text="{Binding MvInfo.data.shareCount}" HorizontalOptions="Center" FontSize="10"></Label>
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand"></BoxView>
+                            <StackLayout Orientation="Horizontal" Padding="20,5">
+                                <customforms:CircleImage Source="{Binding Artists[0].artist.img1v1Url}" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></customforms:CircleImage>
+                                <Label Text="{Binding  MvInfo.data.artistName}" TextColor="#333333" FontSize="12"></Label>
+                                <Button CornerRadius="15" Text="+ 收 藏" BackgroundColor="Red" HorizontalOptions="EndAndExpand" TextColor="White"  WidthRequest="50" HeightRequest="18" FontSize="10" Padding="0"></Button>
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView HeightRequest="10" BackgroundColor="#f5f5f5" HorizontalOptions="Fill"></BoxView>
+                        <Label Text="相关视频" FontAttributes="Bold" Margin="20,10,0,0" TextColor="#333333" FontSize="14"></Label>
+                        <StackLayout BindableLayout.ItemsSource="{Binding SiMiMvInfo.mvs}"  Padding="20,0" x:Name="SimiMVsl">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,10,0,0" ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="80"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="130"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                            <ffimageloading:CachedImage Source="{Binding cover}" WidthRequest="130" HeightRequest="80"  DownsampleToViewSize="True" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:RoundedTransformation CropWidthRatio="130" CropHeightRatio="80"></fftransformations:RoundedTransformation>
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
+                                        <StackLayout Orientation="Horizontal"  HorizontalOptions="End" VerticalOptions="Start" Padding="5" Spacing="0">
+                                            <Image Source="ic_play_arrow_white_36dp" HeightRequest="15" WidthRequest="15" ></Image>
+                                            <Label Text="{Binding PlayCountstr}"  TextColor="White"></Label>
+                                        </StackLayout>                                        
+                                        <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                                            <Label Text="{Binding name}" TextColor="#333333" ></Label>
+                                                <Label  FontSize="10">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding durationtime,StringFormat='\{0:mm\\:ss}'}"></Span>
+                                                            <Span Text="{Binding artistName,StringFormat=' {0}'}"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>                                         
+                                        </StackLayout>                                        
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <Label Text="{Binding CommentCount,StringFormat='最新评论({0})'}" FontAttributes="Bold" Margin="20,10,0,0"></Label>
+                    </StackLayout>
+                </customforms:CustomListview.Header>
+                <customforms:CustomListview.Footer>
+                    <Grid HeightRequest="30">
+                        <ActivityIndicator IsVisible="{Binding IsBusy}" HeightRequest="30" IsRunning="True" ></ActivityIndicator>
+                        <StackLayout IsVisible="{Binding IsAllLoad}" HeightRequest="30" Orientation="Horizontal" HorizontalOptions="Center">
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                            <Label Text="我是有底线的" FontSize="8" TextColor="#D0D0D0"  VerticalOptions="Center"></Label>
+                            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" WidthRequest="40" VerticalOptions="Center"></BoxView>
+                        </StackLayout>
+                    </Grid>
+                </customforms:CustomListview.Footer>
+                <customforms:CustomListview.ItemTemplate>
+                    <DataTemplate>
+                        <customforms:MVCommentViewCell>                           
+                        </customforms:MVCommentViewCell>
+                    </DataTemplate>
+                </customforms:CustomListview.ItemTemplate>
+            </customforms:CustomListview>
+           
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

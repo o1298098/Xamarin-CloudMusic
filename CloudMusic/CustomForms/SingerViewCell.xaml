@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="CloudMusic.CustomForms.SingerViewCell">
+  <ViewCell.View>
+        <StackLayout Orientation="Horizontal" HeightRequest="80" Spacing="10">
+            <ffimageloading:CachedImage WidthRequest="50" HeightRequest="50" x:Name="image" LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="False" CacheType="All" LoadingDelay="200">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label  VerticalOptions="Center" FontSize="16" LineBreakMode="TailTruncation" HorizontalOptions="FillAndExpand" MaxLines="2">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding name}" TextColor="#333333"></Span>
+                        <Span Text="{Binding alias[0],StringFormat='({0})'}"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>            
+            <Image Source="Ic_User_r.png" WidthRequest="20" HeightRequest="20"></Image>
+            <Label Text="已入驻" VerticalOptions="Center" WidthRequest="40"></Label>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>
