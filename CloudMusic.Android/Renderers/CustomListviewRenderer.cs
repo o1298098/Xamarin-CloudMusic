@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using CloudMusic.CustomForms;
 using CloudMusic.Droid.Renderers;
+using EverythingMe.AndroidUI.OverScroll;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using static Android.Widget.AbsListView;
@@ -18,13 +19,14 @@ using static Android.Widget.AbsListView;
 [assembly: ExportRenderer(typeof(CustomListview), typeof(CustomListviewRenderer))]
 namespace CloudMusic.Droid.Renderers
 {
-    public class CustomListviewRenderer : ListViewRenderer, Android.Widget.AbsListView.IOnScrollListener, Android.Views.View.IOnScrollChangeListener
+    public class CustomListviewRenderer : ListViewRenderer, EverythingMe.AndroidUI.OverScroll.IOverScrollUpdateListener//, Android.Widget.AbsListView.IOnScrollListener, Android.Views.View.IOnScrollChangeListener
     {
         public CustomListviewRenderer(Context context) : base(context) { }
         private int mLastFirstVisibleItem;
         private bool processingSwipe = false;
         private Dictionary<Int32, Int32> listViewItemHeights = new Dictionary<Int32, Int32>();
         private Double CellHeight = 0;
+        int overscroll = 0;
 
         private CustomListview Source => this.Element as CustomListview;
         Android.Widget.ListView lw;
@@ -41,14 +43,7 @@ namespace CloudMusic.Droid.Renderers
         {
         }
         public void OnScrollStateChanged(AbsListView view, [GeneratedEnum] ScrollState scrollState)
-        {             
-            if (lw == null)
-            {
-                lw = (Android.Widget.ListView)this.Control;
-                lw.Scroll += Lw_Scroll;
-                lw.ScrollStateChanged += Lw_ScrollStateChanged;
-            }
-               
+        {               
             if (scrollState == 0)
             {
                 // stopped
@@ -112,7 +107,7 @@ namespace CloudMusic.Droid.Renderers
 
             if (this.Control != null)
             {
-                var c = this.Control.GetChildAt(0); //this is the first visible row
+                var c = this.Control.GetChildAt(0); 
                 if (c != null)
                 {
                     int scrollY = -c.Top;
@@ -136,8 +131,8 @@ namespace CloudMusic.Droid.Renderers
         {
             if (this.Control != null)
             {
-                this.Control.SetOnScrollChangeListener(this);
-                this.Control.SetOnScrollListener(this);
+                //this.Control.SetOnScrollChangeListener(this);
+                //this.Control.SetOnScrollListener(this);
             }
             base.OnAttachedToWindow();
         }
@@ -147,7 +142,7 @@ namespace CloudMusic.Droid.Renderers
             if (this.Control != null)
             {
                 this.Control.SetOnScrollChangeListener(null);
-                this.Control.SetOnScrollChangeListener(null);
+                this.Control.SetOnScrollListener(null);
             }
             base.OnDetachedFromWindow();
         }
@@ -155,6 +150,27 @@ namespace CloudMusic.Droid.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.ListView> e)
         {
             base.OnElementChanged(e);
+            if (lw == null)
+            {
+                lw = (Android.Widget.ListView)this.Control;
+                lw.Scroll += Lw_Scroll;
+                lw.ScrollStateChanged += Lw_ScrollStateChanged;
+            }
+            if (e.NewElement != null)
+            {
+                if (((CustomListview)e.NewElement).OverScroll)
+                {
+
+                    var overscrolllinster = EverythingMe.AndroidUI.OverScroll.OverScrollDecoratorHelper.SetUpOverScroll(lw);
+                    overscrolllinster.SetOverScrollUpdateListener(this);
+                }
+            }
+                
+        }
+
+        public void OnOverScrollUpdate(IOverScrollDecor decor, int state, float offset)
+        {
+            CustomListview.OverScrollUpdate(Source, offset/Context.Resources.DisplayMetrics.Density);
         }
         private int TopElementHeight
         {

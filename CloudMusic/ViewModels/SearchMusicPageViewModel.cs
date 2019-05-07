@@ -33,6 +33,7 @@ namespace CloudMusic.ViewModels
             ListViewItemAppearingCommand = new Command<object>(ListViewItemAppearing);
             TabViewSelectionChangedCommand = new Command<object>(TabViewSelectionChanged);
             PlayListItemTappedCommand = new Command<object>(PlayListItemTapped);
+            ArtistsListViewItemTappedCommand = new Command<object>(ArtistsListViewItemTappedAsync);
         }
         async void PlayListItemTapped(object e)
         {
@@ -102,6 +103,14 @@ namespace CloudMusic.ViewModels
             param.Add("MVid", mv.id);
             await MediaManager.CrossMediaManager.Current.Pause();
             await NavigationService.NavigateAsync("MusicVideoPage", param);
+        }
+        async void ArtistsListViewItemTappedAsync(object e)
+        {
+            var s = e as ItemTappedEventArgs;
+            Artist ar = s.Item as Artist;
+            var param = new NavigationParameters();
+            param.Add("artistid", ar.id);
+            await NavigationService.NavigateAsync("SingerPlayListPage", param);
         }
         void GetSuggest()
         {
@@ -292,6 +301,7 @@ namespace CloudMusic.ViewModels
         public ICommand AutoCompleteSelectionChangedCommand { get;private set; }
         public ICommand AutoCompletedCommand { get; private set; }
         public ICommand ListViewItemTappedCommand { get; private set; }
+        public ICommand ArtistsListViewItemTappedCommand { get; private set; }
         public ICommand ListViewItemAppearingCommand { get; private set; }
         public ICommand TabViewSelectionChangedCommand { get; private set; }
         public ICommand PlayListItemTappedCommand { get; private set; }

@@ -47,7 +47,11 @@ namespace CloudMusic.Actions.ApiHelper
             string param =string.Format("/like?id={0}&like={1}",id,like);
             return HttpClient.HttpGet(apihost+param);
         }
-
+        public static ArtistsInfo ArtistDetial(string id)
+        {
+            string param = "/artists?id=" + id;
+            return ApiGet<ArtistsInfo>(param);
+        }
         public static MusicPlayListDetail PlayListDetial(string id)
         {
             string param = "/playlist/detail?id=" + id;

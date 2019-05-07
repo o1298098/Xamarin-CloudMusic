@@ -71,6 +71,7 @@ namespace CloudMusic
             containerRegistry.RegisterForNavigation<PhoneMusicMangerPage, PhoneMusicMangerPageViewModel>();
             containerRegistry.RegisterForNavigation<MusicAPPLoginPage, MusicAPPLoginPageViewModel>();
             containerRegistry.RegisterForNavigation<BlankPage, BlankPageViewModel>();
+            containerRegistry.RegisterForNavigation<SingerPlayListPage, SingerPlayListPageViewModel>();
         }
         protected override void OnStart()
         {

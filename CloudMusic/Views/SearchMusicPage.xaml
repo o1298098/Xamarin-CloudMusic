@@ -157,6 +157,7 @@
                         <Grid  Padding="20,10,20,0">
                             <ListView ItemsSource="{Binding SearchResult.result.artists}" HasUnevenRows="True" CachingStrategy="RecycleElementAndDataTemplate" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
                                 <ListView.Behaviors>
+                                    <local:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ArtistsListViewItemTappedCommand}"></local:EventToCommandBehavior>
                                     <local:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ListViewItemAppearingCommand}"></local:EventToCommandBehavior>
                                 </ListView.Behaviors>
                                 <ListView.ItemTemplate>

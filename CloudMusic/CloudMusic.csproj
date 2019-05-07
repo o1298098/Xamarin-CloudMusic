@@ -28,9 +28,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.4.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.1.0.43" />
     <PackageReference Include="Xam.Plugins.DownloadManager" Version="1.4.0" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.8.956" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.8.956" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.8.956" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.9.961" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.346134-pre9" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />  
     <PackageReference Include="Xamarin.HotReload" Version="1.2.7" />  
@@ -154,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SearchMusicPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SingerPlayListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UserInfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>

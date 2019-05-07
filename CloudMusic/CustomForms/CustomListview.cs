@@ -15,9 +15,11 @@ namespace CloudMusic.CustomForms
         public delegate void ScrollTouched(object sender);
         public delegate void ScrollEvent(object sender, ScrollEventArgs args);
         public delegate void SwipeEvent(object sender, Swipe swipe, double YPosition, double LastTop);
+        public delegate void OverScrollUpdateEvent(object sender, float offset);
         public ScrollEvent OnScroll;
         public SwipeEvent OnTopSwipe;
         public ScrollTouched OnScrollTouched;
+        public event OverScrollUpdateEvent OnOverScrollUpdate;
         public event EventHandler<ScrollStateChangedEventArgs> ScrollStateChanged;
         public event EventHandler<ScrollChangedEventArgs> ScrollChanged;
         public enum Swipe
@@ -38,6 +40,13 @@ namespace CloudMusic.CustomForms
 
         public static readonly BindableProperty HandleScrollProperty =
             BindableProperty.Create("HandleScroll", typeof(bool), typeof(CustomListview), false);
+        public static readonly BindableProperty OverScrollProperty =
+          BindableProperty.Create("OverScroll", typeof(bool), typeof(CustomListview),false);
+        public bool OverScroll
+        {
+            get { return (bool)GetValue(OverScrollProperty); }
+            set { SetValue(OverScrollProperty, value); }
+        }
 
         public bool HandleScroll
         {
@@ -65,6 +74,11 @@ namespace CloudMusic.CustomForms
         {
             get { return (Swipe)GetValue(TopSwipeProperty); }
             set { SetValue(TopSwipeProperty, value); }
+        }
+        public static void OverScrollUpdate(object sender, float offset)
+        {
+            var customListview = (CustomListview)sender;
+            customListview.OnOverScrollUpdate?.Invoke(customListview, offset);
         }
         public void FireTopSwipe(Swipe swipe, double YPosition, double LastTop)
         {

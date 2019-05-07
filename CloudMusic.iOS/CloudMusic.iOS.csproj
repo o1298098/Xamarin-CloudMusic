@@ -164,10 +164,10 @@
       <Version>7.2.0.1038-pre</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
-      <Version>2.4.8.956</Version>
+      <Version>2.4.9.961</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
-      <Version>2.4.8.956</Version>
+      <Version>2.4.9.961</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.346134-pre9" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />

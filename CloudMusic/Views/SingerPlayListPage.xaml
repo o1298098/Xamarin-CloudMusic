@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
+             xmlns:controls="clr-namespace:CloudMusic.CustomForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:local="clr-namespace:CloudMusic.Actions"
+             x:Class="CloudMusic.Views.SingerPlayListPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ffimageloading:CachedImage Source="{Binding artistDetail.artist.picUrl}" DownsampleToViewSize="True" Aspect="AspectFill"  HeightRequest="350" VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Grid.Row="0" Grid.RowSpan="2" BitmapOptimizations="True" x:Name="bgpic">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CropTransformation CropHeightRatio="300" CropWidthRatio="360"></fftransformations:CropTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <controls:CustomListview ItemsSource="{Binding artistDetail.hotSongs}" OverScroll="True" HasUnevenRows="True" Grid.Row="0" Grid.RowSpan="2"  x:Name="listview" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <controls:CustomListview.Header>
+                    <AbsoluteLayout HeightRequest="350">
+                        <Label AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".20,.75,250,50">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding artistDetail.artist.name}" TextColor="White" FontAttributes="Bold" FontSize="20"></Span>
+                                    <Span Text="{Binding artistDetail.artist.alias[0],StringFormat='({0})'}" TextColor="White" FontAttributes="Bold" FontSize="20"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="被收藏200.1万次" TextColor="#e1e1e1" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".1,.8,150,30"></Label>
+                        <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.75,100,40"></Button>
+                        <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
+                        <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50"></Frame>
+                    </AbsoluteLayout>
+                </controls:CustomListview.Header>
+                <controls:CustomListview.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="0" Padding="20,10" Orientation="Horizontal" BackgroundColor="White">
+                                <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                                    <Label Text="{Binding name}" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
+                                    <Label FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span  Text="{Binding arstr}"></Span>
+                                                <Span  Text="{Binding al.name,StringFormat=' - {0}'}"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <!--<ImageButton BackgroundColor="Transparent" Source="Ic_video_gr.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="{Binding hasMv}" Margin="0,0,10,0"></ImageButton>-->
+                                <Image Source="Ic_more_g.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"></Image>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:CustomListview.ItemTemplate>
+            </controls:CustomListview>
+            <StackLayout Orientation="Horizontal" HeightRequest="80"  Grid.Row="0">
+                <ImageButton BackgroundColor="Transparent" Source="Back" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="0" Source="PlayShare" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" ></ImageButton>
+            </StackLayout>
+        </Grid>        
+    </ContentPage.Content>
+</ContentPage>
