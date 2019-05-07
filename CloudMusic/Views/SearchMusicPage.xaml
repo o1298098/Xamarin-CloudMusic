@@ -50,7 +50,7 @@
                     </sync:SfAutoComplete.ItemTemplate>
                 </sync:SfAutoComplete>
             </StackLayout>
-            <tabView:SfTabView TabHeight="30">
+            <tabView:SfTabView TabHeight="30" TabWidth="80">
                 <tabView:SfTabView.Behaviors>
                     <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding TabViewSelectionChangedCommand}"></local:EventToCommandBehavior>
                 </tabView:SfTabView.Behaviors>

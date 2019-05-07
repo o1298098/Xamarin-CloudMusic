@@ -14,6 +14,7 @@ namespace CloudMusic.ViewModels
     {
         ArtistsInfo _artistDetail;
         string artistid;
+        bool _show;
         public SingerPlayListPageViewModel(INavigationService navigationService) : base(navigationService)
         {
 
@@ -40,6 +41,11 @@ namespace CloudMusic.ViewModels
         {
             get => _artistDetail;
             set => SetProperty(ref _artistDetail, value, "artistDetail");
+        }
+        public bool show
+        {
+            get => _show;
+            set => SetProperty(ref _show, value, "show");
         }
     }
 }

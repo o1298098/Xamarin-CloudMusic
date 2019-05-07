@@ -10,35 +10,49 @@
              x:Class="CloudMusic.Views.SingerPlayListPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ffimageloading:CachedImage Source="{Binding artistDetail.artist.picUrl}" DownsampleToViewSize="True" Aspect="AspectFill"  HeightRequest="350" VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Grid.Row="0" Grid.RowSpan="2" BitmapOptimizations="True" x:Name="bgpic">
+            <ffimageloading:CachedImage Source="{Binding artistDetail.artist.picUrl}" DownsampleToViewSize="True" Aspect="AspectFill"  HeightRequest="350" VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Grid.Row="0" Grid.RowSpan="3" BitmapOptimizations="True" x:Name="bgpic">
                 <ffimageloading:CachedImage.Transformations>
                     <fftransformations:CropTransformation CropHeightRatio="300" CropWidthRatio="360"></fftransformations:CropTransformation>
                 </ffimageloading:CachedImage.Transformations>
             </ffimageloading:CachedImage>
-            <controls:CustomListview ItemsSource="{Binding artistDetail.hotSongs}" OverScroll="True" HasUnevenRows="True" Grid.Row="0" Grid.RowSpan="2"  x:Name="listview" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+            <AbsoluteLayout BackgroundColor="Black" Opacity="0.2" Grid.Row="0" Grid.RowSpan="3" x:Name="bgcover"></AbsoluteLayout>
+            <controls:CustomListview ItemsSource="{Binding artistDetail.hotSongs}" OverScroll="True" HasUnevenRows="True" Grid.Row="0" Grid.RowSpan="3"  x:Name="listview" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HeightRequest="1000">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>
                 <controls:CustomListview.Header>
-                    <AbsoluteLayout HeightRequest="350">
-                        <Label AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".20,.75,250,50">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding artistDetail.artist.name}" TextColor="White" FontAttributes="Bold" FontSize="20"></Span>
-                                    <Span Text="{Binding artistDetail.artist.alias[0],StringFormat='({0})'}" TextColor="White" FontAttributes="Bold" FontSize="20"></Span>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="被收藏200.1万次" TextColor="#e1e1e1" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".1,.8,150,30"></Label>
-                        <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.75,100,40"></Button>
-                        <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
-                        <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50"></Frame>
-                    </AbsoluteLayout>
+                    <StackLayout HeightRequest="350" Spacing="0">
+                        <AbsoluteLayout HeightRequest="300" x:Name="listviewheader">
+                            <Label AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".20,.9,250,50"  TextColor="White" FontAttributes="Bold" FontSize="20">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding artistDetail.artist.name}"></Span>
+                                        <Span Text="{Binding artistDetail.artist.alias[0],StringFormat='({0})'}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="被收藏200.1万次" TextColor="#e1e1e1" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".1,.95,150,30"></Label>
+                            <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.9,100,40"></Button>                      
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="50">
+                            <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
+                            <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50" Padding="0">
+                                <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                                    <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                                    <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
+                                    </Label>
+                                    <Image Source="Ic_menu_b.png" WidthRequest="20"></Image>
+                                    <Label Text="多选" VerticalOptions="Center"  TextColor="#333333" Margin="0,0,10,0"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </AbsoluteLayout>                       
+                    </StackLayout>                   
                 </controls:CustomListview.Header>
                 <controls:CustomListview.ItemTemplate>
                     <DataTemplate>
@@ -61,11 +75,41 @@
                         </ViewCell>
                     </DataTemplate>
                 </controls:CustomListview.ItemTemplate>
+                <controls:CustomListview.Footer>
+                    <AbsoluteLayout HeightRequest="420" BackgroundColor="White"></AbsoluteLayout>
+                </controls:CustomListview.Footer>
             </controls:CustomListview>
-            <StackLayout Orientation="Horizontal" HeightRequest="80"  Grid.Row="0">
-                <ImageButton BackgroundColor="Transparent" Source="Back" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
-                <ImageButton Grid.Row="0" Grid.Column="0" Source="PlayShare" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" ></ImageButton>
+            <ffimageloading:CachedImage Source="{Binding artistDetail.artist.picUrl}" DownsampleToViewSize="True" Aspect="AspectFill"  HeightRequest="350" VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Grid.Row="0" Grid.RowSpan="3" BitmapOptimizations="True" TranslationY="-220" x:Name="menubg" IsVisible="{Binding show}">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CropTransformation CropHeightRatio="300" CropWidthRatio="360"></fftransformations:CropTransformation>
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <AbsoluteLayout Grid.Row="0" Grid.RowSpan="2" HeightRequest="150" Opacity="0.8" VerticalOptions="Start" BackgroundColor="Black" IsVisible="{Binding show}"></AbsoluteLayout>
+            <StackLayout Orientation="Horizontal" HeightRequest="90" Spacing="10" Grid.Row="0" Grid.RowSpan="3" Margin="20,10,20,0" VerticalOptions="Start">
+                <ImageButton BackgroundColor="Transparent" Source="Back" WidthRequest="30"  Command="{Binding GoBackCommand}"></ImageButton>
+                <Label VerticalOptions="Center" TextColor="White" FontSize="18" IsVisible="{Binding show}" WidthRequest="175">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding artistDetail.artist.name}" ></Span>
+                            <Span Text="{Binding artistDetail.artist.alias[0],StringFormat='({0})'}"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="15" Padding="5,5" HeightRequest="30" WidthRequest="60" VerticalOptions="Center" IsVisible="{Binding show}"></Button>
+                <ImageButton Source="PlayShare" WidthRequest="25" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" x:Name="sharebtn"></ImageButton>
             </StackLayout>
+            <AbsoluteLayout HeightRequest="50" Grid.Row="1" IsVisible="{Binding show}">
+                <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
+                <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50" Padding="0">
+                    <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                        <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                        <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
+                        </Label>
+                        <Image Source="Ic_menu_b.png" WidthRequest="20"></Image>
+                        <Label Text="多选" VerticalOptions="Center"  TextColor="#333333" Margin="0,0,10,0"></Label>
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>           
         </Grid>        
     </ContentPage.Content>
 </ContentPage>
