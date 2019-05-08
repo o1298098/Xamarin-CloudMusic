@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="CloudMusic.Views.BlankPage">
-  
 </ContentPage>

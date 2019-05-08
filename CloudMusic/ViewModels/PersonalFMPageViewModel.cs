@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace CloudMusic.ViewModels
 {
@@ -43,6 +44,7 @@ namespace CloudMusic.ViewModels
             MoreBtnClickCommand = new Command(() => IsMoreMenu = !IsMoreMenu); 
             NextClickedCommand = new Command(NextClicked);
             PlayClickedCommand = new Command(PlayClicked);
+            ArtistClickedCommand = new Command(async()=>await ArtistClicked());
         }
        void GetPersonalFM()
         {
@@ -121,6 +123,27 @@ namespace CloudMusic.ViewModels
                     }
                 }
             });
+        }
+        async Task ArtistClicked()
+        {
+            var param = new NavigationParameters();
+            if (NowSongInfo.artists.Count > 1)
+            {
+                var artists = NowSongInfo.artists.Select(v => v.name).ToArray();
+                var result = await XF.Material.Forms.UI.Dialogs.MaterialDialog.Instance.SelectActionAsync(title: "选择歌手",
+                                                              actions: artists,configuration:new MaterialSimpleDialogConfiguration {TitleTextColor=Color.Black });
+                if (result!=-1)
+                    param.Add("artistid", NowSongInfo.artists[result].id);
+                else
+                    return;
+            }
+            else
+            {
+                
+                param.Add("artistid", NowSongInfo.artists[0].id);
+               
+            }
+            await NavigationService.NavigateAsync("SingerPlayListPage", param);
         }
         void LikeSongClicked()
         {
@@ -243,5 +266,6 @@ namespace CloudMusic.ViewModels
         public ICommand MoreBtnClickCommand { get; private set; }
         public ICommand NextClickedCommand { get; private set; }
         public ICommand PlayClickedCommand { get; private set; }
+        public ICommand ArtistClickedCommand { get; private set; }
     }
 }

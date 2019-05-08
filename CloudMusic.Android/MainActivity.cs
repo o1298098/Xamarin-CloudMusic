@@ -37,11 +37,12 @@ namespace CloudMusic.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             MediaManager.CrossMediaManager.Current.Init();
             InitDownloadManager();
-            Android.Glide.Forms.Init();
+            //Android.Glide.Forms.Init();
             PanCardView.Droid.CardsViewRenderer.Preserve();
             XF.Material.Droid.Material.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
             Services.CrossPrint.Init(this);
             //Plugin.FirebaseAnalytics.FirebaseAnalytics.Init(this);
             Services.CNotification.Init();

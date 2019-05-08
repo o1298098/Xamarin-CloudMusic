@@ -42,19 +42,25 @@ namespace CloudMusic.ViewModels
             userPlayLists = new ObservableCollection<Playlist>();
             subscribedPlayLists = new ObservableCollection<Playlist>();
             Task.Run(() => {
-                string id = Xamarin.Essentials.Preferences.Get("userid", 76074798).ToString();
-                var r = CloudMusicApiHelper.UserPlayLists(id);
-                if (r != null)
-                    if (r.code == 200)
-                    {
-                        var userlist = r.playlist.Where(q => !q.subscribed);
-                        var sublist= r.playlist.Where(q => q.subscribed);
-                        foreach (var q in userlist)
-                            userPlayLists.Add(q);
-                        foreach (var q in sublist)
-                            subscribedPlayLists.Add(q);
-                    }
-                        
+                try
+                {
+                    string id = Xamarin.Essentials.Preferences.Get("userid", 76074798).ToString();
+                    var r = CloudMusicApiHelper.UserPlayLists(id);
+                    if (r != null)
+                        if (r.code == 200)
+                        {
+                            var userlist = r.playlist.Where(q => !q.subscribed);
+                            var sublist = r.playlist.Where(q => q.subscribed);
+                            foreach (var q in userlist)
+                                userPlayLists.Add(q);
+                            foreach (var q in sublist)
+                                subscribedPlayLists.Add(q);
+                        }
+                }
+                catch (Exception ex)
+                {
+
+                } 
             });
         }
         void GetLocalMusic()

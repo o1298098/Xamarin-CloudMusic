@@ -41,8 +41,8 @@
                             <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.9,100,40"></Button>                      
                         </AbsoluteLayout>
                         <AbsoluteLayout HeightRequest="50">
-                            <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
-                            <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50" Padding="0">
+                            <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,20"></AbsoluteLayout>
+                            <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,50" Padding="0">
                                 <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
                                     <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
                                     <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
@@ -87,7 +87,7 @@
             <AbsoluteLayout Grid.Row="0" Grid.RowSpan="2" HeightRequest="150" Opacity="0.8" VerticalOptions="Start" BackgroundColor="Black" IsVisible="{Binding show}"></AbsoluteLayout>
             <StackLayout Orientation="Horizontal" HeightRequest="90" Spacing="10" Grid.Row="0" Grid.RowSpan="3" Margin="20,10,20,0" VerticalOptions="Start">
                 <ImageButton BackgroundColor="Transparent" Source="Back" WidthRequest="30"  Command="{Binding GoBackCommand}"></ImageButton>
-                <Label VerticalOptions="Center" TextColor="White" FontSize="18" IsVisible="{Binding show}" WidthRequest="175">
+                <Label VerticalOptions="Center" TextColor="White" FontSize="18" IsVisible="{Binding show}" WidthRequest="175" HorizontalOptions="FillAndExpand">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{Binding artistDetail.artist.name}" ></Span>
@@ -99,8 +99,8 @@
                 <ImageButton Source="PlayShare" WidthRequest="25" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" x:Name="sharebtn"></ImageButton>
             </StackLayout>
             <AbsoluteLayout HeightRequest="50" Grid.Row="1" IsVisible="{Binding show}">
-                <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,20"></AbsoluteLayout>
-                <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,360,50" Padding="0">
+                <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,20"></AbsoluteLayout>
+                <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,50" Padding="0">
                     <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
                         <ImageButton Source="Ic_play_b.png" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
                         <Label Text="播放全部" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="#333333">
@@ -109,7 +109,7 @@
                         <Label Text="多选" VerticalOptions="Center"  TextColor="#333333" Margin="0,0,10,0"></Label>
                     </StackLayout>
                 </Frame>
-            </AbsoluteLayout>           
+            </AbsoluteLayout>
         </Grid>        
     </ContentPage.Content>
 </ContentPage>

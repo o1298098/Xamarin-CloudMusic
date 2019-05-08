@@ -23,7 +23,7 @@
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
                 </ffimageloading:CachedImage.Transformations>
             </ffimageloading:CachedImage>          
-            <controls:CustomListview x:Name="listview" ItemsSource="{Binding MusicPlayList.playlist.tracks}" HasUnevenRows="True" SeparatorVisibility="None" Grid.Row="0" Grid.RowSpan="4" VerticalScrollBarVisibility="Never" OverScroll="True">
+            <controls:CustomListview x:Name="listview" ItemsSource="{Binding MusicPlayList.playlist.tracks}" HasUnevenRows="True" SeparatorVisibility="None" Grid.Row="0" Grid.RowSpan="4" VerticalScrollBarVisibility="Never">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>

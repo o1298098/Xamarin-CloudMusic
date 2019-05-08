@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace CloudMusic.Models.Media
@@ -21,7 +22,8 @@ namespace CloudMusic.Models.Media
             public long copyrightId { get; set; }
             public string disc { get; set; }
             public int no { get; set; }
-            public Artist[] artists { get; set; }
+            public List<Artist> artists { get; set; }
+            public string arstr => string.Join(" & ", artists.Select(r => r.name));
             public Album album { get; set; }
             public bool starred { get; set; }
             public int popularity { get; set; }
