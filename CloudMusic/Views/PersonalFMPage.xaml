@@ -78,7 +78,7 @@
         </cards:CardsView>
         <StackLayout Grid.Row="2" Margin="20" HorizontalOptions="FillAndExpand">
             <Label Text="{Binding NowSongInfo.name}" TextColor="White" HorizontalOptions="Center" FontSize="20" MaxLines="2" HorizontalTextAlignment="Center"></Label>
-            <Label Text="{Binding NowSongInfo.arstr}" HorizontalOptions="Center" TextColor="#c1c1c1">
+            <Label Text="{Binding NowSongInfo.arstr}" HorizontalOptions="Center" TextColor="#c1c1c1" HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ArtistClickedCommand}"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
@@ -97,7 +97,11 @@
             <StackLayout  Grid.Row="1"  Orientation="Horizontal" HorizontalOptions="Center">
                 <ImageButton WidthRequest="55" HeightRequest="55" Source="PlayRamdan.png" BackgroundColor="Transparent" VerticalOptions="Center" Scale="0.5"></ImageButton>
                 <ImageButton WidthRequest="55" HeightRequest="55" Source="{Binding likeIcon}" BackgroundColor="Transparent" VerticalOptions="Center" Scale="0.4" Command="{Binding LikeSongClickCommand}"></ImageButton>
-                <ImageButton WidthRequest="80" HeightRequest="80" Source="ic_pause.png" BackgroundColor="Transparent" x:Name="PlayBtn" VerticalOptions="Center" Command="{Binding PlayClickedCommand}"></ImageButton>
+                <Image WidthRequest="80" HeightRequest="80" Source="{Binding playicon,TargetNullValue='ic_pause'}" BackgroundColor="Transparent"  VerticalOptions="Center" HorizontalOptions="Center"  >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayClickedCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
                 <ImageButton WidthRequest="55" HeightRequest="55" Source="PlayNext.png" BackgroundColor="Transparent" x:Name="PlayNextBtn" VerticalOptions="Center" Scale="0.4" Command="{Binding NextClickedCommand}"></ImageButton>
                 <borad:SfBadgeView   BadgeText="{Binding CommentCount}"  VerticalOptions="Center" WidthRequest="55">
                     <borad:SfBadgeView.BadgeSettings>
@@ -161,7 +165,7 @@
                                             <Label Text="音质：在线文件(999kbit/s)" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
                                         </StackLayout>
                                         <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
-                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0" IsVisible="{Binding NowSongInfo.hasmv}">
+                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0" IsVisible="{Binding NowSongInfo.hasMV}">
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding  MVBtnClickedCommand}"/>
                                             </StackLayout.GestureRecognizers>

@@ -87,7 +87,7 @@
             <AbsoluteLayout Grid.Row="0" Grid.RowSpan="2" HeightRequest="150" Opacity="0.8" VerticalOptions="Start" BackgroundColor="Black" IsVisible="{Binding show}"></AbsoluteLayout>
             <StackLayout Orientation="Horizontal" HeightRequest="90" Spacing="10" Grid.Row="0" Grid.RowSpan="3" Margin="20,10,20,0" VerticalOptions="Start">
                 <ImageButton BackgroundColor="Transparent" Source="Back" WidthRequest="30"  Command="{Binding GoBackCommand}"></ImageButton>
-                <Label VerticalOptions="Center" TextColor="White" FontSize="18" IsVisible="{Binding show}" WidthRequest="175" HorizontalOptions="FillAndExpand">
+                <Label VerticalOptions="Center" TextColor="White" FontSize="18" IsVisible="{Binding show}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{Binding artistDetail.artist.name}" ></Span>
@@ -95,8 +95,9 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand"></AbsoluteLayout>
                 <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="15" Padding="5,5" HeightRequest="30" WidthRequest="60" VerticalOptions="Center" IsVisible="{Binding show}"></Button>
-                <ImageButton Source="PlayShare" WidthRequest="25" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" x:Name="sharebtn"></ImageButton>
+                <ImageButton Source="PlayShare" WidthRequest="25" BackgroundColor="Transparent" x:Name="sharebtn"></ImageButton>
             </StackLayout>
             <AbsoluteLayout HeightRequest="50" Grid.Row="1" IsVisible="{Binding show}">
                 <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,20"></AbsoluteLayout>

@@ -20,7 +20,7 @@ namespace CloudMusic.ViewModels
     public class PersonalFMPageViewModel : BaseViewModel
     {
         bool init, _isAutoAnimationRunning, _isUserInteractionRunning, _isShowLrc, _isShowDisc, _isMoreMenu;
-        string imageurl, description, songname, artname, commentcount, _likeIcon;
+        string imageurl, description, songname, artname, commentcount, _likeIcon,_playicon;
         int index, _currentIndex, offset, maxvulome, nowvulome;
         double nowdurationnum;
         TimeSpan nowduration, musicduration;
@@ -45,8 +45,10 @@ namespace CloudMusic.ViewModels
             NextClickedCommand = new Command(NextClicked);
             PlayClickedCommand = new Command(PlayClicked);
             ArtistClickedCommand = new Command(async()=>await ArtistClicked());
+            MusicCommentClickedCommand = new DelegateCommand(MusicCommentClicked);
+            MVBtnClickedCommand = new DelegateCommand(MVBtnClicked);
         }
-       void GetPersonalFM()
+        void GetPersonalFM()
         {
             IsBusy = true;
             Task.Run(() => {
@@ -157,10 +159,12 @@ namespace CloudMusic.ViewModels
         {
             if (CrossMediaManager.Current.IsPlaying())
             {
+                playicon = "ic_play";
                 await CrossMediaManager.Current.Pause();
             }
             else
             {
+                playicon = "ic_pause";
                 await CrossMediaManager.Current.Play();
             }
         }
@@ -173,6 +177,20 @@ namespace CloudMusic.ViewModels
                 x++;
                 ChangeMusic(x);
             }
+        }
+        async void MVBtnClicked()
+        {
+            IsMoreMenu = false;
+            await CrossMediaManager.Current.Pause();
+            var q = new NavigationParameters();
+            q.Add("MVid", NowSongInfo.mvid);
+            await NavigationService.NavigateAsync("MusicVideoPage", q);
+        }
+        async void MusicCommentClicked()
+        {
+            var param = new NavigationParameters();
+            param.Add("MusicID", musicInfo.data[0].id);
+            await NavigationService.NavigateAsync("MusicCommentPage", param);
         }
 
         public PersonalFmModel.Datum NowSongInfo
@@ -209,6 +227,11 @@ namespace CloudMusic.ViewModels
         {
             get { return imageurl; }
             set => SetProperty(ref imageurl, value, "ImageUrl");
+        }
+        public string playicon
+        {
+            get { return _playicon; }
+            set => SetProperty(ref _playicon, value, "playicon");
         }
         public bool IsShowLrc
         {
@@ -267,5 +290,7 @@ namespace CloudMusic.ViewModels
         public ICommand NextClickedCommand { get; private set; }
         public ICommand PlayClickedCommand { get; private set; }
         public ICommand ArtistClickedCommand { get; private set; }
+        public ICommand MusicCommentClickedCommand { get; private set; }
+        public ICommand MVBtnClickedCommand { get; private set; }
     }
 }

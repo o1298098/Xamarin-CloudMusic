@@ -17,7 +17,7 @@ namespace CloudMusic.ViewModels
         int offset;
         bool init;
         MusicEventModel _friendEvents;
-        bool _isallload;
+        bool _isallload,_isRefresh;
         public FriendEventPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             ListViewItemAppearingCommand = new Command<object>(ListViewItemAppearing);
@@ -31,13 +31,13 @@ namespace CloudMusic.ViewModels
         void GetEventData()
         {
             offset = 0;
-            IsBusy = true;
+            IsRefresh = true;
             Task.Run(() => {
                 var r = CloudMusicApiHelper.GetFriendEvents(offset);
                 if (r != null)
                     if (r.code == 200)
                         friendEvents = r;
-                IsBusy = false;
+                IsRefresh = false;
             });
         }
         void ListViewLoadMore()
@@ -70,6 +70,11 @@ namespace CloudMusic.ViewModels
             }
         }
 
+        public bool IsRefresh
+        {
+            get => _isRefresh;
+            set => SetProperty(ref _isRefresh, value, "IsRefresh");
+        }
         public bool IsAllLoad
         {
             get => _isallload;

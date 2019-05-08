@@ -148,7 +148,7 @@ namespace CloudMusic.ViewModels
                     await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareFileRequest
                     {
                         Title = Title,
-                        File = new Xamarin.Essentials.ShareFile(file)
+                        File = new Xamarin.Essentials.ShareFile(file,"*/*")
                     });
                 });
 

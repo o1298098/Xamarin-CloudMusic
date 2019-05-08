@@ -22,13 +22,11 @@ namespace CloudMusic.Views
             double scrolly = e.NewScrollY * scaleparam;
             if (scrolly <= -220)
             {
-                sharebtn.HorizontalOptions = LayoutOptions.End;
                 vm.show = true;
                 bgpic.TranslationY = -220;
             }
             else if (scrolly > -220)
             {
-                sharebtn.HorizontalOptions = LayoutOptions.EndAndExpand;
                 vm.show = false;
                 bgpic.TranslationY = scrolly;
                 var pr =System.Math.Abs(scrolly / 220);

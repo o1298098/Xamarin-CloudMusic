@@ -16,7 +16,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" x:Name="listview" ItemTemplate="{StaticResource myDataTemplateSelector}" ItemsSource="{Binding friendEvents.friendevent,Mode=OneWay}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}">
+            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" x:Name="listview" ItemTemplate="{StaticResource myDataTemplateSelector}" ItemsSource="{Binding friendEvents.friendevent,Mode=OneWay}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>

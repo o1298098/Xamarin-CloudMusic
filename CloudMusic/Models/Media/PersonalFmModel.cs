@@ -54,6 +54,7 @@ namespace CloudMusic.Models.Media
             public object rurl { get; set; }
             public Privilege privilege { get; set; }
             public string alg { get; set; }
+            public bool hasMV { get => mvid > 0; }
         }       
 
         public class Bmusic
