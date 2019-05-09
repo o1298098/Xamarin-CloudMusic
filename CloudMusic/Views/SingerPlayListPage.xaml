@@ -38,9 +38,9 @@
                                 </Label.FormattedText>
                             </Label>
                             <Label Text="被收藏200.1万次" TextColor="#e1e1e1" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".1,.95,150,30"></Label>
-                            <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.9,100,40"></Button>                      
+                            <Button Text="+ 收藏" TextColor="White" BackgroundColor="#FE3A3B" CornerRadius="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".95,.9,100,40"></Button>   
                         </AbsoluteLayout>
-                        <AbsoluteLayout HeightRequest="50">
+                        <AbsoluteLayout HeightRequest="50"  x:Name="floatlayout">
                             <AbsoluteLayout BackgroundColor="White" HeightRequest="20" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,20"></AbsoluteLayout>
                             <Frame BackgroundColor="White" HeightRequest="50" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,1,1,50" Padding="0">
                                 <StackLayout Orientation="Horizontal" Padding="20,0,10,0">

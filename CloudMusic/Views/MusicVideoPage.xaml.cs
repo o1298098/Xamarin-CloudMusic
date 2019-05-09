@@ -16,10 +16,17 @@ namespace CloudMusic.Views
             SimiMVsl.ChildAdded += SimiMVsl_ChildAdded;
             SimiMVsl.ChildRemoved += SimiMVsl_ChildRemoved;
             listview.ScrollStateChanged += Listview_ScrollStateChanged;
+            listview.ScrollChanged += Listview_ScrollChanged;
+        }
+
+        private void Listview_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+                sublayout2.IsVisible = sublayout2.Y +(e.NewScrollY*App.Context.Scaleparam)<= 0? true:false;
         }
 
         private void Listview_ScrollStateChanged(object sender, CustomForms.ScrollStateChangedEventArgs e)
         {
+            var r = sublayout.Y;
             switch (e.CurScrollState)
             {
                 case ScrollStateChangedEventArgs.ScrollState.Running:
@@ -42,9 +49,8 @@ namespace CloudMusic.Views
             TapGestureRecognizer s = new TapGestureRecognizer();
             s.Command = vm.NextMVCommand;
             s.CommandParameter = vm.SiMiMvInfo.mvs[i].id.ToString();
-            ((Grid)e.Element).GestureRecognizers.Add(s);
+            ((AbsoluteLayout)e.Element).GestureRecognizers.Add(s);
             i++;
-            SimiMVsl.ForceLayout();
         }
     }
 }

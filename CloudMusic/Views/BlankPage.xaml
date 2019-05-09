@@ -4,5 +4,8 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="CloudMusic.Views.BlankPage">
+        <skia:SKCanvasView PaintSurface="SKCanvasView_PaintSurface" x:Name="canvasview"></skia:SKCanvasView>  
+    
 </ContentPage>

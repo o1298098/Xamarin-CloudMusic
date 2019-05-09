@@ -39,8 +39,8 @@ namespace CloudMusic.ViewModels
         }
         void GetUserPlayLists()
         {
-            userPlayLists = new ObservableCollection<Playlist>();
-            subscribedPlayLists = new ObservableCollection<Playlist>();
+            ObservableCollection<Playlist> userpl = new ObservableCollection<Playlist>();
+            ObservableCollection<Playlist> subpl = new ObservableCollection<Playlist>();
             Task.Run(() => {
                 try
                 {
@@ -52,9 +52,14 @@ namespace CloudMusic.ViewModels
                             var userlist = r.playlist.Where(q => !q.subscribed);
                             var sublist = r.playlist.Where(q => q.subscribed);
                             foreach (var q in userlist)
-                                userPlayLists.Add(q);
+                                userpl.Add(q);
                             foreach (var q in sublist)
-                                subscribedPlayLists.Add(q);
+                                subpl.Add(q);
+                            Device.BeginInvokeOnMainThread(()=>{
+                                userPlayLists = userpl;
+                                subscribedPlayLists = subpl;
+                            });
+                            
                         }
                 }
                 catch (Exception ex)

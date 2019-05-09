@@ -20,16 +20,16 @@ namespace CloudMusic.Views
         private void Listview_ScrollChanged(object sender, CustomForms.ScrollChangedEventArgs e)
         {
             double scrolly = e.NewScrollY * scaleparam;
-            if (scrolly <= -220)
+            if (floatlayout.Y+scrolly-80 <= 0)
             {
                 vm.show = true;
-                bgpic.TranslationY = -220;
+                bgpic.TranslationY = scrolly;
             }
-            else if (scrolly > -220)
+            else if (floatlayout.Y + scrolly-80 > 0)
             {
                 vm.show = false;
                 bgpic.TranslationY = scrolly;
-                var pr =System.Math.Abs(scrolly / 220);
+                var pr =System.Math.Abs(scrolly / floatlayout.Y);
                 listviewheader.Opacity = 1 - pr;
                 bgcover.Opacity = 0.2 + 0.6 * pr;
             }

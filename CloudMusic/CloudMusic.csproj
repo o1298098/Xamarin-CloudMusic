@@ -23,6 +23,7 @@
     <PackageReference Include="Prism.Forms" Version="7.2.0.1038-pre" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1038-pre" />
     <PackageReference Include="Refit" Version="4.6.107" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.1.0.43" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.1.0.43" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.43" />
