@@ -108,7 +108,7 @@ namespace CloudMusic.ViewModels
             {
                 var param = new NavigationParameters();
                 param.Add("pic", NowSongInfo.al.picUrl);
-                await NavigationService.NavigateAsync("EmptyPage", param);
+                await NavigationService.NavigateAsync("BlankPage", param);
             });
 
         }
