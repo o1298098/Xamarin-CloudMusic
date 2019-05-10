@@ -4,9 +4,13 @@ using System.Text;
 
 namespace CloudMusic.Services
 {
-   public interface IAudioVisualizer
+   public  interface IAudioVisualizer
     {
+        event WaveformUpadteEvent OnWaveformUpadte;
+        void WaveformUpadt(IList<byte> args);
         void Init();
-        byte[] GetWaveformValue();
+        IList<byte> GetWaveformValue();
+        void Dispose();
     }
+    public delegate void WaveformUpadteEvent(IList<byte> args);
 }

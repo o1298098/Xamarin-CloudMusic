@@ -48,6 +48,10 @@ namespace CloudMusic.ViewModels
             MusicCommentClickedCommand = new DelegateCommand(MusicCommentClicked);
             MVBtnClickedCommand = new DelegateCommand(MVBtnClicked);
         }
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+        }
         void GetPersonalFM()
         {
             IsBusy = true;

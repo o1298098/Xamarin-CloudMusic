@@ -2,69 +2,74 @@
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
+using System.Threading.Tasks;
+using CloudMusic.Services;
+using System.Collections.Generic;
 
 namespace CloudMusic.Views
 {
     public partial class BlankPage : ContentPage
     {
         Random random = new Random(DateTime.Now.Millisecond);
+        IList<byte> audiodata;
+        float[] pointdata = new float[100]; 
         public BlankPage()
         {
             InitializeComponent();
-            Device.StartTimer(TimeSpan.FromSeconds(1f/60), ()=> { canvasview.InvalidateSurface();return true; });
+            stratBtn.Clicked += StratBtn_Clicked;
         }
-        SKPaint CirclePaint = new SKPaint
-        {
-            Color=Color.Accent.ToSKColor(),
-            Style=SKPaintStyle.Stroke
-        };
-        SKPaint linepaint = new SKPaint
-        {
-            StrokeWidth=20,
-            Style=SKPaintStyle.Stroke,
-            StrokeCap=SKStrokeCap.Round,
 
-        };
-        SKPaint eyepaint = new SKPaint
+        private void StratBtn_Clicked(object sender, EventArgs e)
         {
-            Style = SKPaintStyle.Fill
+            DependencyService.Get<IAudioVisualizer>().Init();
+            DependencyService.Get<IAudioVisualizer>().OnWaveformUpadte += BlankPage_OnWaveformUpadte;
+        }
+
+        private void BlankPage_OnWaveformUpadte(System.Collections.Generic.IList<byte> args)
+        {
+            audiodata = args;
+            if (audiodata != null)
+            {
+                if (audiodata.Count == 0) return;
+                for (int i = 0; i < pointdata.Length; i++)
+                {
+                    int x = (int)Math.Ceiling((double)(i + 1) * (audiodata.Count / 100));
+                    int t = 0;
+                    if (x < 1024)
+                    {
+                        t = ((byte)(Math.Abs(audiodata[x]) + 128)) * 100 / 128;
+                    }
+                    pointdata[i] = -t;
+                }
+            }
+            canvasview.InvalidateSurface();
+        }
+        SKPaint p = new SKPaint
+        {
+            Style = SKPaintStyle.Fill,
+            Color=SKColors.Red,
         };
-        int i = 1;
+
         private void SKCanvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {
             SKCanvas canvas = e.Surface.Canvas;
             int width = e.Info.Width;
             int height = e.Info.Height;
-            canvas.Clear();
-            //canvas.DrawColor(Color.SkyBlue.ToSKColor());
-            float t = (float)Math.Sin((DateTime.Now.Second % 2 + DateTime.Now.Millisecond / 1000f)*Math.PI);
-            /*using (SKPath path = new SKPath())
+            for (int i = 0; i < 360; i = 1 + 360 / 100)
             {
-                SKPoint point1 = new SKPoint(width / 2+50*t, height / 2+200);
-                SKPoint point2 = new SKPoint(width / 2, height / 2 + 250 - Math.Abs(50*t));
-                SKPoint point3 = new SKPoint(width / 2-150*t, height / 2 + 250 - Math.Abs(75 * t));
-                canvas.Save();
-                path.MoveTo(width / 2, height / 2);
-                path.CubicTo(point1, point2, point3);
-                canvas.DrawPath(path,linepaint);
-                canvas.Restore();
-            }*/
-            canvas.Save();
-            canvas.DrawCircle(width / 2f, height / 2f, 100, CirclePaint);
-            canvas.DrawCircle(width / 2f - 40, height / 2f - 30, 10, eyepaint);
-            canvas.DrawCircle(width / 2f + 40, height / 2f - 30, 10, eyepaint);
-            canvas.Restore();
-            using (SKPath path = new SKPath())
-            {
-                SKPoint point1 = new SKPoint(width / 2 + 50 * t, height / 2 + 200);
-                SKPoint point2 = new SKPoint(width / 2, height / 2 + 250 - Math.Abs(50 * t));
-                SKPoint point3 = new SKPoint(width / 2 - 50 * t, height / 2 + 250 - Math.Abs(75 * t));
-                canvas.Save();
-                path.MoveTo(width / 2, height / 2 + 30);
-                path.CubicTo(point1, point2, point3);
-                canvas.DrawPath(path, linepaint);
-                canvas.Restore();
+                float cx = (float)(width / 2+Math.Sin(i*Math.PI/180)*100);
+                float cy = (float)(height / 2 - Math.Cos(i * Math.PI/180) * 100);
+                canvas.DrawCircle(cx,cy,2,p);
+
             }
+            for (int i = 0; i < 360; i = 1 + 360 / 100)
+            {
+                float cx = (float)(width / 2 + Math.Sin(i * Math.PI / 180) * 100);
+                float cy = (float)(height / 2 - Math.Cos(i * Math.PI / 180) * 100);
+                canvas.Save();
+                canvas.DrawCircle(cx, cy, 2, p);
+            }
+
         }
     }
 }

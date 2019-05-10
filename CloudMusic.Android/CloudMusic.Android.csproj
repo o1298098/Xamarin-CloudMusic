@@ -123,7 +123,7 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="MultiDexApplication.cs" />
-    <Compile Include="Renderers\AudioVisualizer.cs" />
+    <Compile Include="Services\AudioVisualizer.cs" />
     <Compile Include="Renderers\AudioVisualizerRenderer.cs" />
     <Compile Include="Renderers\BlurredImageRenderer.cs" />
     <Compile Include="Renderers\BlurViewRenderer.cs" />
