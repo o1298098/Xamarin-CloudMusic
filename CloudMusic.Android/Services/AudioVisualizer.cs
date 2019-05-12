@@ -19,23 +19,28 @@ using Android.Support.Annotation;
 using CloudMusic.Droid.Services;
 using CloudMusic.Services;
 using Xamarin.Forms;
+using MediaManager;
 
 [assembly: Dependency(typeof(AudioVisualizer))]
 namespace CloudMusic.Droid.Services
 {
     public class AudioVisualizer :Java.Lang.Object, IAudioVisualizer, Visualizer.IOnDataCaptureListener
     {
-        public event WaveformUpadteEvent OnWaveformUpadte;
+        public event DataCaptureUpadteEvent OnWaveformUpdate;
+        public event DataCaptureUpadteEvent OnFftUpdate;
+
         IList<byte> audiobytes;
+        IList<byte> fftbytes;
         static Visualizer mVisualizer;
         bool isinit;
          void IAudioVisualizer.Init()
         {
             if (!isinit)
-            {
+            {                
+                //CrossMediaManager.Android.AndroidMediaPlayer.Player.AudioSessionId
                 mVisualizer = new Visualizer(0);
                 mVisualizer.SetCaptureSize(Visualizer.GetCaptureSizeRange()[1]);
-                mVisualizer.SetDataCaptureListener(this, Visualizer.MaxCaptureRate / 2, true, false);
+                mVisualizer.SetDataCaptureListener(this, Visualizer.MaxCaptureRate /2, true, true);
                 mVisualizer.SetEnabled(true);
                 isinit = true;
             }
@@ -52,11 +57,13 @@ namespace CloudMusic.Droid.Services
 
         public void OnFftDataCapture(Visualizer visualizer, byte[] fft, int samplingRate)
         {
+            OnFftUpdate?.Invoke(fft);
+            fftbytes = fft;
         }
 
         public void OnWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate)
         {
-            OnWaveformUpadte?.Invoke(waveform);
+            OnWaveformUpdate?.Invoke(waveform);
             audiobytes = waveform;
         }
 
@@ -66,6 +73,9 @@ namespace CloudMusic.Droid.Services
             isinit = false;
         }
 
-
+        public IList<byte> GetFftValue()
+        {
+            return fftbytes;
+        }
     }
 }
