@@ -25,9 +25,7 @@ namespace CloudMusic.Droid.Services
 {
     public class AudioVisualizer :Java.Lang.Object, IAudioVisualizer, Visualizer.IOnDataCaptureListener
     {
-        public event DataCaptureUpadteEvent OnWaveformUpdate;
-        public event DataCaptureUpadteEvent OnFftUpadate;
-
+        public event WaveformUpadteEvent OnWaveformUpadte;
         IList<byte> audiobytes;
         static Visualizer mVisualizer;
         bool isinit;
@@ -37,7 +35,7 @@ namespace CloudMusic.Droid.Services
             {
                 mVisualizer = new Visualizer(0);
                 mVisualizer.SetCaptureSize(Visualizer.GetCaptureSizeRange()[1]);
-                mVisualizer.SetDataCaptureListener(this, Visualizer.MaxCaptureRate / 2, true, true);
+                mVisualizer.SetDataCaptureListener(this, Visualizer.MaxCaptureRate / 2, true, false);
                 mVisualizer.SetEnabled(true);
                 isinit = true;
             }
@@ -54,12 +52,11 @@ namespace CloudMusic.Droid.Services
 
         public void OnFftDataCapture(Visualizer visualizer, byte[] fft, int samplingRate)
         {
-            OnFftUpadate?.Invoke(fft);
         }
 
         public void OnWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate)
         {
-            OnWaveformUpdate?.Invoke(waveform);
+            OnWaveformUpadte?.Invoke(waveform);
             audiobytes = waveform;
         }
 

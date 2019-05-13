@@ -6,8 +6,6 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="CloudMusic.Views.BlankPage">
-    <StackLayout Padding="10">
-        <skia:SKCanvasView PaintSurface="SKCanvasView_PaintSurface" x:Name="canvasview" HeightRequest="360" WidthRequest="340"></skia:SKCanvasView>
-    </StackLayout>
+        <skia:SKCanvasView PaintSurface="SKCanvasView_PaintSurface" x:Name="canvasview"></skia:SKCanvasView>
     
 </ContentPage>
