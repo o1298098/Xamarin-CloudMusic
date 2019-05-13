@@ -12,7 +12,7 @@ namespace CloudMusic.Actions
 {
     public class AutoUpdate
     {
-        readonly static string url = "https://api.github.com/repos/o1298098/CloudMusic/releases/latest";
+        readonly static string url = "https://api.github.com/repos/o1298098/Xamarin-CloudMusic/releases/latest";
         private static int size;
         public static async Task<bool> GetUpdate()
         {

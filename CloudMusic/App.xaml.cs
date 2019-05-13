@@ -11,7 +11,6 @@ using Plugin.DownloadManager;
 using CloudMusic.Services;
 using CloudMusic.Actions.ApiHelper;
 using System.Linq;
-
 namespace CloudMusic
 {
     public partial class App : PrismApplication
@@ -76,11 +75,10 @@ namespace CloudMusic
         protected override void OnStart()
         {
             //FCMPushNotification.Init();
-            System.Threading.Tasks.Task.Run(async () => {
+            System.Threading.Tasks.Task.Run(() => {
                 MicrosoftAppCenterHandler.Init();
                 //await AutoUpdate.GetUpdate();
                 FFImageLoading.Config.Configuration.Default.ClearMemoryCacheOnOutOfMemory = true;
-                FFImageLoading.Config.Configuration.Default.BitmapOptimizations= true;
                 //FFImageLoading.Config.Configuration.Default.DiskCacheDuration = System.TimeSpan.FromDays(5);
                 //FFImageLoading.Config.Configuration.Default.FadeAnimationDuration = 50;
                 //FFImageLoading.Config.Configuration.Default.FadeAnimationEnabled = true;

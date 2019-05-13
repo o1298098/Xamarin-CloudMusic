@@ -36,7 +36,8 @@ namespace CloudMusic.Droid.Services
                                 MediaStore.Audio.Media.InterfaceConsts.Album,
                                 //MediaStore.Audio.Media.InterfaceConsts.AlbumArt,
                                 MediaStore.Audio.Media.InterfaceConsts.Artist,
-                                 MediaStore.Audio.Media.InterfaceConsts.ArtistId
+                                 MediaStore.Audio.Media.InterfaceConsts.ArtistId,
+                                 MediaStore.Audio.Media.InterfaceConsts.Duration
                 },
                             null,
                             null,
@@ -53,7 +54,7 @@ namespace CloudMusic.Droid.Services
                     string albumId = "";// mCursor.GetString(mCursor.GetColumnIndex(MediaStore.Audio.Media.InterfaceConsts.AlbumId));
                     string artist = mCursor.GetString(mCursor.GetColumnIndex(MediaStore.Audio.Media.InterfaceConsts.Artist));
                     string artistId = mCursor.GetString(mCursor.GetColumnIndex(MediaStore.Audio.Media.InterfaceConsts.ArtistId));
-                    long duration = 0; //mCursor.GetLong(mCursor.GetColumnIndex(MediaStore.Audio.Media.InterfaceConsts.Duration));
+                    long duration = mCursor.GetLong(mCursor.GetColumnIndex(MediaStore.Audio.Media.InterfaceConsts.Duration));
                     audios.Add(new AudioModel(path, time, name, mimetype, album, albumArt, albumId, artist, artistId, duration));
                 }
                 mCursor.Close();

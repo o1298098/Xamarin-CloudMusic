@@ -23,6 +23,15 @@ using Android.App;
 using Android.Support.V4.Content;
 using Com.Google.Android.Exoplayer2.Util;
 using Java.Lang;
+using Com.Google.Android.Exoplayer2.Source.Hls.Playlist;
+using System.Collections.Generic;
+using Com.Google.Android.Exoplayer2.Offline;
+using Com.Google.Android.Exoplayer2.Source.Smoothstreaming.Manifest;
+using static Com.Google.Android.Exoplayer2.Offline.DownloadAction;
+using Com.Google.Android.Exoplayer2.Source.Dash.Offline;
+using Com.Google.Android.Exoplayer2.Source.Hls.Offline;
+using Com.Google.Android.Exoplayer2.Source.Smoothstreaming.Offline;
+using Com.Google.Android.Exoplayer2.Upstream.Cache;
 
 [assembly: ExportRenderer(typeof(FormsVideoLibrary.VideoPlayer),
                           typeof(CloudMusic.Droid.VideoPlayerRenderer))]
@@ -33,15 +42,25 @@ namespace CloudMusic.Droid
     {
         SimpleExoPlayer ExoPlayer;
         PlayerView PlayerView;
-        //VideoView videoView;
-        MediaController mediaController;    // Used to display transport controls
         bool isPrepared;
         Android.Widget.ImageView mFullScreen;
-        Android.Widget.ImageButton mFullScreenExit;
         private static bool mExoPlayerFullscreen = false;
         private Dialog mFullScreenDialog;
         ViewGroup mainpage;
         ARelativeLayout relativeLayout;
+        private const string DOWNLOAD_ACTION_FILE = "actions";
+        private const string DOWNLOAD_TRACKER_ACTION_FILE = "tracked_actions";
+        private const string DOWNLOAD_CONTENT_DIRECTORY = "downloads";
+        private const int MAX_SIMULTANEOUS_DOWNLOADS = 2;
+        private Deserializer[] DOWNLOAD_DESERIALIZERS =
+          new Deserializer[] {
+            DashDownloadAction.Deserializer,
+            HlsDownloadAction.Deserializer,
+            SsDownloadAction.Deserializer,
+            ProgressiveDownloadAction.Deserializer
+        };
+
+        protected string userAgent;
 
         public VideoPlayerRenderer(Context context) : base(context)
         {
@@ -239,7 +258,8 @@ namespace CloudMusic.Droid
                 if (!string.IsNullOrWhiteSpace(uri))
                 {
                     //videoView.SetVideoURI(Android.Net.Uri.Parse(uri));
-                    videoSource = new HlsMediaSource(Android.Net.Uri.Parse(uri), httpDataSourceFactory, emptyHandler, null);
+                    videoSource = new HlsMediaSource.Factory(httpDataSourceFactory)
+                        .CreateMediaSource(Android.Net.Uri.Parse(uri));
                     hasSetSource = true;
                 }
             }
@@ -251,7 +271,7 @@ namespace CloudMusic.Droid
                 {
                     //videoView.SetVideoURI(Android.Net.Uri.Parse(uri));
                     var dataSourceFactory = new DefaultDataSourceFactory(Context,Util.GetUserAgent(Context, "Multimedia"));
-                    videoSource = new ExtractorMediaSource(Android.Net.Uri.Parse(uri), dataSourceFactory, new DefaultExtractorsFactory(), emptyHandler,null);
+                    videoSource = new ExtractorMediaSource.Factory(dataSourceFactory).CreateMediaSource(Android.Net.Uri.Parse(uri));
                     hasSetSource = true;
                 }
             }
@@ -273,7 +293,7 @@ namespace CloudMusic.Droid
                     }
                     // videoView.SetVideoPath(filename);
                     IDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this.Context,"CloudMusic");
-                    videoSource = new ExtractorMediaSource(fileDataSource.Uri, dataSourceFactory, new DefaultExtractorsFactory(), emptyHandler, null);
+                    videoSource = new ExtractorMediaSource.Factory(dataSourceFactory).CreateMediaSource(fileDataSource.Uri);
                      hasSetSource = true;
                 }
             }
@@ -287,7 +307,9 @@ namespace CloudMusic.Droid
                     string filename = Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
                     string uri = "android.resource://" + package + "/raw/" + filename;
                     //videoView.SetVideoURI(Android.Net.Uri.Parse(uri));
-                    videoSource = new SsMediaSource(Android.Net.Uri.Parse(uri), httpDataSourceFactory, ssChunkFactory, emptyHandler, null);
+                    videoSource = new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(httpDataSourceFactory), BuildDataSourceFactory(new DefaultBandwidthMeter()))
+                        .SetManifestParser(new FilteringManifestParser(new SsManifestParser(), null))
+                        .CreateMediaSource(Android.Net.Uri.Parse(uri));
                     hasSetSource = true;
                 }
             }
@@ -329,14 +351,15 @@ namespace CloudMusic.Droid
            // TimeSpan timeSpan = TimeSpan.FromMilliseconds(videoView.CurrentPosition);
            // ((IElementController)Element).SetValueFromRenderer(VideoPlayer.PositionProperty, timeSpan);
         }
+
         private void play()
         {
             Android.Net.Uri sourceUri = Android.Net.Uri.Parse(Element.Source.ToString());
             DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory("1");
             DefaultSsChunkSource.Factory ssChunkFactory = new DefaultSsChunkSource.Factory(httpDataSourceFactory);
             Handler emptyHandler = new Handler();
-            SsMediaSource ssMediaSource = new SsMediaSource(sourceUri, httpDataSourceFactory, ssChunkFactory, emptyHandler,null);
-            ExoPlayer.Prepare(ssMediaSource);
+            //SsMediaSource ssMediaSource = new SsMediaSource(sourceUri, httpDataSourceFactory, ssChunkFactory, emptyHandler,null);
+            //ExoPlayer.Prepare(ssMediaSource);
         }
 
         // Event handlers to implement methods
@@ -355,5 +378,28 @@ namespace CloudMusic.Droid
            // videoView.StopPlayback();
             ExoPlayer.Stop();
         }
+        public IDataSourceFactory BuildDataSourceFactory(ITransferListener listener)
+        {
+            DefaultDataSourceFactory upstreamFactory = new DefaultDataSourceFactory(Context, listener, BuildHttpDataSourceFactory(listener));
+
+            return BuildReadOnlyCacheDataSource(upstreamFactory, null);
+        }
+        public IHttpDataSourceFactory BuildHttpDataSourceFactory(ITransferListener listener)
+        {
+            return new DefaultHttpDataSourceFactory(userAgent, listener);
+        }
+        private static CacheDataSourceFactory BuildReadOnlyCacheDataSource(
+           DefaultDataSourceFactory upstreamFactory, ICache cache)
+        {
+            return new CacheDataSourceFactory(
+                cache,
+                upstreamFactory,
+                new FileDataSourceFactory(),
+                /* cacheWriteDataSinkFactory= */ null,
+                CacheDataSource.FlagIgnoreCacheOnError,
+                /* eventListener= */ null);
+        }
+
+
     }
 }

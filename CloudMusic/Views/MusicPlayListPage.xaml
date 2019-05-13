@@ -70,7 +70,10 @@
                             <StackLayout Grid.Row="1" Grid.RowSpan="2"  BackgroundColor="White"></StackLayout>
                             <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="20" BackgroundColor="White" HasShadow="False"></Frame>
                             <StackLayout Grid.RowSpan="3" Orientation="Horizontal" Padding="20,0,10,0">
-                                <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PlayBtnClickedCommand}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent"></ImageButton>
                                 <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
@@ -134,7 +137,10 @@
                 <StackLayout Grid.Row="1" Grid.RowSpan="2"  BackgroundColor="White"></StackLayout>
                 <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="20" BackgroundColor="White" HasShadow="False"></Frame>
                 <StackLayout Grid.RowSpan="3" Orientation="Horizontal" Padding="20,0,10,0">
-                    <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Command="{Binding PlayBtnClickedCommand}"></ImageButton>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayBtnClickedCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <ImageButton Source="Ic_play_b.png" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent"></ImageButton>
                     <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                         <Label.FormattedText>
                             <FormattedString>
