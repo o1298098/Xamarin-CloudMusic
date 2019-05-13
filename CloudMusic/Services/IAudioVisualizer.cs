@@ -6,11 +6,13 @@ namespace CloudMusic.Services
 {
    public  interface IAudioVisualizer
     {
-        event WaveformUpadteEvent OnWaveformUpadte;
+        event DataCaptureUpadteEvent OnWaveformUpdate;
+        event DataCaptureUpadteEvent OnFftUpdate;
         void WaveformUpadt(IList<byte> args);
         void Init();
         IList<byte> GetWaveformValue();
+        IList<byte> GetFftValue();
         void Dispose();
     }
-    public delegate void WaveformUpadteEvent(IList<byte> args);
+    public delegate void DataCaptureUpadteEvent(IList<byte> args);
 }
