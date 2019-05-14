@@ -8,7 +8,7 @@
              x:Class="CloudMusic.Views.EmptyPage">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <cut:AudioVisualizerView WidthRequest="350" HeightRequest="350"  Color="{Binding theme.MainColor}" AudioVisualerType="Hifi" x:Name="visualizer"></cut:AudioVisualizerView>
+            <cut:AudioVisualizerView WidthRequest="350" HeightRequest="350"  Color="{Binding theme.MainColor}" AudioVisualizerType="Hifi" x:Name="visualizer"></cut:AudioVisualizerView>
             <StackLayout Orientation="Horizontal" Spacing="20">
                 <Button Text="Circleline" Clicked="Button_Clicked"></Button>
                 <Button Text="hifi" Clicked="Button_Clicked"></Button>

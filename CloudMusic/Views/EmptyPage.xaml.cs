@@ -14,25 +14,25 @@ namespace CloudMusic.Views
             var btn = sender as Button;
             switch (btn.Text)
             { case "hifi":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Hifi;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Hifi;
                     break;
                 case "wave":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Wave;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Wave;
                     break;
                 case "bar":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Bar;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Bar;
                     break;
                 case "Blob":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Blob;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Blob;
                     break;
                 case "Blast":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Blast;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Blast;
                     break;
                 case "Circleline":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.CircleLine;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.CircleLine;
                     break;
                 case "Chibde":
-                    visualizer.AudioVisualerType = CustomForms.AudioVisualer.AudioVisualerType.Chibde;
+                    visualizer.AudioVisualizerType = CustomForms.AudioVisualizer.AudioVisualizerType.Chibde;
                     break; 
             }
         }

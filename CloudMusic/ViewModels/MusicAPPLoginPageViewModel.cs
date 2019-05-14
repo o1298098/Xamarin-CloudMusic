@@ -20,27 +20,30 @@ namespace CloudMusic.ViewModels
         }
         void LoginClick()
         {
-            Task.Run(() => {
-                var r = CloudMusicApiHelper.Login(username,password);
+            Task.Run(() =>
+            {
+                var r = CloudMusicApiHelper.Login(username, password);
                 if (r != null)
+                {
                     if (r.code == 200)
                     {
                         Xamarin.Essentials.Preferences.Set("userid", r.profile.userId);
                         Xamarin.Essentials.Preferences.Set("username", r.account.userName);
                         Device.BeginInvokeOnMainThread(async () => await NavigationService.GoBackAsync());
                     }
-                    else
-                    {
-                       Device.BeginInvokeOnMainThread(()=> DependencyService.Get<IToast>().ShortAlert(r.msg));
-                    }
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("错误"));
+                }
 
             });
         }
-        string _username,_password;
+        string _username, _password;
         public string username
         {
             get => _username;
-            set => SetProperty(ref _username,value, "username");
+            set => SetProperty(ref _username, value, "username");
         }
         public string password
         {

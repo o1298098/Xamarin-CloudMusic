@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CloudMusic.CustomForms.AudioVisualer
+namespace CloudMusic.CustomForms.AudioVisualizer
 {
     public enum VisualizerAnimationSpeed
     {

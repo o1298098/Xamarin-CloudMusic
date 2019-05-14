@@ -1,4 +1,4 @@
-﻿using CloudMusic.CustomForms.AudioVisualer;
+﻿using CloudMusic.CustomForms.AudioVisualizer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ namespace CloudMusic.CustomForms
     {
         public static BindableProperty ColorProperty = BindableProperty.Create("Color", typeof(Color), typeof(AudioVisualizerView), Color.Red);
         public static BindableProperty AnimationSpeedProperty = BindableProperty.Create("AnimationSpeed", typeof(VisualizerAnimationSpeed), typeof(AudioVisualizerView), VisualizerAnimationSpeed.medium);
-        public static BindableProperty AudioVisualerTypeProperty = BindableProperty.Create("AudioVisualerType", typeof(AudioVisualerType), typeof(AudioVisualizerView), AudioVisualerType.CircleLine);
+        public static BindableProperty AudioVisualizerTypeProperty = BindableProperty.Create("AudioVisualizerType", typeof(AudioVisualizerType), typeof(AudioVisualizerView), AudioVisualizerType.CircleLine);
         public static BindableProperty DensityProperty = BindableProperty.Create("Density", typeof(float), typeof(AudioVisualizerView), 0.5f);
         public float Density
         {
@@ -45,15 +45,15 @@ namespace CloudMusic.CustomForms
                 SetValue(AnimationSpeedProperty, value);
             }
         }
-        public AudioVisualerType AudioVisualerType
+        public AudioVisualizerType AudioVisualizerType
         {
             get
             {
-                return (AudioVisualerType)base.GetValue(AudioVisualerTypeProperty);
+                return (AudioVisualizerType)base.GetValue(AudioVisualizerTypeProperty);
             }
             set
             {
-                SetValue(AudioVisualerTypeProperty, value);
+                SetValue(AudioVisualizerTypeProperty, value);
             }
         }
     }

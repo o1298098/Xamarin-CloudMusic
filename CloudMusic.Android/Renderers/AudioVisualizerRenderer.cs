@@ -55,27 +55,27 @@ namespace CloudMusic.Droid.Renderers
                 CircleBarVisualizer.Release();
                 relativeLayout.RemoveAllViews();
             }
-            switch (Element.AudioVisualerType)
+            switch (Element.AudioVisualizerType)
             {
-                case CustomForms.AudioVisualer.AudioVisualerType.CircleLine:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.CircleLine:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.CircleLineVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Hifi:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Hifi:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.HiFiVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Wave:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Wave:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.WaveVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Blob:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Blob:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.BlobVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Blast:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Blast:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.BlastVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Bar:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Bar:
                     Visualizer = new Com.Gauravk.Audiovisualizer.Visualizer.BarVisualizer(Context);
                     break;
-                case CustomForms.AudioVisualer.AudioVisualerType.Chibde:
+                case CustomForms.AudioVisualizer.AudioVisualizerType.Chibde:
                     Visualizer = null;
                     CircleBarVisualizer = new Com.Chibde.Visualizer.CircleBarVisualizer(Context);
                     break;
@@ -120,18 +120,18 @@ namespace CloudMusic.Droid.Renderers
             {
                 switch (Element.AnimationSpeed)
                 {
-                    case CustomForms.AudioVisualer.VisualizerAnimationSpeed.slow:
+                    case CustomForms.AudioVisualizer.VisualizerAnimationSpeed.slow:
                         Visualizer.SetAnimationSpeed(Com.Gauravk.Audiovisualizer.Model.AnimSpeed.Slow);
                         break;
-                    case CustomForms.AudioVisualer.VisualizerAnimationSpeed.medium:
+                    case CustomForms.AudioVisualizer.VisualizerAnimationSpeed.medium:
                         Visualizer.SetAnimationSpeed(Com.Gauravk.Audiovisualizer.Model.AnimSpeed.Medium);
                         break;
-                    case CustomForms.AudioVisualer.VisualizerAnimationSpeed.fast:
+                    case CustomForms.AudioVisualizer.VisualizerAnimationSpeed.fast:
                         Visualizer.SetAnimationSpeed(Com.Gauravk.Audiovisualizer.Model.AnimSpeed.Fast);
                         break;
                 }
             }
-            else if (e.PropertyName == AudioVisualizerView.AudioVisualerTypeProperty.PropertyName)
+            else if (e.PropertyName == AudioVisualizerView.AudioVisualizerTypeProperty.PropertyName)
             {
                 AudioVisualerInit();
             }

@@ -35,6 +35,7 @@ namespace CloudMusic.Droid
             }
             global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             MediaManager.CrossMediaManager.Current.Init();
             InitDownloadManager();
             Android.Glide.Forms.Init();
