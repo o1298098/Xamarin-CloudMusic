@@ -118,10 +118,10 @@ namespace CloudMusic.iOS.renderers
             return this.original.GetViewForHeader(tableView, section);
         }
 
-        public override string TitleForHeader(UITableView tableView, nint section)
-        {
-            return this.original.TitleForHeader(tableView, section);
-        }
+        //public override string TitleForHeader(UITableView tableView, nint section)
+        //{
+        //    return this.original.TitleForHeader(tableView, section);
+        //}
 
         public override string[] SectionIndexTitles(UITableView tableView)
         {

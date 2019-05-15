@@ -43,7 +43,7 @@ namespace CloudMusic.Actions
                 };
             }
 
-            AppCenter.Start("android=79620d9c-3f11-4764-8ffc-4ca0f19c7a5c;ios=852b0096-9e07-4b4e-b6c3-5e594ac237a2", typeof(Analytics), typeof(Crashes), typeof(Push));            
+            AppCenter.Start("android=79620d9c-3f11-4764-8ffc-4ca0f19c7a5c;ios=d37b9920-03b3-469e-b1a7-c412e52f7b64", typeof(Analytics), typeof(Crashes), typeof(Push));            
         }
         static bool OnReleaseAvailable(ReleaseDetails releaseDetails)
         {

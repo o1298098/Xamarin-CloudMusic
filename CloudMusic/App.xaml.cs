@@ -42,13 +42,13 @@ namespace CloudMusic
 #endif
             Context = new Context();
             //MainPage = new NavigationPage(new MasterDetailPage1());
-            //MainPage = new MyTabbedPage();
+            MainPage = new ContentPage();
             DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
             var cookielist = DependencyService.Get<ICookieStore>().CurrentCookies.Where(cc => cc.Name != "none").ToList();
             if (cookielist.Count > 0)
                 foreach (var q in cookielist)
                     ApiHelper.HttpClient.CloudMusicCookie.Add(q);
-            await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
+           await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Microsoft.AppCenter.Crashes;
 
 namespace CloudMusic.ViewModels
 {
@@ -236,7 +237,10 @@ namespace CloudMusic.ViewModels
                              Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
 
                      }
-                     catch { }
+                     catch(Exception ex)
+                     {
+                         Crashes.TrackError(ex);
+                     }
                      result = ApiHelper.HttpClient.HttpGet(musicCommenturl + MusicPlayList.playlist.tracks[s].id);
                      if (result != "err")
                      {

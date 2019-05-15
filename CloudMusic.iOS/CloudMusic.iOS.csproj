@@ -25,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -63,12 +63,14 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\CircleImageRenderer.cs" />
     <Compile Include="Renderers\CustomListviewRenderer.cs" />
-    <Compile Include="Renderers\PasswordEntryCellRenderer.cs" />
     <Compile Include="Renderers\TableSourceEvents.cs" />
     <Compile Include="Renderers\VideoPicker.cs" />
     <Compile Include="Renderers\VideoPlayerRenderer.cs" />
@@ -187,5 +189,362 @@
       <Project>{8BEA7F84-24D6-4F03-9199-E6F5D0BE62A5}</Project>
       <Name>CloudMusic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Add_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Back_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Back_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillGoods.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillPayType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillRemark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillReveicer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillSender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BillWeight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ble.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ble_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BlueTooth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CacheBG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CloseIcon_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CloseIcon_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_3bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_addmoon_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_ball_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_barheart_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_Black.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_1_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_2_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_3_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_4_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_5_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_6_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_brightness_7_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_car_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_Check_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_circlemuscib_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_disc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_disc_blackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_downloadcircle_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fast_forward_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fast_rewind_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fm_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fullscreen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fullscreen_exit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fullscreen_exit_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_fullscreen_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_ice_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_jazz_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_kidchannel_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_likefile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_linke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_mainmusic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_mainradio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_mainrman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_menu_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_more_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_more_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_more_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_more_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_Musical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_musicb_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_needle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_pause_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_piano_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_play_arrow_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_play_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_playcircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_playwbar_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_quart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_runman_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_Samesony.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_search_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_search_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_singer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_skip_next_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_User_r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_userwstar_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ic_video_gr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_volume_down_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_volume_mute_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_volume_up_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_likegood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_likegood_fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lbxx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lbxx64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LIkefile_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Menu_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MenuBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Packing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayDownLoad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayDownLoadOk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayHeart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayHeart_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Playlike.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayLike_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Playlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayNext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayRamdan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayShare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\playshare_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayTalk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayTalk_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayTree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlayVolume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PowerBI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\QueueSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Refresh_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ScanHistory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Signle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\single.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vinyl.png" />
   </ItemGroup>
 </Project>

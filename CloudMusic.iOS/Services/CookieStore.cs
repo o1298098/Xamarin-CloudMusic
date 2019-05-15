@@ -7,23 +7,22 @@ using CloudMusic.iOS.Services;
 using CloudMusic.Services;
 using Foundation;
 using UIKit;
-using Xamarin.Forms;
 
-[assembly: Dependency(typeof(CookieStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(CookieStore))]
 namespace CloudMusic.iOS.Services
 {
     public class CookieStore: ICookieStore
     {
         private readonly object _refreshLock = new object();
-
+        private string _url;
         public IEnumerable<Cookie> CurrentCookies
         {
             get { return RefreshCookies(); }
         }
 
-        public CookieStore(string url = "")
-        {
-        }
+        //public CookieStore(string url = "")
+        //{
+        //}
 
         private IEnumerable<Cookie> RefreshCookies()
         {
@@ -40,7 +39,6 @@ namespace CloudMusic.iOS.Services
                         Path = cookie.Path,
                         Secure = cookie.IsSecure,
                         Value = cookie.Value,
-                        /// TODO expires? / expired? 
                         Version = Convert.ToInt32(cookie.Version)
                     };
                 }
@@ -72,12 +70,16 @@ namespace CloudMusic.iOS.Services
 
         public void Init(string host)
         {
-            throw new NotImplementedException();
+            _url = host;
         }
 
         public void SetCookie(Cookie cookie)
         {
-
+            var cookieUrl = new Uri(_url);
+            var cookieJar = NSHttpCookieStorage.SharedStorage;
+            cookieJar.AcceptPolicy = NSHttpCookieAcceptPolicy.Always;
+            var c=new NSHttpCookie(cookie.Name,cookie.Value,cookie.Path,cookie.Domain);
+            cookieJar.SetCookie(c);
         }
     }
 }

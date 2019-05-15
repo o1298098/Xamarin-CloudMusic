@@ -17,13 +17,13 @@
                 <RowDefinition Height="230"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" BitmapOptimizations="True" x:Name="background" DownsampleToViewSize="True" DownsampleWidth="10" DownsampleHeight="10">
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" x:Name="background" DownsampleToViewSize="True">
                 <ffimageloading:CachedImage.Transformations>
-                    <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
+                    <fftransformations:CropTransformation CropWidthRatio="10" CropHeightRatio="10"></fftransformations:CropTransformation>
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
                 </ffimageloading:CachedImage.Transformations>
             </ffimageloading:CachedImage>          
-            <controls:CustomListview x:Name="listview" ItemsSource="{Binding MusicPlayList.playlist.tracks}" HasUnevenRows="True" SeparatorVisibility="None" Grid.Row="0" Grid.RowSpan="4" VerticalScrollBarVisibility="Never">
+            <controls:CustomListview x:Name="listview" ItemsSource="{Binding MusicPlayList.playlist.tracks}" HasUnevenRows="True" SeparatorVisibility="None" Grid.Row="0" Grid.RowSpan="4" VerticalScrollBarVisibility="Never" BackgroundColor="Transparent">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>
