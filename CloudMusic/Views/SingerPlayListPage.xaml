@@ -22,7 +22,7 @@
                 </ffimageloading:CachedImage.Transformations>
             </ffimageloading:CachedImage>
             <AbsoluteLayout BackgroundColor="Black" Opacity="0.2" Grid.Row="0" Grid.RowSpan="3" x:Name="bgcover"></AbsoluteLayout>
-            <controls:CustomListview ItemsSource="{Binding artistDetail.hotSongs}" OverScroll="True" HasUnevenRows="True" Grid.Row="0" Grid.RowSpan="3"  x:Name="listview" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HeightRequest="1000">
+            <controls:CustomListview ItemsSource="{Binding artistDetail.hotSongs}" OverScroll="True" HasUnevenRows="True" Grid.Row="0" Grid.RowSpan="3"  x:Name="listview" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HeightRequest="1000" BackgroundColor="Transparent">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>

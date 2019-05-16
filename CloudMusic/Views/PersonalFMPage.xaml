@@ -113,7 +113,7 @@
                 </borad:SfBadgeView>
             </StackLayout>
         </Grid>
-        <sfPopup:SfPopupLayout Grid.Column="0" Grid.RowSpan="4" IsOpen="{Binding IsMoreMenu}" Padding="0" HorizontalOptions="FillAndExpand" x:Name="popmenu" HeightRequest="460">
+        <sfPopup:SfPopupLayout Grid.Column="0" Grid.RowSpan="4" IsOpen="{Binding IsMoreMenu}" Padding="0" HorizontalOptions="FillAndExpand" x:Name="popmenu" HeightRequest="460" IsVisible="{Binding IsMoreMenu}">
             <sfPopup:SfPopupLayout.PopupView>
                 <sfPopup:PopupView  AnimationMode="SlideOnBottom"  VerticalOptions="End"  AnimationDuration="300" HeaderHeight="0" FooterHeight="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                     <sfPopup:PopupView.PopupStyle>

@@ -130,7 +130,7 @@
                     <ImageButton WidthRequest="55" HeightRequest="55" Source="Playlist.png" BackgroundColor="Transparent" VerticalOptions="Center" Scale="0.4"></ImageButton>
                 </StackLayout>
             </Grid>
-            <sfPopup:SfPopupLayout Grid.Column="0" Grid.RowSpan="4" IsOpen="{Binding IsMoreMenu}" Padding="0" HorizontalOptions="FillAndExpand" x:Name="popmenu" HeightRequest="460">
+            <sfPopup:SfPopupLayout Grid.Column="0" Grid.RowSpan="4" IsOpen="{Binding IsMoreMenu}" Padding="0" HorizontalOptions="FillAndExpand" x:Name="popmenu" HeightRequest="460" IsVisible="{Binding IsMoreMenu}">
                 <sfPopup:SfPopupLayout.PopupView>
                     <sfPopup:PopupView  AnimationMode="SlideOnBottom"  VerticalOptions="End"  AnimationDuration="300" HeaderHeight="0" FooterHeight="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <sfPopup:PopupView.PopupStyle>
@@ -144,43 +144,43 @@
                                             <RowDefinition Height="30"></RowDefinition>
                                             <RowDefinition Height="40"></RowDefinition>
                                             <RowDefinition Height="1*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <StackLayout Grid.Row="1" Grid.RowSpan="2" BackgroundColor="White" Spacing="0" />
-                                    <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="15" HasShadow="False" Padding="15">
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Grid.Row="1" Grid.RowSpan="2" BackgroundColor="White" Spacing="0" />
+                                        <Frame Grid.Row="0" Grid.RowSpan="2" CornerRadius="15" HasShadow="False" Padding="15">
                                             <StackLayout Orientation="Horizontal" Spacing="0">
                                                 <ffimageloading:CachedImage Source="{Binding NowSongInfo.al.picUrl}" WidthRequest="40" HeightRequest="40"></ffimageloading:CachedImage>
                                                 <StackLayout Spacing="0" Padding="10,5">
                                                     <Label Text="{Binding NowSongInfo.name}" FontSize="15" FontAttributes="Bold"></Label>
                                                     <Label Text="{Binding NowSongInfo.ar[0].name}" FontSize="12"></Label>
                                                 </StackLayout>
-                                            </StackLayout>                              
-                                    </Frame>
-                                    <StackLayout Grid.Row="2" Spacing="0">
-                                        <BoxView HeightRequest="1" BackgroundColor="#fafafa"></BoxView>
-                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
-                                            <Image Source="Ic_likefile.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            </StackLayout>
+                                        </Frame>
+                                        <StackLayout Grid.Row="2" Spacing="0">
+                                            <BoxView HeightRequest="1" BackgroundColor="#fafafa"></BoxView>
+                                            <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                                <Image Source="Ic_likefile.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="收藏到歌单" Margin="15,0,0,0" VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
-                                        <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
-                                            <Image Source="Ic_singer.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                            <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
+                                                <Image Source="Ic_singer.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="{Binding NowSongInfo.arstr,StringFormat='歌手：{0}'}" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
                                             <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
-                                            <Image Source="Ic_Musical.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                                <Image Source="Ic_Musical.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="{Binding NowSongInfo.al.name,StringFormat='专辑：{0}'}" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333" LineBreakMode="TailTruncation"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
                                             <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
-                                            <Image Source="Ic_linke.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                                <Image Source="Ic_linke.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="来源：在线音乐" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
                                             <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
-                                            <Image Source="Ic_quart.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
+                                                <Image Source="Ic_quart.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="音质：在线文件(999kbit/s)" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0"></BoxView>
                                             <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0" IsVisible="{Binding NowSongInfo.hasmv}">
                                                 <StackLayout.GestureRecognizers>
@@ -188,7 +188,7 @@
                                                 </StackLayout.GestureRecognizers>
                                                 <Image Source="Ic_video.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>
                                                 <Label Text="查看视频" Margin="15,0,0,0"  VerticalOptions="Center" FontSize="14" TextColor="#333333"></Label>
-                                        </StackLayout>
+                                            </StackLayout>
                                             <BoxView HeightRequest="1" BackgroundColor="#fafafa" Margin="55,0,0,0" IsVisible="{Binding NowSongInfo.hasmv}"></BoxView>
                                             <StackLayout Orientation="Horizontal" HeightRequest="25" Padding="15,10" Spacing="0">
                                                 <Image Source="Ic_Samesony.png" WidthRequest="25"  HeightRequest="25" VerticalOptions="Center"></Image>

@@ -141,17 +141,14 @@ namespace CloudMusic.ViewModels
             var file = System.IO.Path.Combine(Xamarin.Essentials.FileSystem.CacheDirectory, fn);
             using (await XF.Material.Forms.UI.Dialogs.MaterialDialog.Instance.LoadingDialogAsync(message: "生成音乐文件中......", new XF.Material.Forms.UI.Dialogs.Configurations.MaterialLoadingDialogConfiguration { TintColor = Color.FromHex("#94BBFF") }))
             {
-                await Task.Run(async () =>
-                {
                     System.Net.WebClient webClient = new System.Net.WebClient();
                     byte[] data = await webClient.DownloadDataTaskAsync(downloadurl);
                     System.IO.File.WriteAllBytes(file, data);
                     await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareFileRequest
                     {
-                        Title = Title,
-                        File = new Xamarin.Essentials.ShareFile(file,"*/*")
+                        Title = "共享歌曲",
+                        File = new Xamarin.Essentials.ShareFile(file)
                     });
-                });
 
             };
 
@@ -232,7 +229,7 @@ namespace CloudMusic.ViewModels
                         //    DisplaySubtitle= NowSongInfo.name,
                         //};
                         if (!string.IsNullOrWhiteSpace(music.data[0].url))
-                             await CrossMediaManager.Current.Play(music.data[0].url);
+                             await CrossMediaManager.Current.Play($"https://music.163.com/song/media/outer/url?id={NowSongInfo.id}.mp3");
                          else
                              Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
 
