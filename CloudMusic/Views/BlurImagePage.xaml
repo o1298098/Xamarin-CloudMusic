@@ -38,7 +38,7 @@
                     <TapGestureRecognizer Command="{Binding ChangeViewCommand}"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="{OnPlatform '0',iOS='0,15,0,0'}">
                 <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
                 <StackLayout  Margin="20,25,0,0" Spacing="0">
                     <Label  Text="{Binding NowSongInfo.name}" FontSize="18" TextColor="White" VerticalOptions="Center" LineBreakMode="TailTruncation"></Label>

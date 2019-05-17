@@ -17,7 +17,7 @@
             <StackLayout>
             <cards:CoverFlowView 
                 HeightRequest="150" 
-                WidthRequest="360"
+                WidthRequest="{OnPlatform 360,Android=360,iOS=420}"
                 PositionShiftValue="0"
                 IsCyclical="True"
                 IsPanSwipeEnabled="True"
@@ -29,7 +29,7 @@
                 >
                 <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>
-                        <ffimageloading:CachedImage Source="{Binding imageUrl}" WidthRequest="330" HeightRequest="130" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="vinyl.png" DownsampleToViewSize="True">
+                            <ffimageloading:CachedImage Source="{Binding imageUrl}" WidthRequest="{OnPlatform 330,Android=330,iOS=390}" HeightRequest="130" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="vinyl.png" DownsampleToViewSize="True">
                                 <ffimageloading:CachedImage.CacheKeyFactory>
                                     <local:CustomCacheKeyFactory/>
                                 </ffimageloading:CachedImage.CacheKeyFactory>
@@ -81,13 +81,13 @@
             <BoxView HeightRequest="1" BackgroundColor="#efefef"></BoxView>
             <StackLayout Orientation="Horizontal" Padding="15,15,15,0">
                 <Label Text="推荐歌单" FontAttributes="Bold" FontSize="18" TextColor="#333333" HorizontalOptions="FillAndExpand"></Label>
-                <Button Text="歌单广场" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="20" BackgroundColor="Transparent"></Button>
+                    <Button Text="歌单广场" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="{OnPlatform 20,Android=20,iOS=12}" BackgroundColor="Transparent"></Button>
             </StackLayout>
-            <FlexLayout BindableLayout.ItemsSource="{Binding personalized.result}" HeightRequest="300" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" x:Name="PlayListlayout">
+                <FlexLayout BindableLayout.ItemsSource="{Binding personalized.result}" HeightRequest="{OnPlatform 300,Android=300,iOS=330}" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" x:Name="PlayListlayout">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
-                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                            <AbsoluteLayout  WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 150,Android=150,iOS=180}">
+                                <ffimageloading:CachedImage WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 100,Android=100,iOS=120}" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="{OnPlatform '0,0,100,100',Android='0,0,100,100',iOS='0,0,120,120'}" AbsoluteLayout.LayoutFlags="PositionProportional">
                                     <ffimageloading:CachedImage.CacheKeyFactory>
                                         <local:CustomCacheKeyFactory/>
                                     </ffimageloading:CachedImage.CacheKeyFactory>
@@ -95,8 +95,8 @@
                                     <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
                                 </ffimageloading:CachedImage.Transformations>
                                 </ffimageloading:CachedImage>
-                            <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,30" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
-                            <StackLayout Orientation="Horizontal" Spacing="0" AbsoluteLayout.LayoutBounds="0,0,95,15" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="{OnPlatform '0,.85,100,30',Android='0,.85,100,30',iOS='0,.85,120,30'}" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <StackLayout Orientation="Horizontal" Spacing="0" AbsoluteLayout.LayoutBounds="{OnPlatform '0,0,95,15',Android='0,0,95,15',iOS='0,0,115,25'}" AbsoluteLayout.LayoutFlags="PositionProportional" VerticalOptions="Center">
                                 <StackLayout HorizontalOptions="FillAndExpand"></StackLayout>
                                 <Image  Grid.Row="0" Grid.Column="0"  Source="ic_play_arrow_white_36dp" HeightRequest="12" WidthRequest="12"></Image>
                                 <Label Text="{Binding playCountstr}"  TextColor="White" FontSize="12"></Label>
@@ -116,13 +116,13 @@
                             <TapGestureRecognizer Command="{Binding ChangeButtonClickedCommand}"  CommandParameter="song"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Button Text="{Binding MoreButtonName}" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="20" BackgroundColor="Transparent"></Button>
+                    <Button Text="{Binding MoreButtonName}" HeightRequest="25" WidthRequest="70" Padding="0" FontSize="12" TextColor="#333333" BorderColor="#e1e1e1" BorderWidth="1" CornerRadius="{OnPlatform 20,Android=20,iOS=12}" BackgroundColor="Transparent"></Button>
              </StackLayout>
                 <FlexLayout BindableLayout.ItemsSource="{Binding newAlbums.albums}" HeightRequest="150" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" IsVisible="{Binding isShowAlbums}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
-                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                            <AbsoluteLayout  WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 150,Android=150,iOS=180}">
+                                <ffimageloading:CachedImage WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 100,Android=100,iOS=120}" Source="{Binding picUrl}" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="{OnPlatform '0,0,100,100',Android='0,0,100,100',iOS='0,0,120,120'}" AbsoluteLayout.LayoutFlags="PositionProportional">
                                     <ffimageloading:CachedImage.CacheKeyFactory>
                                         <local:CustomCacheKeyFactory/>
                                     </ffimageloading:CachedImage.CacheKeyFactory>
@@ -130,8 +130,8 @@
                                         <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
                                     </ffimageloading:CachedImage.Transformations>
                                 </ffimageloading:CachedImage>
-                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.75,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
-                                <Label Text="{Binding artist.name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="{OnPlatform '0,.75,100,15',Android='0,.75,100,15',iOS='0,.75,120,15'}" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding artist.name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="{OnPlatform '0,.85,100,15',Android='0,.85,100,15',iOS='0,.85,120,15'}" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
 
                             </AbsoluteLayout>
                         </DataTemplate>
@@ -140,8 +140,8 @@
                 <FlexLayout BindableLayout.ItemsSource="{Binding topNewSongs.result}" HeightRequest="150" Margin="0,15,0,0" JustifyContent="SpaceBetween" Wrap="Wrap" Padding="15,0" IsVisible="{Binding isShowSongs}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <AbsoluteLayout  WidthRequest="100" HeightRequest="150">
-                                <ffimageloading:CachedImage WidthRequest="100" HeightRequest="100" Source="{Binding song.album.picUrl}" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True">
+                            <AbsoluteLayout   WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 150,Android=150,iOS=180}">
+                                <ffimageloading:CachedImage WidthRequest="{OnPlatform 100,Android=100,iOS=120}" HeightRequest="{OnPlatform 100,Android=100,iOS=120}"  Source="{Binding song.album.picUrl}" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="{OnPlatform '0,0,100,100',Android='0,0,100,100',iOS='0,0,120,120'}" AbsoluteLayout.LayoutFlags="PositionProportional" LoadingPlaceholder="CacheBG.jpg" DownsampleToViewSize="True">
                                     <ffimageloading:CachedImage.CacheKeyFactory>
                                         <local:CustomCacheKeyFactory/>
                                     </ffimageloading:CachedImage.CacheKeyFactory>
@@ -149,8 +149,8 @@
                                         <fftransformations:RoundedTransformation CropHeightRatio="100" CropWidthRatio="100"></fftransformations:RoundedTransformation>
                                     </ffimageloading:CachedImage.Transformations>
                                 </ffimageloading:CachedImage>
-                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.75,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
-                                <Label Text="{Binding song.artists[0].name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="0,.85,100,15" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding name}" TextColor="#333333" FontSize="12" HeightRequest="30" AbsoluteLayout.LayoutBounds="{OnPlatform '0,.75,100,15',Android='0,.75,100,15',iOS='0,.75,120,15'}" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+                                <Label Text="{Binding song.artists[0].name}"  FontSize="10" HeightRequest="30" AbsoluteLayout.LayoutBounds="{OnPlatform '0,.85,100,15',Android='0,.85,100,15',iOS='0,.85,120,15'}" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
                             </AbsoluteLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

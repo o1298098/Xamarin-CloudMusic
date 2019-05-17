@@ -88,7 +88,7 @@ namespace CloudMusic.iOS.Renderers
                 item.Title = string.Empty;
             item.SetTitleTextAttributes(new UITextAttributes() { Font = UIFont.SystemFontOfSize(12),TextColor = Xamarin.Forms.Color.FromHex("#757575").ToUIColor()}, UIControlState.Normal);
             item.SetTitleTextAttributes(new UITextAttributes() { Font = UIFont.SystemFontOfSize(16),TextColor = Xamarin.Forms.Color.FromHex("#333333").ToUIColor()}, UIControlState.Selected);
-            item.TitlePositionAdjustment= new UIOffset(0, -2);
+            item.TitlePositionAdjustment= new UIOffset(0, -4);
 
         }
         public UIImage ResizeImage(UIImage sourceImage, float width, float height)

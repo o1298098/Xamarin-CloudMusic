@@ -82,7 +82,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" ></Button>
+                                <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" Padding="10,0"></Button>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
@@ -121,8 +121,8 @@
                     <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
                 </ffimageloading:CachedImage.Transformations>
-            </ffimageloading:CachedImage> 
-            <StackLayout Orientation="Horizontal" Grid.Row="0" >
+            </ffimageloading:CachedImage>
+            <StackLayout Orientation="Horizontal" Grid.Row="0"  Margin="{OnPlatform '0',iOS='0,15,0,0'}">
                 <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" Margin="20,20,0,0" Command="{Binding GoBackCommand}"></ImageButton>
                 <Label Text="歌单" TextColor="White" Margin="20,20,0,0" VerticalOptions="Center" FontSize="20" HorizontalOptions="FillAndExpand"></Label>
                 <ImageButton Grid.Row="0" Grid.Column="0" Source="Ic_search_w.png" WidthRequest="25" HorizontalOptions="End" Margin="0,20,20,0" BackgroundColor="Transparent"></ImageButton>
@@ -149,7 +149,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" ></Button>
+                    <Button Text="{Binding MusicPlayList.playlist.subscribedCount,StringFormat='+ 收藏({0})'}" CornerRadius="20" TextColor="White" BackgroundColor="#FE3A3B" VerticalOptions="Center" HeightRequest="40" FontSize="12" Padding="10,0"></Button>
                 </StackLayout>
             </Grid>
         </Grid>

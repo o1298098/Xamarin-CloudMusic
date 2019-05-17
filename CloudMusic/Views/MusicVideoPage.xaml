@@ -12,7 +12,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="CloudMusic.Views.MusicVideoPage">
     <ContentPage.Content>
-        <Grid RowSpacing="0">
+        <Grid RowSpacing="0"  Margin="{OnPlatform '0',iOS='0,30,0,0'}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>

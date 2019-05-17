@@ -10,7 +10,7 @@
              xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              x:Class="CloudMusic.Views.UserInfoPage">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Margin="{OnPlatform '0',iOS='0,30,0,0'}">
         <StackLayout Spacing="0">
             <ScrollView Orientation="Horizontal" HorizontalOptions="Start" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
                 <StackLayout Orientation="Horizontal" Padding="20,15" Spacing="35" >

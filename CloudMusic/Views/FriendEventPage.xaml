@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout  Margin="{OnPlatform '0',iOS='0,30,0,0'}">
             <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" x:Name="listview" ItemTemplate="{StaticResource myDataTemplateSelector}" ItemsSource="{Binding friendEvents.friendevent,Mode=OneWay}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
