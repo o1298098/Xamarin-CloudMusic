@@ -9,6 +9,7 @@ using CloudMusic.iOS.renderers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(CustomListview), typeof(CustomListviewRenderer))]
 
@@ -69,7 +70,12 @@ namespace CloudMusic.iOS.renderers
             }
         }
 
-
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+            if (e.PropertyName == CustomListview.OverScrollProperty.PropertyName)
+                Control.Bounces = ((CustomListview)Element).OverScroll;
+        }
         /// <summary>
         /// Problem: Event registration is overwriting existing delegate. Either just use events or your own delegate:
         /// Solution: Create your own delegate and overide the required events

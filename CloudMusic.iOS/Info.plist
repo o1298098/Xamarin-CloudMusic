@@ -32,6 +32,8 @@
 	<string>CloudMusic</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -48,10 +50,20 @@
 			<string>文档类型 1</string>
 		</dict>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>126.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-  </dict>
 </plist>

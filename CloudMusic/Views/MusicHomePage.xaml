@@ -9,10 +9,10 @@
     prism:ViewModelLocator.AutowireViewModel="True"  
     BarBackgroundColor="White"
            x:Class="CloudMusic.Views.MusicHomePage" >
-  <ContentPage Icon="Ic_menu_b.png" Title="搜索"></ContentPage>
+  <ContentPage Icon="Ic_menu_b" Title="菜单"></ContentPage>
         <views:UserInfoPage Title="我的"></views:UserInfoPage>
         <views:MusicDiscoverPage Title="发现"></views:MusicDiscoverPage>
         <views:FriendEventPage Title="朋友"></views:FriendEventPage>
         <views:ScrollVideoPage Title="视频"></views:ScrollVideoPage>
-    <ContentPage Icon="ic_search_b.png" Title="菜单"></ContentPage>
+    <ContentPage Icon="ic_search_b" Title="搜索"></ContentPage>
 </customforms:CustomTabbedPage>

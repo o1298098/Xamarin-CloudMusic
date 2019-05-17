@@ -190,7 +190,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\CloudMusic\CloudMusic.csproj">
-      <Project>{8BEA7F84-24D6-4F03-9199-E6F5D0BE62A5}</Project>
+      <Project>{EEABA8A4-CA56-430C-A7AC-312D39EF4DDB}</Project>
       <Name>CloudMusic</Name>
     </ProjectReference>
   </ItemGroup>
@@ -351,7 +351,7 @@
     <BundleResource Include="Resources\ic_mainrman.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Ic_menu_b.png" />
+    <BundleResource Include="Resources\Ic_menu_b%401x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_more_b.png" />

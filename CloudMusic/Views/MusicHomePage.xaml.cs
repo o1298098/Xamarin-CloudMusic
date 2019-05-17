@@ -21,12 +21,12 @@ namespace CloudMusic.Views
 
         private void MusicHomePage_SearchClicked(object sender, System.EventArgs e)
         {
-            DependencyService.Get<IToast>().ShortAlert("菜单");
+            vm.GoSearchAsync();
         }
 
         private void MusicHomePage_MenuClicked(object sender, System.EventArgs e)
         {
-            vm.GoSearchAsync();
+            DependencyService.Get<IToast>().ShortAlert("菜单");
         }
     }
 }

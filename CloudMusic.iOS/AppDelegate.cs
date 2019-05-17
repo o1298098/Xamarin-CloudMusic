@@ -32,6 +32,7 @@ namespace CloudMusic.iOS
             Syncfusion.XForms.iOS.BadgeView.SfBadgeViewRenderer.Init();
             PanCardView.iOS.CardsViewRenderer.Preserve();
             XF.Material.iOS.Material.Init();
+            Naxam.Controls.Platform.iOS.TopTabbedRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             MediaManager.CrossMediaManager.Current.Init();
             LoadApplication(new App(new iOSInitializer()));

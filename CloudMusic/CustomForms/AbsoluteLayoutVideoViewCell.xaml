@@ -9,7 +9,7 @@
           x:Name="videocell">
     <ViewCell.View>
         <AbsoluteLayout HeightRequest="350" BackgroundColor="White" Margin="0,5,0,5">
-            <Frame Padding="0" HeightRequest="200" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutBounds=".5,.1, .89, 200"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional">
+            <Frame Padding="0" HeightRequest="200" CornerRadius="15" HasShadow="False" AbsoluteLayout.LayoutBounds=".5,.1, .89, 200"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" IsClippedToBounds="True">
                 <Grid>
                     <crossvideo:VideoPlayer HeightRequest="200"  x:Name="videoplayer" BackgroundColor="Black"></crossvideo:VideoPlayer>
                     <ffimageloading:CachedImage  HeightRequest="200"  Aspect="AspectFill" BitmapOptimizations="True"  DownsampleToViewSize = "True" LoadingPlaceholder="CacheBG.jpg" Grid.Row="0" x:Name="videocover" IsOpaque="True">
