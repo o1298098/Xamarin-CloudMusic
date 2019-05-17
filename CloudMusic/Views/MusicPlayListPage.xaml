@@ -116,7 +116,7 @@
                     </Grid>
                 </ListView.Footer>
             </controls:CustomListview>
-            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" DownsampleToViewSize="True" IsVisible="False" x:Name="playlayoutbg">
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" DownsampleToViewSize="True" IsVisible="False" x:Name="playlayoutbg">
                 <ffimageloading:CachedImage.Transformations>
                     <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>

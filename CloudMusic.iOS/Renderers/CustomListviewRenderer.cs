@@ -50,6 +50,7 @@ namespace CloudMusic.iOS.renderers
             {
                 var tvDelegate = new TableViewDelegate();
                 Control.Delegate = tvDelegate;
+                tvDelegate.OnScrolled += TvDelegate_OnScrolled;
                 tvDelegate.OnDecelerationStarted += (s, ev) =>
                 {
                     CustomListview.OnScrollStateChanged(customListview,
@@ -69,6 +70,13 @@ namespace CloudMusic.iOS.renderers
                 };
             }
         }
+
+        private void TvDelegate_OnScrolled(object sender, EventArgs e)
+        {
+            CustomListview.OnScrollChanged(Source, new CustomForms.ScrollChangedEventArgs(0, 0, 0, (int)(-Control.ContentOffset.Y* Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density)));
+            CustomListview.OverScrollUpdate(Source, (float)(-Control.ContentOffset.Y / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density));
+        }
+
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -92,6 +100,12 @@ namespace CloudMusic.iOS.renderers
             public event EventHandler OnScrolled;
             public event EventHandler OnScrolledToTop;
             public event EventHandler OnRowSelected;
+            public event EventHandler OnDidChangeAdjustedContentInse;
+
+            public override void DidChangeAdjustedContentInset(UIScrollView scrollView)
+            {
+                OnDidChangeAdjustedContentInse?.Invoke(scrollView,null);
+            }
 
             public override void DecelerationEnded(UIKit.UIScrollView scrollView)
             {
