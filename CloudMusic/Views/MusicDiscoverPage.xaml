@@ -41,7 +41,7 @@
                 </cards:CoverFlowView.ItemTemplate>
                 <controls:IndicatorsControl ToFadeDuration="1500"/>
             </cards:CoverFlowView>
-            <Grid Padding="15,0">
+            <Grid Padding="{OnPlatform '15,0',iOS='15,15,15,0'}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="45"></RowDefinition>
                     <RowDefinition Height="20"></RowDefinition>

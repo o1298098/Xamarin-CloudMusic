@@ -17,7 +17,7 @@
                 <RowDefinition Height="230"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" x:Name="background" DownsampleToViewSize="True">
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="10" x:Name="background" DownsampleToViewSize="True" LoadingPlaceholder="CacheBG">
                 <ffimageloading:CachedImage.Transformations>
                     <fftransformations:CropTransformation CropWidthRatio="10" CropHeightRatio="10"></fftransformations:CropTransformation>
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>
@@ -116,7 +116,7 @@
                     </Grid>
                 </ListView.Footer>
             </controls:CustomListview>
-            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" DownsampleToViewSize="True" IsVisible="False" x:Name="playlayoutbg">
+            <ffimageloading:CachedImage Source="{Binding BgPic}" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill" DownsampleToViewSize="True" IsVisible="False" x:Name="playlayoutbg" LoadingPlaceholder="CacheBG" Opacity="1">
                 <ffimageloading:CachedImage.Transformations>
                     <fftransformations:CropTransformation CropHeightRatio="10" CropWidthRatio="10"></fftransformations:CropTransformation>
                     <fftransformations:BlurredTransformation Radius="25" ></fftransformations:BlurredTransformation>

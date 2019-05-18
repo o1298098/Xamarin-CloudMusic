@@ -19,7 +19,7 @@
                 <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>            
-            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" BackgroundColor="White" x:Name="listview" ItemsSource="{Binding recommendSongs.recommend}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start">
+            <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" BackgroundColor="White" x:Name="listview" ItemsSource="{Binding recommendSongs.recommend}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
                 </x:Arguments>
@@ -98,7 +98,7 @@
             </ffimageloading:CachedImage>
             <StackLayout Orientation="Horizontal" HeightRequest="100" Grid.RowSpan="2" Grid.Row="0" x:Name="bar" VerticalOptions="Start">
                 <ImageButton BackgroundColor="Transparent" Source="Back.png" WidthRequest="30" HeightRequest="30"  Margin="20,35,0,0" Command="{Binding GoBackCommand}" VerticalOptions="Start"></ImageButton>
-                <Label  x:Name="Title" Text="每日歌单" WidthRequest="80" TextColor="White" Margin="10,35,0,0" FontSize="20" FontAttributes="Bold" IsVisible="False"></Label>
+                <Label  x:Name="Title" Text="每日歌单" WidthRequest="{OnPlatform 80,iOS=100}" TextColor="White" Margin="10,35,0,0" FontSize="20" FontAttributes="Bold" IsVisible="False"></Label>
                 <ImageButton Source="PlayShare.png" WidthRequest="25"  HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0,35,20,0" BackgroundColor="Transparent" VerticalOptions="Start"></ImageButton>
             </StackLayout>
             <StackLayout Grid.Row="2" BackgroundColor="White" x:Name="playlayoutbg" IsVisible="False"></StackLayout>

@@ -73,8 +73,10 @@ namespace CloudMusic.iOS.renderers
 
         private void TvDelegate_OnScrolled(object sender, EventArgs e)
         {
-            CustomListview.OnScrollChanged(Source, new CustomForms.ScrollChangedEventArgs(0, 0, 0, (int)(-Control.ContentOffset.Y* Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density)));
-            CustomListview.OverScrollUpdate(Source, (float)(-Control.ContentOffset.Y / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density));
+            if(Control.ContentOffset.Y<0)
+                CustomListview.OverScrollUpdate(Source, (float)(-Control.ContentOffset.Y / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density));
+            else
+                CustomListview.OnScrollChanged(Source, new CustomForms.ScrollChangedEventArgs(0, 0, 0, (int)(-Control.ContentOffset.Y* Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density)));
         }
 
 
