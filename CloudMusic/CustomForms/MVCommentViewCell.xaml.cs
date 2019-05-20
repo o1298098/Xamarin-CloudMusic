@@ -28,9 +28,7 @@ namespace CloudMusic.CustomForms
             }
 
             image.Source = item.user.avatarUrl;
-
             base.OnBindingContextChanged();
-            this.ForceUpdateSize();
         }
     }
 }

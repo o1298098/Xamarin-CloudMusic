@@ -21,13 +21,10 @@ namespace CloudMusic.Views
     public partial class BlurImagePage : ContentPage
     {
         Dictionary<object, DragInfo> dragDictionary = new Dictionary<object, DragInfo>();
-        Animation animation;
         Grid ngrid;
         BlurImagePageViewModel vm;
-        bool actionend = false;
         PlayNeedleAnimationManager playNeedleAnimationManager;
         delegate void EventHandler();
-        event EventHandler NeedleStateChange;
         public BlurImagePage()
         {
             InitializeComponent();
@@ -102,7 +99,6 @@ namespace CloudMusic.Views
                 ngrid = coverFlowView.CurrentView as Grid;
             }
         }
-        bool isplay = true;
         private async void PlayBtn_ClickedAsync(object sender, EventArgs e)
         {
             if (CrossMediaManager.Current.IsPlaying())

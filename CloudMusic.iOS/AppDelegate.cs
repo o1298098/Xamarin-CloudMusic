@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Prism;
 using Prism.Ioc;
+using Xamarin.Forms.Platform.iOS;
 
 namespace CloudMusic.iOS
 {
@@ -30,12 +31,14 @@ namespace CloudMusic.iOS
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();
             Syncfusion.XForms.iOS.PopupLayout.SfPopupLayoutRenderer.Init();
             Syncfusion.XForms.iOS.BadgeView.SfBadgeViewRenderer.Init();
+            Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer.Init();
             PanCardView.iOS.CardsViewRenderer.Preserve();
             XF.Material.iOS.Material.Init();
             Naxam.Controls.Platform.iOS.TopTabbedRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             MediaManager.CrossMediaManager.Current.Init();
             LoadApplication(new App(new iOSInitializer()));
+            UITabBar.Appearance.SelectedImageTintColor = Xamarin.Forms.Color.FromHex("FE3A3B").ToUIColor();
             return base.FinishedLaunching(app, options);
         }
         public class iOSInitializer : IPlatformInitializer

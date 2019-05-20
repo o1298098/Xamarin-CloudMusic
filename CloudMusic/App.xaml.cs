@@ -11,6 +11,8 @@ using Plugin.DownloadManager;
 using CloudMusic.Services;
 using CloudMusic.Actions.ApiHelper;
 using System.Linq;
+using Prism.Logging;
+
 namespace CloudMusic
 {
     public partial class App : PrismApplication
@@ -21,7 +23,7 @@ namespace CloudMusic
            
         }
         public App(IPlatformInitializer initializer) : base(initializer) { }
-
+        DebugLogger logger = new DebugLogger();
         protected override async void OnInitialized()
         {
             try
@@ -32,7 +34,9 @@ namespace CloudMusic
                     Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(dictionary["LICENSE"]);
                 }
             }
-            catch (System.Exception ex) { }
+            catch (System.Exception ex) {
+                logger.Log(ex.ToString(), Category.Exception, Priority.High);
+            }
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
             Xamarin.Essentials.ExperimentalFeatures.Enable(Xamarin.Essentials.ExperimentalFeatures.ShareFileRequest);
@@ -48,7 +52,18 @@ namespace CloudMusic
             if (cookielist.Count > 0)
                 foreach (var q in cookielist)
                     ApiHelper.HttpClient.CloudMusicCookie.Add(q);
-           await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
+            try
+            {
+                System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (sender, e) =>
+                {
+                    logger.Log(e.Exception.ToString(), Category.Exception, Priority.High);
+                };
+                await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
+            }
+            catch (System.Exception e)
+            {
+                logger.Log(e.ToString(), Category.Exception, Priority.High);
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

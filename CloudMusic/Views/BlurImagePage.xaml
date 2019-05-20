@@ -46,9 +46,9 @@
                 </StackLayout>
                 <ImageButton Grid.Row="0" Grid.Column="0" Source="PlayShare.png" WidthRequest="25" HorizontalOptions="EndAndExpand" Margin="0,20,20,0" BackgroundColor="Transparent" Command="{Binding ShareTappedCommand}"></ImageButton>
             </StackLayout>
-            <Image Grid.Row="1" Source="ic_disc_blackground.png" WidthRequest="273" HeightRequest="273" HorizontalOptions="Center" Margin="0,90,0,0" VerticalOptions="Start" IsVisible="{Binding IsShowDisc}"/>
+            <Image Grid.Row="1" Source="ic_disc_blackground.png" WidthRequest="{OnPlatform 273,Android=273,iOS=333}" HeightRequest="{OnPlatform 273,Android=273,iOS=333}" HorizontalOptions="Center" Margin="0,90,0,0" VerticalOptions="Start" IsVisible="{Binding IsShowDisc}"/>
             <cards:CoverFlowView 
-                HeightRequest="280"
+                HeightRequest="{OnPlatform 280,Android=280,iOS=340}"
                 VerticalOptions="Start"
                 x:Name="coverFlowView"
                 Grid.Row="1" Margin="0,90,0,0"              
@@ -65,9 +65,9 @@
                 >
                 <cards:CoverFlowView.ItemTemplate>
                         <DataTemplate>
-                                <Grid VerticalOptions="Start"  WidthRequest="270" HeightRequest="270">
-                                    <Image Source="ic_disc.png" WidthRequest="270" HeightRequest="270" HorizontalOptions="Center"/>
-                            <ffimageloading:CachedImage Source="{Binding al.picUrl}" WidthRequest="180" HeightRequest="180" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="vinyl.png" DownsampleToViewSize="True">
+                                <Grid VerticalOptions="Start"  WidthRequest="{OnPlatform 270,Android=270,iOS=330}" HeightRequest="{OnPlatform 270,Android=270,iOS=330}">
+                                    <Image Source="ic_disc.png" WidthRequest="{OnPlatform 270,Android=270,iOS=330}" HeightRequest="{OnPlatform 270,Android=270,iOS=330}" HorizontalOptions="Center"/>
+                            <ffimageloading:CachedImage Source="{Binding al.picUrl}" WidthRequest="{OnPlatform 180,Android=180,iOS=240}" HeightRequest="{OnPlatform 180,Android=180,iOS=240}" HorizontalOptions="Center" Aspect="AspectFit" FadeAnimationEnabled="True" FadeAnimationForCachedImages="True" LoadingPlaceholder="vinyl" DownsampleToViewSize="True">
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:CircleTransformation></fftransformations:CircleTransformation>
                                         </ffimageloading:CachedImage.Transformations>
@@ -119,7 +119,7 @@
                 </Grid.RowDefinitions>
                 <StackLayout Grid.Row="0"  Orientation="Horizontal" Spacing="0">
                     <Label Text="{Binding NowDuration, StringFormat='\{0:mm\\:ss}'}" WidthRequest="30" HeightRequest="20" VerticalOptions="Center" FontSize="10" TextColor="White" Margin="10,0,0,0"></Label>
-                    <Slider x:Name="Sliderx" Minimum="0" Maximum="{Binding MusicDuration.TotalMilliseconds}" Value="{Binding NowDurationNum}" HorizontalOptions="FillAndExpand" ThumbColor="White" DragCompletedCommand="{Binding SliderDragCompletedCommand}" ></Slider>
+                    <Slider Visual="Material" x:Name="Sliderx" Minimum="0" Maximum="{Binding MusicDuration.TotalMilliseconds}" Value="{Binding NowDurationNum}" HorizontalOptions="FillAndExpand" ThumbColor="White" DragCompletedCommand="{Binding SliderDragCompletedCommand}" ></Slider>
                     <Label Text="{Binding MusicDuration, StringFormat='\{0:mm\\:ss}'}" WidthRequest="30" HeightRequest="20" VerticalOptions="Center" FontSize="10" TextColor="White" Margin="0,0,10,0"></Label>
                 </StackLayout>
                 <StackLayout  Grid.Row="1"  Orientation="Horizontal" HorizontalOptions="Center">

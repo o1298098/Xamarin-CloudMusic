@@ -5,7 +5,6 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -23,7 +22,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>CloudMusic</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.CloudMusic</string>
+	<string>com.xamarin.CloudMusic</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>

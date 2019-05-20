@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<customforms:CustomTabbedPage
-    xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
+<TabbedPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:views="clr-namespace:CloudMusic.Views"
-    NavigationPage.HasNavigationBar="False"
     prism:ViewModelLocator.AutowireViewModel="True"  
+    NavigationPage.HasNavigationBar="False"
     BarBackgroundColor="White"
-           x:Class="CloudMusic.Views.MusicHomePage" >
-  <ContentPage Icon="Ic_menu_b" Title="菜单"></ContentPage>
-        <views:UserInfoPage Title="我的"></views:UserInfoPage>
-        <views:MusicDiscoverPage Title="发现"></views:MusicDiscoverPage>
-        <views:FriendEventPage Title="朋友"></views:FriendEventPage>
-        <views:ScrollVideoPage Title="视频"></views:ScrollVideoPage>
-    <ContentPage Icon="ic_search_b" Title="搜索"></ContentPage>
-</customforms:CustomTabbedPage>
+    x:Class="CloudMusic.Views.MusicHomePage">
+  <views:MusicDiscoverPage Title="发现" Icon="tabicon_mc"></views:MusicDiscoverPage>
+  <views:ScrollVideoPage Title="视频" Icon="tabicon_mv"></views:ScrollVideoPage>
+  <views:UserInfoPage Title="我的" Icon="tabicon_mb"></views:UserInfoPage>
+  <views:FriendEventPage Title="朋友" Icon="tabicon_fe"></views:FriendEventPage>
+  <ContentPage Title="账号" Icon="tabicon_u"/>
+</TabbedPage>

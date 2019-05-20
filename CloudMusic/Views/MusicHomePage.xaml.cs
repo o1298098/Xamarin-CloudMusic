@@ -7,7 +7,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace CloudMusic.Views
 {
-    public partial class MusicHomePage :CustomTabbedPage
+    public partial class MusicHomePage : Xamarin.Forms.TabbedPage
     {
         MusicHomePageViewModel vm;
         public MusicHomePage()
@@ -15,11 +15,12 @@ namespace CloudMusic.Views
             InitializeComponent();
             vm = BindingContext as MusicHomePageViewModel;
             this.On<Xamarin.Forms.PlatformConfiguration.Android>().DisableSwipePaging();
-            this.MenuClicked += MusicHomePage_MenuClicked;
-            this.SearchClicked += MusicHomePage_SearchClicked;
+            this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            //this.MenuClicked += MusicHomePage_MenuClicked;
+            //this.SearchClicked += MusicHomePage_SearchClicked;
         }
 
-        private void MusicHomePage_SearchClicked(object sender, System.EventArgs e)
+        /*private void MusicHomePage_SearchClicked(object sender, System.EventArgs e)
         {
             vm.GoSearchAsync();
         }
@@ -27,6 +28,6 @@ namespace CloudMusic.Views
         private void MusicHomePage_MenuClicked(object sender, System.EventArgs e)
         {
             DependencyService.Get<IToast>().ShortAlert("菜单");
-        }
+        }*/
     }
 }

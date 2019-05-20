@@ -181,6 +181,12 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\tab_about.png" />
     <AndroidResource Include="Resources\drawable\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable\tabicon_fe.png" />
+    <AndroidResource Include="Resources\drawable\tabicon_mb.png" />
+    <AndroidResource Include="Resources\drawable\tabicon_mc.png" />
+    <AndroidResource Include="Resources\drawable\tabicon_mv.png" />
+    <AndroidResource Include="Resources\drawable\tabicon_u.png" />
+    <AndroidResource Include="Resources\drawable\ic_mic_b.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />

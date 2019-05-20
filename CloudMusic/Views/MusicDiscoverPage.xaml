@@ -13,6 +13,19 @@
              xmlns:local="clr-namespace:CloudMusic.Actions"
              x:Class="CloudMusic.Views.MusicDiscoverPage">
     <ContentPage.Content>
+        <StackLayout>
+        <StackLayout HeightRequest="40" Orientation="Horizontal" Padding="20,0" Margin="{OnPlatform '0,30,0,10',iOS='0,40,0,10'}">
+          <Image Source="ic_mic_b" WidthRequest="30"/>
+          <Frame HasShadow="false" BackgroundColor="#f1f1f1" CornerRadius="20" HorizontalOptions="FillAndExpand" Padding="0">
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'SearchMusicPage' , SourcePage={x:Reference SearchMusicPage},Animated=True}"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">  
+                        <Image Source="ic_search_b" WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="23333333" TextColor="#d1d1d1" FontSize="18"/>
+                    </StackLayout>
+           </Frame>
+        </StackLayout>   
         <ScrollView>
             <StackLayout>
             <cards:CoverFlowView 
@@ -41,7 +54,7 @@
                 </cards:CoverFlowView.ItemTemplate>
                 <controls:IndicatorsControl ToFadeDuration="1500"/>
             </cards:CoverFlowView>
-            <Grid Padding="{OnPlatform '15,0',iOS='15,15,15,0'}">
+            <Grid Padding="15,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="45"></RowDefinition>
                     <RowDefinition Height="20"></RowDefinition>
@@ -158,5 +171,6 @@
             </StackLayout>
         </ScrollView>
         
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
