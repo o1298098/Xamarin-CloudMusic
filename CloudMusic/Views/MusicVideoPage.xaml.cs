@@ -2,6 +2,7 @@
 using CloudMusic.CustomForms;
 using CloudMusic.ViewModels;
 using Xamarin.Forms;
+using CloudMusic.Services;
 
 namespace CloudMusic.Views
 {
@@ -18,6 +19,11 @@ namespace CloudMusic.Views
             listview.ScrollStateChanged += Listview_ScrollStateChanged;
             listview.ScrollChanged += Listview_ScrollChanged;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IStatusBarStyleManager>().SetDarkTheme();
+        }
 
         private void Listview_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
@@ -30,12 +36,10 @@ namespace CloudMusic.Views
             switch (e.CurScrollState)
             {
                 case ScrollStateChangedEventArgs.ScrollState.Running:
-                    ImageService.Instance.SetPauseWork(true); // all image loading requests will be silently canceled
+                    ImageService.Instance.SetPauseWork(true); 
                     break;
                 case ScrollStateChangedEventArgs.ScrollState.Idle:
-                    ImageService.Instance.SetPauseWork(false); // loading requests are allowed again
-
-                    // Here you should have your custom method that forces redrawing visible list items
+                    ImageService.Instance.SetPauseWork(false); 
                     break;
             }
         }

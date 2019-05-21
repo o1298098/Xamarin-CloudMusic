@@ -75,11 +75,9 @@ namespace CloudMusic.iOS.Services
 
         public void SetCookie(Cookie cookie)
         {
-            var cookieUrl = new Uri(_url);
-            var cookieJar = NSHttpCookieStorage.SharedStorage;
-            cookieJar.AcceptPolicy = NSHttpCookieAcceptPolicy.Always;
-            var c=new NSHttpCookie(cookie.Name,cookie.Value,cookie.Path,cookie.Domain);
-            cookieJar.SetCookie(c);
+            NSHttpCookie httpCookie = new NSHttpCookie(cookie);
+            NSHttpCookieStorage.SharedStorage.AcceptPolicy = NSHttpCookieAcceptPolicy.Always;
+            NSHttpCookieStorage.SharedStorage.SetCookie(httpCookie);
         }
     }
 }

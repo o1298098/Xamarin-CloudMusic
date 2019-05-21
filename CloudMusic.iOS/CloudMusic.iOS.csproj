@@ -82,6 +82,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\StatusBarStyleManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -145,6 +146,19 @@
     <BundleResource Include="Resources\tabicon_mv%402x.png" />
     <BundleResource Include="Resources\tabicon_u%402x.png" />
     <BundleResource Include="Resources\ic_mic_b.png" />
+    <BundleResource Include="Resources\ic_addcomment.png" />
+    <BundleResource Include="Resources\ic_addfriend.png" />
+    <BundleResource Include="Resources\ic_addinfo.png" />
+    <BundleResource Include="Resources\ic_box_b.png" />
+    <BundleResource Include="Resources\ic_clock2.png" />
+    <BundleResource Include="Resources\ic_cloud_w.png" />
+    <BundleResource Include="Resources\ic_mic2_b.png" />
+    <BundleResource Include="Resources\ic_moon.png" />
+    <BundleResource Include="Resources\ic_music_cb.png" />
+    <BundleResource Include="Resources\ic_scan_b.png" />
+    <BundleResource Include="Resources\ic_setting_b.png" />
+    <BundleResource Include="Resources\ic_ticket.png" />
+    <BundleResource Include="Resources\ic_dv_w.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

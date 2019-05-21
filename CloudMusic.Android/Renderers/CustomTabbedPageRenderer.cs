@@ -45,7 +45,7 @@ namespace CloudMusic.Droid.Renderers
             tabLayout = (TabLayout)GetChildAt(1);
             tabLayout.TabGravity = TabLayout.GravityFill;
         }
-        protected override void SetTabIcon(TabLayout.Tab tab, FileImageSource icon)
+      /*  protected override void SetTabIcon(TabLayout.Tab tab, FileImageSource icon)
         {
             base.SetTabIcon(tab, icon);
             if (tab.Text == "菜单" || tab.Text == "搜索")
@@ -63,7 +63,7 @@ namespace CloudMusic.Droid.Renderers
                 };
             }
            
-        }
+        }*/
         void TabLayout.IOnTabSelectedListener.OnTabReselected(TabLayout.Tab tab)
         {
             // Logic here to send event to desired XF component using MessagingService or other

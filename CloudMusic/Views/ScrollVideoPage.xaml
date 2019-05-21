@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
@@ -7,12 +7,25 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"      
              xmlns:local="clr-namespace:CloudMusic.Actions"
+             xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              xmlns:customforms="clr-namespace:CloudMusic.CustomForms"
              xmlns:crossvideo="clr-namespace:FormsVideoLibrary"
              NavigationPage.HasNavigationBar="False"
              x:Class="CloudMusic.Views.ScrollVideoPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="White" Margin="{OnPlatform '0,30,0,10',iOS='0,40,0,10'}">
+            <StackLayout HeightRequest="40" Orientation="Horizontal" Padding="20,0" Spacing="10">
+          <Image Source="ic_dv_w" WidthRequest="30" HeightRequest="30"/>
+          <Frame HasShadow="false" BackgroundColor="#f1f1f1" CornerRadius="20" HorizontalOptions="FillAndExpand" Padding="0">
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'SearchMusicPage' , SourcePage={x:Reference SearchMusicPage},Animated=True}"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">  
+                        <Image Source="ic_search_b" WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="23333333" TextColor="#d1d1d1" FontSize="18"/>
+                    </StackLayout>
+           </Frame>
+        </StackLayout>   
             <tabView:SfTabView TabHeight="30">
                 <tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SelectionIndicatorSettings/>

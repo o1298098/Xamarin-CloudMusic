@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using CloudMusic.Services;
+using Xamarin.Forms;
 
 namespace CloudMusic.Views
 {
@@ -7,6 +8,11 @@ namespace CloudMusic.Views
         public MusicCommentPage()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IStatusBarStyleManager>().SetLightTheme();
         }
     }
 }

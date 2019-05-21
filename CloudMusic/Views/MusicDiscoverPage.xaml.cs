@@ -13,6 +13,10 @@ namespace CloudMusic.Views
             vm = BindingContext as MusicDiscoverPageViewModel;
             PlayListlayout.ChildAdded += PlayListlayout_ChildAdded;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
         int i = 0;
         private void PlayListlayout_ChildAdded(object sender, ElementEventArgs e)
         {

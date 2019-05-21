@@ -1,4 +1,5 @@
 ﻿using System;
+using CloudMusic.Services;
 using Xamarin.Forms;
 
 namespace CloudMusic.Views
@@ -10,6 +11,11 @@ namespace CloudMusic.Views
         {
             InitializeComponent();
             listview.ScrollChanged += Listview_ScrollChanged;
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IStatusBarStyleManager>().SetDarkTheme();
         }
 
         private void Listview_ScrollChanged(object sender, CustomForms.ScrollChangedEventArgs e)

@@ -10,11 +10,12 @@
              xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"             
              NavigationPage.HasNavigationBar="False"
+             NavigationPage.BarTextColor="Black"
              xmlns:local="clr-namespace:CloudMusic.Actions"
              x:Class="CloudMusic.Views.MusicDiscoverPage">
     <ContentPage.Content>
         <StackLayout>
-        <StackLayout HeightRequest="40" Orientation="Horizontal" Padding="20,0" Margin="{OnPlatform '0,30,0,10',iOS='0,40,0,10'}">
+        <StackLayout HeightRequest="40" Orientation="Horizontal" Padding="20,0" Margin="{OnPlatform '0,30,0,10',iOS='0,50,0,10'}">
           <Image Source="ic_mic_b" WidthRequest="30"/>
           <Frame HasShadow="false" BackgroundColor="#f1f1f1" CornerRadius="20" HorizontalOptions="FillAndExpand" Padding="0">
                      <Frame.GestureRecognizers>
@@ -39,6 +40,7 @@
                 IsViewCacheEnabled="True"
                 IsAutoNavigatingAimationEnabled="True"
                 SlideShowDuration="4000"
+                Margin="{OnPlatform '0' ,iOS='0,0,0,20'}"
                 >
                 <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>

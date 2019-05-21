@@ -19,6 +19,11 @@ namespace CloudMusic.Views
             //this.MenuClicked += MusicHomePage_MenuClicked;
             //this.SearchClicked += MusicHomePage_SearchClicked;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IStatusBarStyleManager>().SetLightTheme();
+        }
 
         /*private void MusicHomePage_SearchClicked(object sender, System.EventArgs e)
         {

@@ -12,7 +12,9 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="CloudMusic.Views.MusicVideoPage">
     <ContentPage.Content>
-        <Grid RowSpacing="0"  Margin="{OnPlatform '0',iOS='0,30,0,0'}">
+        <StackLayout Spacing="0">
+           <AbsoluteLayout Grid.Row="0" BackgroundColor="Black" IsVisible="{OnPlatform false,iOS=true}" HeightRequest="35"></AbsoluteLayout>
+             <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
@@ -118,6 +120,8 @@
             <local:VideoPlayer x:Name="videoView" HorizontalOptions="FillAndExpand"  VerticalOptions="Start" AreTransportControlsEnabled="True" AutoPlay="True" BackgroundColor="Black" HeightRequest="200" Source="{Binding UriSource}" Grid.Row="0">
             </local:VideoPlayer>
         </Grid>
+        </StackLayout>
+       
         
     </ContentPage.Content>
 </ContentPage>
