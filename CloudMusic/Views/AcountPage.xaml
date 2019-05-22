@@ -11,33 +11,34 @@
         <StackLayout>
             <AbsoluteLayout HeightRequest="40" Margin="{OnPlatform '20,30,20,0',iOS='20,35,20,0'}">
                 <Image Source="ic_scan_b" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.5,30,30"></Image>
-                <Label Text="账号" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,.5,1,30"/>
+                <Label Text="账号" TextColor="#333333" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,.5,1,30"/>
             </AbsoluteLayout>
         <ScrollView>
             <StackLayout>
-            <AbsoluteLayout HeightRequest="100"  Padding="20,0">
+            <AbsoluteLayout HeightRequest="80"  Padding="20,0">
                <custom:CircleImage Source="CacheBG.jpg" 
                                    WidthRequest="80" 
                                    HeightRequest="80"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds="0,.5,80,80"/>
-                <Label Text="o1298098" 
-                       TextColor="#333333"
+                                   AbsoluteLayout.LayoutBounds="0,.5,60,60"/>
+                        <StackLayout 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                       AbsoluteLayout.LayoutBounds=".45,.35,150,20"
-                       />
+                       AbsoluteLayout.LayoutBounds="{OnPlatform Android='.4,.5,150,45',iOS='.3,.5,150,45'}">
+                       <Label Text="o1298098" TextColor="#333333"/>
                         <Frame BackgroundColor="#e5e5e5"
                                HasShadow="false"
-                               CornerRadius="12"
+                               CornerRadius="11"
                                Padding="0"
-                               AbsoluteLayout.LayoutFlags="PositionProportional"
-                               AbsoluteLayout.LayoutBounds=".3,.7,50,25">
+                               WidthRequest="50"
+                               HeightRequest="25" HorizontalOptions="Start">
                             <Label Text="Lv.8" FontSize="11" TextColor="#a1a1a1" VerticalOptions="Center" HorizontalOptions="Center"/>
                         </Frame>
+                        </StackLayout>
                      <Button BackgroundColor="#FE3A3B"
                              CornerRadius="15"
                              Text="签到"
                              TextColor="White"
+                             Padding="5"
                              AbsoluteLayout.LayoutFlags="PositionProportional"
                              AbsoluteLayout.LayoutBounds="1,.5,70,30"
                             />  
@@ -56,41 +57,81 @@
                              <ColumnDefinition Width="1"/>
                              <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="0" FontSize="18" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
-                        <Label Text="动态" FontSize="14" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="0" FontSize="18" TextColor="#333333" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="动态" FontSize="{OnPlatform 11,iOS=14}" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
                         <BoxView WidthRequest="1" BackgroundColor="#e1e1e1" Grid.RowSpan="2" Grid.Column="1"/> 
-                        <Label Text="0" FontSize="18" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"/>
-                        <Label Text="关注" FontSize="14" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="2"/>
+                        <Label Text="0" FontSize="18" TextColor="#333333" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"/>
+                        <Label Text="关注" FontSize="{OnPlatform 11,iOS=14}" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="2"/>
                         <BoxView WidthRequest="1" BackgroundColor="#e1e1e1" Grid.RowSpan="2" Grid.Column="3"/>
-                        <Label Text="0"  FontSize="18" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4"/>
-                        <Label Text="粉丝" FontSize="14" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="4"/>
+                        <Label Text="0"  FontSize="18" TextColor="#333333" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4"/>
+                        <Label Text="粉丝" FontSize="{OnPlatform 11,iOS=14}" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="4"/>
                         <BoxView WidthRequest="1" BackgroundColor="#e1e1e1" Grid.RowSpan="2" Grid.Column="5"/>
-                        <Label Text="0" FontSize="18" HorizontalOptions="Center" Grid.Row="0" Grid.Column="6"/>
-                        <Label Text="编辑资料" FontSize="14" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="6"/>
+                        <Label Text="0" FontSize="18" TextColor="#333333" HorizontalOptions="Center" Grid.Row="0" Grid.Column="6"/>
+                        <Label Text="编辑资料" FontSize="{OnPlatform 11,iOS=14}" TextColor="#a1a1a1" HorizontalOptions="Center" Grid.Row="1" Grid.Column="6"/>
             </Grid>
                     <Frame BackgroundColor="#050505" 
                            HasShadow="false" 
                            HeightRequest="25" 
                            CornerRadius="10" 
-                           Margin="20,10,20,0"/>
+                           Margin="20,10"/>
                     <BoxView BackgroundColor="#f1f1f1" HeightRequest="10"/>
-                <Grid Padding="20,0,0,0" RowSpacing="0" ColumnSpacing="15">
+                <Grid RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="52"></RowDefinition>
-                    <RowDefinition Height="52"></RowDefinition>
-                    <RowDefinition Height="52"></RowDefinition>
-                    <RowDefinition Height="52"></RowDefinition>
-                    <RowDefinition Height="52"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition> 
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="30"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                      <Image Source="ic_setting_b" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" />
-                     <Label Text="设置" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
-                     <Image Source="Ic_more_l" WidthRequest="10" HeightRequest="10" Scale="0.5" Grid.Row="0" Grid.Column="2" />
-                     <BoxView HeightRequest="1" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="#efefef" VerticalOptions="EndAndExpand"/>
+                     <Label Text="设置" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="0" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="1" Grid.Column="1" BackgroundColor="#efefef"/>
+                     <Image Source="ic_moon" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" />
+                     <Label Text="夜间模式" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+                     <Switch Grid.Row="2" Grid.Column="1"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,10,0" OnColor="#FE3A3B"/>
+                     <BoxView HeightRequest="1" Grid.Row="3" Grid.Column="1" BackgroundColor="#efefef"/>
+                     <Image Source="ic_clock" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="4" Grid.Column="0" />
+                     <Label Text="定时关闭" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="4" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="5" Grid.Column="1" BackgroundColor="#efefef"/>
+                     <Image Source="ic_clock2" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="6" Grid.Column="0" />
+                     <Label Text="音乐闹钟" Grid.Row="6" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="6" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#efefef"/>
+                     <Image Source="ic_box_b" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="8" Grid.Column="0" />
+                     <Label Text="在线听歌免流量" Grid.Row="8" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="8" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="9" Grid.Column="1" BackgroundColor="#efefef"/>
+                     <Image Source="ic_ticket" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="10" Grid.Column="0" />
+                     <Label Text="优惠卷" Grid.Row="10" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="10" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#efefef"/>
+                     <Image Source="ic_music_cb" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="12" Grid.Column="0" />
+                     <Label Text="加入网易音乐人" Grid.Row="12" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="12" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="13" Grid.Column="1" BackgroundColor="#efefef"/>
+                     <Image Source="ic_mic2_b" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Row="14" Grid.Column="0" />
+                     <Label Text="我要开播" Grid.Row="14" Grid.Column="1" VerticalOptions="Center"/>
+                     <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="14" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                     <BoxView HeightRequest="1" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#efefef"/>
+                     <Button Text="退出登录" Grid.Row="16" Grid.ColumnSpan="2" TextColor="#FE3A3B" CornerRadius="0"/>
                 </Grid>
           </StackLayout>
         </ScrollView>

@@ -30,7 +30,7 @@
         <ScrollView>
             <StackLayout>
             <cards:CoverFlowView 
-                HeightRequest="150" 
+                HeightRequest="{OnPlatform 150,iOS=170}" 
                 WidthRequest="{OnPlatform 360,Android=360,iOS=420}"
                 PositionShiftValue="0"
                 IsCyclical="True"

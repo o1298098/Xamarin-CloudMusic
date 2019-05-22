@@ -55,13 +55,17 @@ namespace CloudMusic.CustomForms
 
         private void PlaytapGesture_Tapped(object sender, EventArgs e)
         {
-            videoplayer.IsVisible = true;
+            
             videocover.IsVisible = false;
             videoinfo.IsVisible = false;
             playbtn.IsVisible = false;
+            videoplayer.BatchBegin();
+            videoplayer.IsVisible = true;
             videoplayer.Source = source;
+            videoplayer.BatchCommit();
             videoplayer.Play();
-            this.ForceUpdateSize();
+            if(Device.RuntimePlatform==Device.Android)
+                this.ForceUpdateSize();
         }
     }
 }

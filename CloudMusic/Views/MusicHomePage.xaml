@@ -12,5 +12,5 @@
   <views:ScrollVideoPage Title="视频" Icon="tabicon_mv"></views:ScrollVideoPage>
   <views:UserInfoPage Title="我的" Icon="tabicon_mb"></views:UserInfoPage>
   <views:FriendEventPage Title="朋友" Icon="tabicon_fe"></views:FriendEventPage>
-  <ContentPage Title="账号" Icon="tabicon_u"/>
+  <views:AcountPage Title="账号" Icon="tabicon_u"/>
 </TabbedPage>

@@ -159,6 +159,9 @@
     <BundleResource Include="Resources\ic_setting_b.png" />
     <BundleResource Include="Resources\ic_ticket.png" />
     <BundleResource Include="Resources\ic_dv_w.png" />
+    <BundleResource Include="Resources\ic_clock.png" />
+    <BundleResource Include="Resources\musiclive.json" />
+    <BundleResource Include="Resources\circlewave.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -206,6 +209,9 @@
     </PackageReference>
     <PackageReference Include="XF.Material">
       <Version>1.4.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Com.Airbnb.iOS.Lottie">
+      <Version>2.5.7</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -121,6 +121,9 @@
     <PackageReference Include="XF.Material">
       <Version>1.4.1.3</Version>
     </PackageReference>
+    <PackageReference Include="Com.Airbnb.Android.Lottie">
+      <Version>2.7.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -161,6 +164,8 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <AndroidAsset Include="Assets\musiclive.json" />
+    <AndroidAsset Include="Assets\circlewave.json" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
@@ -201,6 +206,7 @@
     <AndroidResource Include="Resources\drawable\ic_setting_b.png" />
     <AndroidResource Include="Resources\drawable\ic_ticket.png" />
     <AndroidResource Include="Resources\drawable\ic_dv_w.png" />
+    <AndroidResource Include="Resources\drawable\ic_clock.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />

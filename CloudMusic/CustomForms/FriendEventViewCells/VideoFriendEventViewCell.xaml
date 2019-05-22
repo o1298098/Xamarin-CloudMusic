@@ -35,14 +35,14 @@
             </Label>
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding rcmdInfo.userReason}" FontSize="12"></Label>
             <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Conent.msg}"></Label>
-            <Frame Padding="0" Grid.Row="3" Grid.Column="1"  HeightRequest="165"  HorizontalOptions="FillAndExpand" CornerRadius="15" HasShadow="False" IsClippedToBounds="True">
-                <AbsoluteLayout HeightRequest="165">
-                    <crossvideo:VideoPlayer  HeightRequest="165"  x:Name="videoplayer" BackgroundColor="Black"  
-                                             AbsoluteLayout.LayoutBounds="0,0, 1,165"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional"></crossvideo:VideoPlayer>
-                    <ffimageloading:CachedImage  WidthRequest="280" HeightRequest="165"  HorizontalOptions="FillAndExpand" 
+            <Frame Padding="0" Grid.Row="3" Grid.Column="1"  HeightRequest="{OnPlatform 165 ,iOS=185}"  HorizontalOptions="FillAndExpand" CornerRadius="15" HasShadow="False" IsClippedToBounds="True">
+                <AbsoluteLayout HeightRequest="{OnPlatform 165 ,iOS=185}">
+                    <crossvideo:VideoPlayer  HeightRequest="{OnPlatform 165 ,iOS=185}"  x:Name="videoplayer" BackgroundColor="Black"  
+                                             AbsoluteLayout.LayoutBounds="{OnPlatform '0,0, 1,165',iOS='0,0, 1,185'}"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional"></crossvideo:VideoPlayer>
+                    <ffimageloading:CachedImage  WidthRequest="280" HeightRequest="{OnPlatform 165 ,iOS=185}"  HorizontalOptions="FillAndExpand" 
                                                  LoadingDelay="250" Aspect="AspectFill" LoadingPlaceholder="CacheBG.jpg" FadeAnimationEnabled="False" 
                                                  FadeAnimationForCachedImages="False" x:Name="videocover" DownsampleToViewSize="True" IsOpaque="True"  
-                                                 AbsoluteLayout.LayoutBounds="0,0, 1, 165"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional">
+                                                 AbsoluteLayout.LayoutBounds="{OnPlatform '0,0, 1,165',iOS='0,0, 1,185'}"  AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional">
                         <ffimageloading:CachedImage.CacheKeyFactory>
                             <local:CustomCacheKeyFactory/>
                         </ffimageloading:CachedImage.CacheKeyFactory>

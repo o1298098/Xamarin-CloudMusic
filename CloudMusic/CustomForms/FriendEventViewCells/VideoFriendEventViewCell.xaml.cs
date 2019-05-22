@@ -59,13 +59,16 @@ namespace CloudMusic.CustomForms
                 if (q != null)
                 {
                     Device.BeginInvokeOnMainThread(()=> {
-                        videoplayer.IsVisible = true;
                         videocover.IsVisible = false;
                         videoinfo.IsVisible = false;
                         playbtn.IsVisible = false;
+                        videoplayer.BatchBegin();
+                        videoplayer.IsVisible = true;
                         videoplayer.Source = new UriVideoSource { Uri = q.urls[0].url };
+                        videoplayer.BatchCommit();
                         videoplayer.Play();
-                        this.ForceUpdateSize();
+                        if(Device.RuntimePlatform==Device.Android)
+                            this.ForceUpdateSize();
                     });                 
                 }
                 else

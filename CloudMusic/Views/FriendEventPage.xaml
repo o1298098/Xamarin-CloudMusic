@@ -15,7 +15,50 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout  Margin="{OnPlatform '0',iOS='0,30,0,0'}">
+        <StackLayout  Margin="{OnPlatform '0,30,0,0',iOS='0,50,0,0'}" Spacing="0">
+            <AbsoluteLayout Padding="20,0">
+                <ImageButton Source="ic_addfriend" WidthRequest="30" HeightRequest="30"/>
+                <Frame BorderColor="#FE3A3B"
+                       VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".5,.5,120,30"
+                       HasShadow="false"
+                       Padding="0"
+                       HeightRequest="30"
+                       WidthRequest="120"
+                       CornerRadius="15">
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                         <Button Text="动态" 
+                            TextColor="White" 
+                            HeightRequest="30"
+                            WidthRequest="60"
+                            BackgroundColor="#FE3A3B"
+                            CornerRadius="15"/>
+                    <Button Text="附近" 
+                            TextColor="#FE3A3B" 
+                            HeightRequest="30"
+                            WidthRequest="60"
+                            CornerRadius="15"/>
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
+            <Grid HeightRequest="40" Margin="0,10">
+                <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width="1*"/>
+                   <ColumnDefinition Width="30"/>
+                   <ColumnDefinition Width="70"/>
+                   <ColumnDefinition Width="60"/>
+                   <ColumnDefinition Width="30"/>
+                   <ColumnDefinition Width="70"/>
+                   <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="ic_addcomment" WidthRequest="30" Grid.Column="1"/>
+                <Label Text="发动态" TextColor="#333333" Grid.Column="2" VerticalOptions="Center"/>
+                <Image Source="ic_addcomment" WidthRequest="30" Grid.Column="4"/>
+                <Label Text="发布视频" TextColor="#333333" Grid.Column="5" VerticalOptions="Center"/>
+            </Grid>
+            <BoxView BackgroundColor="#f1f1f1" HeightRequest="8"/>
             <customforms:CustomListview Grid.Row="0" Grid.RowSpan="4" x:Name="listview" ItemTemplate="{StaticResource myDataTemplateSelector}" ItemsSource="{Binding friendEvents.friendevent,Mode=OneWay}" HasUnevenRows="True" VerticalScrollBarVisibility="Never" VerticalOptions="Start" SeparatorVisibility="None" RefreshCommand="{Binding ListViewRefreahCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>

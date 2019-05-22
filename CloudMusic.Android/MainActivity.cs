@@ -43,6 +43,7 @@ namespace CloudMusic.Droid
             XF.Material.Droid.Material.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            Lottie.Forms.Droid.AnimationViewRenderer.Init();
             //FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
             Services.CrossPrint.Init(this);
             //Plugin.FirebaseAnalytics.FirebaseAnalytics.Init(this);

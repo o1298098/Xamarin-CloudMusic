@@ -50,20 +50,27 @@ namespace CloudMusic
             DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
             var cookielist = DependencyService.Get<ICookieStore>().CurrentCookies.Where(cc => cc.Name != "none").ToList();
             if (cookielist.Count > 0)
+            {
                 foreach (var q in cookielist)
                     ApiHelper.HttpClient.CloudMusicCookie.Add(q);
-            try
-            {
-                System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (sender, e) =>
+                try
                 {
-                    logger.Log(e.Exception.ToString(), Category.Exception, Priority.High);
-                };
-                await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
+                    System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (sender, e) =>
+                    {
+                        logger.Log(e.Exception.ToString(), Category.Exception, Priority.High);
+                    };
+                    await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
+                }
+                catch (System.Exception e)
+                {
+                    logger.Log(e.ToString(), Category.Exception, Priority.High);
+                }
             }
-            catch (System.Exception e)
+            else
             {
-                logger.Log(e.ToString(), Category.Exception, Priority.High);
+                await NavigationService.NavigateAsync("/NavigationPage/StartPage");
             }
+            
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -86,6 +93,8 @@ namespace CloudMusic
             containerRegistry.RegisterForNavigation<MusicAPPLoginPage, MusicAPPLoginPageViewModel>();
             containerRegistry.RegisterForNavigation<BlankPage, BlankPageViewModel>();
             containerRegistry.RegisterForNavigation<SingerPlayListPage, SingerPlayListPageViewModel>();
+            containerRegistry.RegisterForNavigation<AcountPage, AcountPageViewModel>();
+            containerRegistry.RegisterForNavigation<StartPage, StartPageViewModel>();
         }
         protected override void OnStart()
         {

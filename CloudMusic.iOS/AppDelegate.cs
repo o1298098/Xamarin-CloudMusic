@@ -34,6 +34,7 @@ namespace CloudMusic.iOS
             Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer.Init();
             PanCardView.iOS.CardsViewRenderer.Preserve();
             XF.Material.iOS.Material.Init();
+            Lottie.Forms.iOS.Renderers.AnimationViewRenderer.Init();
             Naxam.Controls.Platform.iOS.TopTabbedRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             MediaManager.CrossMediaManager.Current.Init();

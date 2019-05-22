@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CloudMusic.Views.StartPage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#FE3A3B">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <lottie:AnimationView x:Name="animationView" 
+                                  Animation="circlewave.json" 
+                                  Loop="true" 
+                                  AutoPlay="true" 
+                                  VerticalOptions="FillAndExpand" 
+                                  HorizontalOptions="FillAndExpand" 
+                                  />
+            <Frame BackgroundColor="#CE3A3B" 
+                   HasShadow="false" 
+                   WidthRequest="80" 
+                   HeightRequest="80"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   CornerRadius="40"
+                   Padding="0">
+                <Label Text="dOb" FontSize="24" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Frame>
+            <StackLayout Grid.Row="1" HeightRequest="150" VerticalOptions="End" Spacing="15">
+                <Button Text="登录" WidthRequest="{OnPlatform 250,iOS=300}" 
+                        HeightRequest="40" 
+                        BackgroundColor="White" 
+                        HorizontalOptions="Center" 
+                        CornerRadius="20" 
+                        TextColor="#FE3A3B"
+                        Command="{prismNavigation:NavigateTo 'MusicAPPLoginPage' , SourcePage={x:Reference MusicAPPLoginPage}}"/>
+                <Button Text="注册" WidthRequest="{OnPlatform 250,iOS=300}" HeightRequest="40" BorderColor="White" BorderWidth="1" HorizontalOptions="Center" CornerRadius="20" TextColor="White"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
