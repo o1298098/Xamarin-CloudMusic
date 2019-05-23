@@ -38,6 +38,7 @@ namespace CloudMusic.iOS
             Naxam.Controls.Platform.iOS.TopTabbedRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             MediaManager.CrossMediaManager.Current.Init();
+            InitDownloadManager();
             LoadApplication(new App(new iOSInitializer()));
             UITabBar.Appearance.SelectedImageTintColor = Xamarin.Forms.Color.FromHex("FE3A3B").ToUIColor();
             return base.FinishedLaunching(app, options);
@@ -49,15 +50,19 @@ namespace CloudMusic.iOS
                 // Register any platform specific implementations
             }
         }
-        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, System.Action completionHandler)
+        void InitDownloadManager()
         {
-            Plugin.DownloadManager.CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
-            Plugin.DownloadManager.CrossDownloadManager.Current.PathNameForDownloadedFile=new Func<Plugin.DownloadManager.Abstractions.IDownloadFile, string> (file =>
+            Plugin.DownloadManager.CrossDownloadManager.Current.PathNameForDownloadedFile = new Func<Plugin.DownloadManager.Abstractions.IDownloadFile, string>(file =>
             {
                 string fileName = file.Headers["name"] + "." + file.Headers["type"];
                 var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonMusic);
                 return System.IO.Path.Combine(path, fileName);
             });
+        }
+        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, System.Action completionHandler)
+        {
+            Plugin.DownloadManager.CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
+            
         }
     }
 }

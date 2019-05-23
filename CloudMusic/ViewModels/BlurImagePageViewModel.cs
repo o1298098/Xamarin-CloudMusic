@@ -150,7 +150,7 @@ namespace CloudMusic.ViewModels
                         File = new Xamarin.Essentials.ShareFile(file)
                     });
 
-            };
+            }
 
         }
         void SongDownLoad()

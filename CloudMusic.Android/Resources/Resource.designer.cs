@@ -15622,26 +15622,26 @@ namespace CloudMusic.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
+			// aapt resource value: 0x7f020200
+			public const int avd_hide_password_1 = 2130838016;
+			
 			// aapt resource value: 0x7f020201
-			public const int avd_hide_password_1 = 2130838017;
+			public const int avd_hide_password_2 = 2130838017;
 			
 			// aapt resource value: 0x7f020202
-			public const int avd_hide_password_2 = 2130838018;
-			
-			// aapt resource value: 0x7f020203
-			public const int avd_hide_password_3 = 2130838019;
+			public const int avd_hide_password_3 = 2130838018;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
+			// aapt resource value: 0x7f020203
+			public const int avd_show_password_1 = 2130838019;
+			
 			// aapt resource value: 0x7f020204
-			public const int avd_show_password_1 = 2130838020;
+			public const int avd_show_password_2 = 2130838020;
 			
 			// aapt resource value: 0x7f020205
-			public const int avd_show_password_2 = 2130838021;
-			
-			// aapt resource value: 0x7f020206
-			public const int avd_show_password_3 = 2130838022;
+			public const int avd_show_password_3 = 2130838021;
 			
 			// aapt resource value: 0x7f020057
 			public const int Back = 2130837591;
@@ -15739,8 +15739,8 @@ namespace CloudMusic.Droid
 			// aapt resource value: 0x7f020076
 			public const int drawable_shape_with_icon = 2130837622;
 			
-			// aapt resource value: 0x7f0201f4
-			public const int exo_controls_fastforward = 2130838004;
+			// aapt resource value: 0x7f0201f3
+			public const int exo_controls_fastforward = 2130838003;
 			
 			// aapt resource value: 0x7f020077
 			public const int exo_controls_fullscreen_enter = 2130837623;
@@ -15748,17 +15748,17 @@ namespace CloudMusic.Droid
 			// aapt resource value: 0x7f020078
 			public const int exo_controls_fullscreen_exit = 2130837624;
 			
+			// aapt resource value: 0x7f0201f4
+			public const int exo_controls_next = 2130838004;
+			
 			// aapt resource value: 0x7f0201f5
-			public const int exo_controls_next = 2130838005;
+			public const int exo_controls_pause = 2130838005;
 			
 			// aapt resource value: 0x7f0201f6
-			public const int exo_controls_pause = 2130838006;
+			public const int exo_controls_play = 2130838006;
 			
 			// aapt resource value: 0x7f0201f7
-			public const int exo_controls_play = 2130838007;
-			
-			// aapt resource value: 0x7f0201f8
-			public const int exo_controls_previous = 2130838008;
+			public const int exo_controls_previous = 2130838007;
 			
 			// aapt resource value: 0x7f020079
 			public const int exo_controls_repeat_all = 2130837625;
@@ -15769,8 +15769,8 @@ namespace CloudMusic.Droid
 			// aapt resource value: 0x7f02007b
 			public const int exo_controls_repeat_one = 2130837627;
 			
-			// aapt resource value: 0x7f0201f9
-			public const int exo_controls_rewind = 2130838009;
+			// aapt resource value: 0x7f0201f8
+			public const int exo_controls_rewind = 2130838008;
 			
 			// aapt resource value: 0x7f02007c
 			public const int exo_controls_shuffle = 2130837628;
@@ -15808,29 +15808,29 @@ namespace CloudMusic.Droid
 			// aapt resource value: 0x7f020087
 			public const int exo_media_action_repeat_one = 2130837639;
 			
+			// aapt resource value: 0x7f0201f9
+			public const int exo_notification_fastforward = 2130838009;
+			
 			// aapt resource value: 0x7f0201fa
-			public const int exo_notification_fastforward = 2130838010;
+			public const int exo_notification_next = 2130838010;
 			
 			// aapt resource value: 0x7f0201fb
-			public const int exo_notification_next = 2130838011;
+			public const int exo_notification_pause = 2130838011;
 			
 			// aapt resource value: 0x7f0201fc
-			public const int exo_notification_pause = 2130838012;
+			public const int exo_notification_play = 2130838012;
 			
 			// aapt resource value: 0x7f0201fd
-			public const int exo_notification_play = 2130838013;
+			public const int exo_notification_previous = 2130838013;
 			
 			// aapt resource value: 0x7f0201fe
-			public const int exo_notification_previous = 2130838014;
-			
-			// aapt resource value: 0x7f0201ff
-			public const int exo_notification_rewind = 2130838015;
+			public const int exo_notification_rewind = 2130838014;
 			
 			// aapt resource value: 0x7f020088
 			public const int exo_notification_small_icon = 2130837640;
 			
-			// aapt resource value: 0x7f020200
-			public const int exo_notification_stop = 2130838016;
+			// aapt resource value: 0x7f0201ff
+			public const int exo_notification_stop = 2130838015;
 			
 			// aapt resource value: 0x7f020089
 			public const int ic_3bar = 2130837641;
@@ -16721,205 +16721,202 @@ namespace CloudMusic.Droid
 			public const int mtrl_tabs_default_indicator = 2130837936;
 			
 			// aapt resource value: 0x7f0201b1
-			public const int musiclive = 2130837937;
+			public const int navigation_empty_icon = 2130837937;
 			
 			// aapt resource value: 0x7f0201b2
-			public const int navigation_empty_icon = 2130837938;
+			public const int notification_action_background = 2130837938;
 			
 			// aapt resource value: 0x7f0201b3
-			public const int notification_action_background = 2130837939;
+			public const int notification_bg = 2130837939;
 			
 			// aapt resource value: 0x7f0201b4
-			public const int notification_bg = 2130837940;
+			public const int notification_bg_low = 2130837940;
 			
 			// aapt resource value: 0x7f0201b5
-			public const int notification_bg_low = 2130837941;
+			public const int notification_bg_low_normal = 2130837941;
 			
 			// aapt resource value: 0x7f0201b6
-			public const int notification_bg_low_normal = 2130837942;
+			public const int notification_bg_low_pressed = 2130837942;
 			
 			// aapt resource value: 0x7f0201b7
-			public const int notification_bg_low_pressed = 2130837943;
+			public const int notification_bg_normal = 2130837943;
 			
 			// aapt resource value: 0x7f0201b8
-			public const int notification_bg_normal = 2130837944;
+			public const int notification_bg_normal_pressed = 2130837944;
 			
 			// aapt resource value: 0x7f0201b9
-			public const int notification_bg_normal_pressed = 2130837945;
-			
-			// aapt resource value: 0x7f0201ba
-			public const int notification_icon_background = 2130837946;
-			
-			// aapt resource value: 0x7f0201f2
-			public const int notification_template_icon_bg = 2130838002;
-			
-			// aapt resource value: 0x7f0201f3
-			public const int notification_template_icon_low_bg = 2130838003;
-			
-			// aapt resource value: 0x7f0201bb
-			public const int notification_tile_bg = 2130837947;
-			
-			// aapt resource value: 0x7f0201bc
-			public const int notify_panel_notification_icon_bg = 2130837948;
-			
-			// aapt resource value: 0x7f0201bd
-			public const int pack = 2130837949;
-			
-			// aapt resource value: 0x7f0201be
-			public const int Packing = 2130837950;
-			
-			// aapt resource value: 0x7f0201bf
-			public const int PlayBack = 2130837951;
-			
-			// aapt resource value: 0x7f0201c0
-			public const int PlayDownLoad = 2130837952;
-			
-			// aapt resource value: 0x7f0201c1
-			public const int PlayDownLoadOk = 2130837953;
-			
-			// aapt resource value: 0x7f0201c2
-			public const int PlayHeart = 2130837954;
-			
-			// aapt resource value: 0x7f0201c3
-			public const int PlayHeart_red = 2130837955;
-			
-			// aapt resource value: 0x7f0201c4
-			public const int Playlike = 2130837956;
-			
-			// aapt resource value: 0x7f0201c5
-			public const int PlayLike_b = 2130837957;
-			
-			// aapt resource value: 0x7f0201c6
-			public const int Playlist = 2130837958;
-			
-			// aapt resource value: 0x7f0201c7
-			public const int PlayMenu = 2130837959;
-			
-			// aapt resource value: 0x7f0201c8
-			public const int PlayNext = 2130837960;
-			
-			// aapt resource value: 0x7f0201c9
-			public const int PlayRamdan = 2130837961;
-			
-			// aapt resource value: 0x7f0201ca
-			public const int PlayShare = 2130837962;
-			
-			// aapt resource value: 0x7f0201cb
-			public const int playshare_b = 2130837963;
-			
-			// aapt resource value: 0x7f0201cc
-			public const int PlayTalk = 2130837964;
-			
-			// aapt resource value: 0x7f0201cd
-			public const int PlayTalk_b = 2130837965;
-			
-			// aapt resource value: 0x7f0201ce
-			public const int PlayTree = 2130837966;
-			
-			// aapt resource value: 0x7f0201cf
-			public const int PlayVolume = 2130837967;
-			
-			// aapt resource value: 0x7f0201d0
-			public const int popup_forms_android_close_icon = 2130837968;
-			
-			// aapt resource value: 0x7f0201d1
-			public const int popup_forms_android_shadow = 2130837969;
-			
-			// aapt resource value: 0x7f0201d2
-			public const int PowerBI = 2130837970;
-			
-			// aapt resource value: 0x7f0201d3
-			public const int QueueSearch = 2130837971;
-			
-			// aapt resource value: 0x7f0201d4
-			public const int Refresh = 2130837972;
-			
-			// aapt resource value: 0x7f0201d5
-			public const int Refresh_w = 2130837973;
-			
-			// aapt resource value: 0x7f0201d6
-			public const int ScanHistory = 2130837974;
-			
-			// aapt resource value: 0x7f0201d7
-			public const int setting = 2130837975;
-			
-			// aapt resource value: 0x7f0201d8
-			public const int sfclosebutton = 2130837976;
-			
-			// aapt resource value: 0x7f0201d9
-			public const int Signle = 2130837977;
-			
-			// aapt resource value: 0x7f0201da
-			public const int single = 2130837978;
-			
-			// aapt resource value: 0x7f0201db
-			public const int styleinfo = 2130837979;
-			
-			// aapt resource value: 0x7f0201dc
-			public const int tab_about = 2130837980;
-			
-			// aapt resource value: 0x7f0201dd
-			public const int tab_feed = 2130837981;
-			
-			// aapt resource value: 0x7f0201de
-			public const int tabicon_fe = 2130837982;
-			
-			// aapt resource value: 0x7f0201df
-			public const int tabicon_mb = 2130837983;
-			
-			// aapt resource value: 0x7f0201e0
-			public const int tabicon_mc = 2130837984;
-			
-			// aapt resource value: 0x7f0201e1
-			public const int tabicon_mv = 2130837985;
-			
-			// aapt resource value: 0x7f0201e2
-			public const int tabicon_u = 2130837986;
-			
-			// aapt resource value: 0x7f0201e3
-			public const int tooltip_frame_dark = 2130837987;
-			
-			// aapt resource value: 0x7f0201e4
-			public const int tooltip_frame_light = 2130837988;
-			
-			// aapt resource value: 0x7f0201e5
-			public const int UserIcon = 2130837989;
-			
-			// aapt resource value: 0x7f0201e6
-			public const int vinyl = 2130837990;
-			
-			// aapt resource value: 0x7f0201e7
-			public const int WayBill = 2130837991;
-			
-			// aapt resource value: 0x7f0201e8
-			public const int WCS = 2130837992;
-			
-			// aapt resource value: 0x7f0201e9
-			public const int xamarin_logo = 2130837993;
-			
-			// aapt resource value: 0x7f0201ea
-			public const int xf_arrow_dropdown = 2130837994;
-			
-			// aapt resource value: 0x7f0201eb
-			public const int xf_check = 2130837995;
-			
-			// aapt resource value: 0x7f0201ec
-			public const int xf_checkbox_selected = 2130837996;
-			
-			// aapt resource value: 0x7f0201ed
-			public const int xf_checkbox_unselected = 2130837997;
-			
-			// aapt resource value: 0x7f0201ee
-			public const int xf_clear = 2130837998;
-			
-			// aapt resource value: 0x7f0201ef
-			public const int xf_error = 2130837999;
-			
-			// aapt resource value: 0x7f0201f0
-			public const int xf_radio_button_selected = 2130838000;
+			public const int notification_icon_background = 2130837945;
 			
 			// aapt resource value: 0x7f0201f1
-			public const int xf_radio_button_unselected = 2130838001;
+			public const int notification_template_icon_bg = 2130838001;
+			
+			// aapt resource value: 0x7f0201f2
+			public const int notification_template_icon_low_bg = 2130838002;
+			
+			// aapt resource value: 0x7f0201ba
+			public const int notification_tile_bg = 2130837946;
+			
+			// aapt resource value: 0x7f0201bb
+			public const int notify_panel_notification_icon_bg = 2130837947;
+			
+			// aapt resource value: 0x7f0201bc
+			public const int pack = 2130837948;
+			
+			// aapt resource value: 0x7f0201bd
+			public const int Packing = 2130837949;
+			
+			// aapt resource value: 0x7f0201be
+			public const int PlayBack = 2130837950;
+			
+			// aapt resource value: 0x7f0201bf
+			public const int PlayDownLoad = 2130837951;
+			
+			// aapt resource value: 0x7f0201c0
+			public const int PlayDownLoadOk = 2130837952;
+			
+			// aapt resource value: 0x7f0201c1
+			public const int PlayHeart = 2130837953;
+			
+			// aapt resource value: 0x7f0201c2
+			public const int PlayHeart_red = 2130837954;
+			
+			// aapt resource value: 0x7f0201c3
+			public const int Playlike = 2130837955;
+			
+			// aapt resource value: 0x7f0201c4
+			public const int PlayLike_b = 2130837956;
+			
+			// aapt resource value: 0x7f0201c5
+			public const int Playlist = 2130837957;
+			
+			// aapt resource value: 0x7f0201c6
+			public const int PlayMenu = 2130837958;
+			
+			// aapt resource value: 0x7f0201c7
+			public const int PlayNext = 2130837959;
+			
+			// aapt resource value: 0x7f0201c8
+			public const int PlayRamdan = 2130837960;
+			
+			// aapt resource value: 0x7f0201c9
+			public const int PlayShare = 2130837961;
+			
+			// aapt resource value: 0x7f0201ca
+			public const int playshare_b = 2130837962;
+			
+			// aapt resource value: 0x7f0201cb
+			public const int PlayTalk = 2130837963;
+			
+			// aapt resource value: 0x7f0201cc
+			public const int PlayTalk_b = 2130837964;
+			
+			// aapt resource value: 0x7f0201cd
+			public const int PlayTree = 2130837965;
+			
+			// aapt resource value: 0x7f0201ce
+			public const int PlayVolume = 2130837966;
+			
+			// aapt resource value: 0x7f0201cf
+			public const int popup_forms_android_close_icon = 2130837967;
+			
+			// aapt resource value: 0x7f0201d0
+			public const int popup_forms_android_shadow = 2130837968;
+			
+			// aapt resource value: 0x7f0201d1
+			public const int PowerBI = 2130837969;
+			
+			// aapt resource value: 0x7f0201d2
+			public const int QueueSearch = 2130837970;
+			
+			// aapt resource value: 0x7f0201d3
+			public const int Refresh = 2130837971;
+			
+			// aapt resource value: 0x7f0201d4
+			public const int Refresh_w = 2130837972;
+			
+			// aapt resource value: 0x7f0201d5
+			public const int ScanHistory = 2130837973;
+			
+			// aapt resource value: 0x7f0201d6
+			public const int setting = 2130837974;
+			
+			// aapt resource value: 0x7f0201d7
+			public const int sfclosebutton = 2130837975;
+			
+			// aapt resource value: 0x7f0201d8
+			public const int Signle = 2130837976;
+			
+			// aapt resource value: 0x7f0201d9
+			public const int single = 2130837977;
+			
+			// aapt resource value: 0x7f0201da
+			public const int styleinfo = 2130837978;
+			
+			// aapt resource value: 0x7f0201db
+			public const int tab_about = 2130837979;
+			
+			// aapt resource value: 0x7f0201dc
+			public const int tab_feed = 2130837980;
+			
+			// aapt resource value: 0x7f0201dd
+			public const int tabicon_fe = 2130837981;
+			
+			// aapt resource value: 0x7f0201de
+			public const int tabicon_mb = 2130837982;
+			
+			// aapt resource value: 0x7f0201df
+			public const int tabicon_mc = 2130837983;
+			
+			// aapt resource value: 0x7f0201e0
+			public const int tabicon_mv = 2130837984;
+			
+			// aapt resource value: 0x7f0201e1
+			public const int tabicon_u = 2130837985;
+			
+			// aapt resource value: 0x7f0201e2
+			public const int tooltip_frame_dark = 2130837986;
+			
+			// aapt resource value: 0x7f0201e3
+			public const int tooltip_frame_light = 2130837987;
+			
+			// aapt resource value: 0x7f0201e4
+			public const int UserIcon = 2130837988;
+			
+			// aapt resource value: 0x7f0201e5
+			public const int vinyl = 2130837989;
+			
+			// aapt resource value: 0x7f0201e6
+			public const int WayBill = 2130837990;
+			
+			// aapt resource value: 0x7f0201e7
+			public const int WCS = 2130837991;
+			
+			// aapt resource value: 0x7f0201e8
+			public const int xamarin_logo = 2130837992;
+			
+			// aapt resource value: 0x7f0201e9
+			public const int xf_arrow_dropdown = 2130837993;
+			
+			// aapt resource value: 0x7f0201ea
+			public const int xf_check = 2130837994;
+			
+			// aapt resource value: 0x7f0201eb
+			public const int xf_checkbox_selected = 2130837995;
+			
+			// aapt resource value: 0x7f0201ec
+			public const int xf_checkbox_unselected = 2130837996;
+			
+			// aapt resource value: 0x7f0201ed
+			public const int xf_clear = 2130837997;
+			
+			// aapt resource value: 0x7f0201ee
+			public const int xf_error = 2130837998;
+			
+			// aapt resource value: 0x7f0201ef
+			public const int xf_radio_button_selected = 2130837999;
+			
+			// aapt resource value: 0x7f0201f0
+			public const int xf_radio_button_unselected = 2130838000;
 			
 			static Drawable()
 			{

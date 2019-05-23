@@ -6,7 +6,7 @@
           xmlns:local="clr-namespace:CloudMusic.Actions"
           x:Class="CloudMusic.CustomForms.TwoPicFriendEventViewCell">
   <ViewCell.View>
-        <Grid Padding="20" ColumnSpacing="10" RowSpacing="0">
+        <Grid Padding="20" ColumnSpacing="10" RowSpacing="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="16"></RowDefinition>
                 <RowDefinition Height="14"></RowDefinition>

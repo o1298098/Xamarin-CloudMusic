@@ -31,14 +31,14 @@
                 <Label Text="dOb" FontSize="24" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Frame>
             <StackLayout Grid.Row="1" HeightRequest="150" VerticalOptions="End" Spacing="15">
-                <Button Text="登录" WidthRequest="{OnPlatform 250,iOS=300}" 
+                <Button Text="手机号登录" WidthRequest="{OnPlatform 250,iOS=300}" 
                         HeightRequest="40" 
                         BackgroundColor="White" 
                         HorizontalOptions="Center" 
                         CornerRadius="20" 
                         TextColor="#FE3A3B"
                         Command="{prismNavigation:NavigateTo 'MusicAPPLoginPage' , SourcePage={x:Reference MusicAPPLoginPage}}"/>
-                <Button Text="注册" WidthRequest="{OnPlatform 250,iOS=300}" HeightRequest="40" BorderColor="White" BorderWidth="1" HorizontalOptions="Center" CornerRadius="20" TextColor="White"/>
+                <Button Text="TestAcount" WidthRequest="{OnPlatform 250,iOS=300}" HeightRequest="40" BorderColor="White" BorderWidth="1" HorizontalOptions="Center" CornerRadius="20" TextColor="White" Command="{Binding TestAcountCommand}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
