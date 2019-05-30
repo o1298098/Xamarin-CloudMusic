@@ -2,10 +2,10 @@
 A Xamarin.Forms version of the NeteaseCloudMusic app  
 [![video]](https://youtu.be/a8BVqeAdxTY)  
 ![image](https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot.gif)  
-<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191648.jpg" width="250">
+<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190530-221811.jpg" width="250">
+<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/QQ20190530-221652@2x.png" width="250">  
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191743.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191756.jpg" width="250">
-<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191622.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191709.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191604.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191723.jpg" width="250">
