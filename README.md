@@ -5,9 +5,11 @@ A Xamarin.Forms version of the NeteaseCloudMusic app
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ios  
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190531-085903.jpg" width="250"><img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/QQ20190531-083829.png" width="250">  
 ## Features  
-- [x] play music. 
-- [x] video. 
-- [x] download music. 
+- [x] AudioPlayer. 
+- [x] VideoPlayer. 
+- [x] Parallax Effect. 
+- [x] Blur Effect. 
+- [x] Mvvm. 
 ## Tools used  
 - [martijn00/XamarinMediaManager](https://github.com/martijn00/XamarinMediaManager)  
 - [luberda-molinet/FFImageLoading](https://github.com/luberda-molinet/FFImageLoading)  
