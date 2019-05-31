@@ -2,19 +2,19 @@
 A Xamarin.Forms version of the NeteaseCloudMusic app  
 [![video]](https://youtu.be/a8BVqeAdxTY)  
 ![image](https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot.gif)  
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ios
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ios  
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190531-085903.jpg" width="250">
-<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/QQ20190531-083829.png" width="250"> 
-## Features
+<img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/QQ20190531-083829.png" width="250">  
+## Features  
 - [x] play music
 - [x] video
 - [x] download music
-## Tools used
+## Tools used  
 - [martijn00/XamarinMediaManager](https://github.com/martijn00/XamarinMediaManager)
 - [luberda-molinet/FFImageLoading](https://github.com/luberda-molinet/FFImageLoading)
 - [AndreiMisiukevich/CardView](https://github.com/AndreiMisiukevich/CardView)
 - [contrix09/XF-Material-Library](https://github.com/contrix09/XF-Material-Library)
-## Preview
+## Preview  
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191743.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191756.jpg" width="250">
 <img src="https://github.com/o1298098/Xamarin-CloudMusic/blob/master/Screenshot/Screenshot_20190513-191709.jpg" width="250">
