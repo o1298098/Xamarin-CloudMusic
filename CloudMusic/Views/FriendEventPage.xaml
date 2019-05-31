@@ -17,7 +17,7 @@
     <ContentPage.Content>
         <StackLayout  Margin="{OnPlatform '0,30,0,0',iOS='0,50,0,0'}" Spacing="0">
             <AbsoluteLayout Padding="20,0">
-                <ImageButton Source="ic_addfriend" WidthRequest="30" HeightRequest="30"/>
+                <ImageButton Source="ic_addfriend" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30"/>
                 <Frame BorderColor="#FE3A3B"
                        VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand"
@@ -30,6 +30,7 @@
                        CornerRadius="15">
                     <StackLayout Orientation="Horizontal" Spacing="0">
                          <Button Text="动态" 
+                            Padding="1"
                             TextColor="White" 
                             HeightRequest="30"
                             WidthRequest="60"
@@ -37,8 +38,10 @@
                             CornerRadius="15"/>
                     <Button Text="附近" 
                             TextColor="#FE3A3B" 
+                            Padding="1"
                             HeightRequest="30"
                             WidthRequest="60"
+                            BackgroundColor="Transparent"
                             CornerRadius="15"/>
                     </StackLayout>
                 </Frame>

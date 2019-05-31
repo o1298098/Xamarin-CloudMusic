@@ -131,7 +131,7 @@
                      <Label Text="我要开播" Grid.Row="14" Grid.Column="1" VerticalOptions="Center"/>
                      <Image Source="Ic_more_l" WidthRequest="15" HeightRequest="15" Grid.Row="14" Grid.Column="1"  HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
                      <BoxView HeightRequest="1" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#efefef"/>
-                     <Button Text="退出登录" Grid.Row="16" Grid.ColumnSpan="2" TextColor="#FE3A3B" CornerRadius="0"/>
+                     <Button Text="退出登录" Grid.Row="16" Grid.ColumnSpan="2" BackgroundColor="Transparent" TextColor="#FE3A3B" CornerRadius="0"/>
                 </Grid>
           </StackLayout>
         </ScrollView>

@@ -38,7 +38,7 @@
                         CornerRadius="20" 
                         TextColor="#FE3A3B"
                         Command="{prismNavigation:NavigateTo 'MusicAPPLoginPage' , SourcePage={x:Reference MusicAPPLoginPage}}"/>
-                <Button Text="TestAcount" WidthRequest="{OnPlatform 250,iOS=300}" HeightRequest="40" BorderColor="White" BorderWidth="1" HorizontalOptions="Center" CornerRadius="20" TextColor="White" Command="{Binding TestAcountCommand}"/>
+                <Button Text="TestAcount" BackgroundColor="Transparent" WidthRequest="{OnPlatform 250,iOS=300}" HeightRequest="40" BorderColor="White" BorderWidth="1" HorizontalOptions="Center" CornerRadius="20" TextColor="White" Command="{Binding TestAcountCommand}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

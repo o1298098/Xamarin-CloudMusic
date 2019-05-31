@@ -23,7 +23,7 @@
                         </Frame.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">  
                         <Image Source="ic_search_b" WidthRequest="20" HeightRequest="20"/>
-                        <Label Text="23333333" TextColor="#d1d1d1" FontSize="18"/>
+                        <Label Text="周杰伦" TextColor="#d1d1d1" FontSize="18"/>
                     </StackLayout>
            </Frame>
         </StackLayout>   

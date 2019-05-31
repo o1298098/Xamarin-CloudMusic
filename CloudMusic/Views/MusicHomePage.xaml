@@ -7,6 +7,7 @@
     prism:ViewModelLocator.AutowireViewModel="True"  
     NavigationPage.HasNavigationBar="False"
     BarBackgroundColor="White"
+    SelectedTabColor="#FE3A3B"
     x:Class="CloudMusic.Views.MusicHomePage">
   <views:MusicDiscoverPage Title="发现" Icon="tabicon_mc"></views:MusicDiscoverPage>
   <views:ScrollVideoPage Title="视频" Icon="tabicon_mv"></views:ScrollVideoPage>
