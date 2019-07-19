@@ -40,37 +40,36 @@ namespace CloudMusic
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
             Xamarin.Essentials.ExperimentalFeatures.Enable(Xamarin.Essentials.ExperimentalFeatures.ShareFileRequest);
-#if DEBUG
-            if (!HotReloader.Current.IsRunning)
-                HotReloader.Current.Start(this);
-#endif
+
             Context = new Context();
             //MainPage = new NavigationPage(new MasterDetailPage1());
-            MainPage = new ContentPage();
-            DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
+            //MainPage = new ContentPage();
+            try
+            {
+                System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (sender, e) =>
+                {
+                    logger.Log(e.Exception.ToString(), Category.Exception, Priority.High);
+                };
+                DependencyService.Get<ICookieStore>().Init(CloudMusicApiHelper.apihost);
             var cookielist = DependencyService.Get<ICookieStore>().CurrentCookies.Where(cc => cc.Name != "none").ToList();
             if (cookielist.Count > 0)
             {
                 foreach (var q in cookielist)
                     ApiHelper.HttpClient.CloudMusicCookie.Add(q);
-                try
-                {
-                    System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (sender, e) =>
-                    {
-                        logger.Log(e.Exception.ToString(), Category.Exception, Priority.High);
-                    };
+               
                     await NavigationService.NavigateAsync("/NavigationPage/MusicHomePage?selectedTab=MusicDiscoverPage");
-                }
-                catch (System.Exception e)
-                {
-                    logger.Log(e.ToString(), Category.Exception, Priority.High);
-                }
+               
             }
             else
             {
                 await NavigationService.NavigateAsync("/NavigationPage/StartPage");
+                }
             }
-            
+            catch (System.Exception e)
+            {
+                logger.Log(e.ToString(), Category.Exception, Priority.High);
+            }
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

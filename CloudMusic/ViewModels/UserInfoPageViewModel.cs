@@ -70,7 +70,8 @@ namespace CloudMusic.ViewModels
         }
         void GetLocalMusic()
         {
-            Task.Run(async ()=> {
+          if (Device.RuntimePlatform == Device.Android)
+                Task.Run(async ()=> {
                 var q =await DependencyService.Get<IAudioPicker>().GetAudioFileAsync();
                 localMusicCount = q.Count();
             });
