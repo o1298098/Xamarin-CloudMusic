@@ -229,7 +229,7 @@ namespace CloudMusic.ViewModels
                         //    DisplaySubtitle= NowSongInfo.name,
                         //};
                         if (!string.IsNullOrWhiteSpace(music.data[0].url))
-                             await CrossMediaManager.Current.Play($"https://music.163.com/song/media/outer/url?id={NowSongInfo.id}.mp3");
+                             await CrossMediaManager.Current.Play(music.data[0].url);
                          else
                              Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
 
