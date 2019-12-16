@@ -106,7 +106,7 @@ namespace CloudMusic.ViewModels
                     try
                     {
                         if (!string.IsNullOrWhiteSpace(result.data[0].url))
-                            await CrossMediaManager.Current.Play($"https://music.163.com/song/media/outer/url?id={personalFm.data[s].id}.mp3");
+                            await CrossMediaManager.Current.Play(result.data[0].url);
                         else
                             Device.BeginInvokeOnMainThread(() => DependencyService.Get<IToast>().ShortAlert("没有版权"));
                         if(s+2>= personalFm.data.Count)

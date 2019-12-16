@@ -13,7 +13,7 @@ namespace CloudMusic.Actions.ApiHelper
 {
    public static class CloudMusicApiHelper
     {
-       public static readonly string apihost = "https://music.aityp.com";
+       public static readonly string apihost = "http://104.207.135.233:3000";
         public static UserInfo  Login(string phone, string password)
         {
             DependencyService.Get<ICookieStore>().DeleteAllCookiesForSite(apihost);

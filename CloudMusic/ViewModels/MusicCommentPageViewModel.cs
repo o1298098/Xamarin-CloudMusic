@@ -31,11 +31,10 @@ namespace CloudMusic.ViewModels
 
                 MusicID = parameters["MusicID"].ToString();
                 Task.Run(() => {
-                    string result = ApiHelper.HttpClient.HttpGet(commenturl + parameters["MusicID"].ToString());
+                    var comment = Actions.ApiHelper.CloudMusicApiHelper.GetSongComment("50", parameters["MusicID"].ToString(),0);
 
-                if (result != "err")
+                if (comment != null)
                 {
-                    var comment = JsonConvert.DeserializeObject<MusicComment>(result);
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         musicComment = comment;
@@ -51,10 +50,9 @@ namespace CloudMusic.ViewModels
             IsBusy = true;
             Task.Run(()=> {
                 string loadurl = commenturl + MusicID + "&offset=" + page;
-                string result = ApiHelper.HttpClient.HttpGet(loadurl);
-                if (result != "err")
+                var comment = CloudMusic.Actions.ApiHelper.CloudMusicApiHelper.GetSongComment("50", MusicID,page);
+                if (comment != null)
                 {
-                    var comment = JsonConvert.DeserializeObject<MusicComment>(result);
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         foreach (var q in comment.comments)

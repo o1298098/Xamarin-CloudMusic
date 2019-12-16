@@ -31,9 +31,9 @@ namespace CloudMusic.ViewModels
         int maxvulome, nowvulome;
         MusicInfo _musicInfo;
         //static string url = "https://api.unsplash.com/photos/random?client_id=cb802c915f1be81dad83df10d3eac7f2d7dd56355f068a452b3410151f1d45b1";
-        string playlisturl = "https://music.aityp.com/playlist/detail?id=543014929";
-        string musicurl = "https://music.aityp.com/song/url?&br=999000&id=";
-        string musicCommenturl = "https://music.aityp.com/comment/music?limit=1&id=";
+        string playlisturl = "http://104.207.135.233:3000/playlist/detail?id=543014929";
+        string musicurl = "http://104.207.135.233:3000/song/url?&br=999000&id=";
+        string musicCommenturl = "http://104.207.135.233:3000/comment/music?limit=1&id=";
         ThemeColors theme;
         string imageurl, description, songname, artname, commentcount;
         int index, _currentIndex;
@@ -208,10 +208,9 @@ namespace CloudMusic.ViewModels
             NowSongInfo = MusicPlayList.playlist.tracks[s];
             await Task.Run(async () =>
              {
-                 string result = ApiHelper.HttpClient.HttpGet(musicurl + NowSongInfo.id);
-                 if (result != "err")
+                 var music = Actions.ApiHelper.CloudMusicApiHelper.GetSong(NowSongInfo.id.ToString(),Models.ENUM.CouldMusicBpsType.high);
+                 if (music != null)
                  {
-                     var music = JsonConvert.DeserializeObject<MusicInfo>(result);
                      Device.BeginInvokeOnMainThread(() =>
                      {
                          SongName = NowSongInfo.name;
@@ -238,10 +237,10 @@ namespace CloudMusic.ViewModels
                      {
                          Crashes.TrackError(ex);
                      }
-                     result = ApiHelper.HttpClient.HttpGet(musicCommenturl + MusicPlayList.playlist.tracks[s].id);
-                     if (result != "err")
+                    var musicComments = Actions.ApiHelper.CloudMusicApiHelper.GetSongComment("1", MusicPlayList.playlist.tracks[s].id.ToString(), 1);
+                     if (musicComments !=null)
                      {
-                         var musicComments = JsonConvert.DeserializeObject<MusicComment>(result);
+                        
                          int cCount = musicComments.total;
                          if (cCount < 1000)
                              CommentCount = cCount.ToString();

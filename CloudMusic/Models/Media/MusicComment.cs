@@ -28,7 +28,7 @@ namespace CloudMusic.Models.Media
             public int commentLocationType { get; set; }
             public int parentCommentId { get; set; }
             public object decoration { get; set; }
-            public bool repliedMark { get; set; }
+            //public bool repliedMark { get; set; }
             public bool liked { get; set; }
             public int likedCount { get; set; }
             public int commentId { get; set; }
@@ -93,7 +93,7 @@ namespace CloudMusic.Models.Media
             public int commentLocationType { get; set; }
             public int parentCommentId { get; set; }
             public Decoration decoration { get; set; }
-            public bool repliedMark { get; set; }
+            //public bool repliedMark { get; set; }
             public bool liked { get; set; }
             public int likedCount { get; set; }
             public int commentId { get; set; }
