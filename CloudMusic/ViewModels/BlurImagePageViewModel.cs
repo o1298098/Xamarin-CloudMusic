@@ -260,7 +260,7 @@ namespace CloudMusic.ViewModels
         }
         void GetLyrics()
         {
-            string result = ApiHelper.HttpClient.HttpGet("https://music.aityp.com/lyric?id=" + NowSongInfo.id);
+            string result = ApiHelper.HttpClient.HttpGet("http://104.207.135.233:3000/lyric?id=" + NowSongInfo.id);
             if (result != "err")
             {
                 var lyric = JsonConvert.DeserializeObject<MusicLyric>(result);
